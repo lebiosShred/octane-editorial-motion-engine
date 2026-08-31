@@ -4,8 +4,8 @@ import timingData from '../../public/voiceover.json';
 import { IndustrialTheme } from '../types/theme';
 import { SubtitleKaraoke } from '../components/SubtitleKaraoke';
 import { SpatialBoard } from '../components/spatial/SpatialBoard';
-import { BoardNode } from '../components/spatial/BoardNode';
-import { BoardConnector } from '../components/spatial/BoardConnector';
+import { KineticNode } from '../components/spatial/KineticNode';
+import { KineticLaserConduit } from '../components/spatial/KineticLaserConduit';
 import { BitLatticeGrid } from '../components/forge/BitLatticeGrid';
 import { DimensionTopologyTree } from '../components/forge/DimensionTopologyTree';
 import { CircuitConduit } from '../components/forge/CircuitConduit';
@@ -17,7 +17,7 @@ export const TM1FeederCommercial: React.FC = () => {
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Calibrated Spatial Camera
+  // ── INERTIAL DAMPED CAMERA PATH ──
   const cameraScale = interpolate(
     currentTime,
     [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 25.5],
@@ -45,9 +45,9 @@ export const TM1FeederCommercial: React.FC = () => {
   const bloatReduction = interpolate(currentTime, [20.5, 23.5], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const subSecLatency = interpolate(currentTime, [22.0, 24.5], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
-  // Self-drawing clean docked laser lines
-  const drawLine1 = interpolate(currentTime, [6.5, 8.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const drawLine2 = interpolate(currentTime, [15.5, 17.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // Self-drawing kinetic laser conduits
+  const drawLine1 = interpolate(currentTime, [6.2, 8.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const drawLine2 = interpolate(currentTime, [15.2, 17.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
   // Blackboard dimming during Outro (t >= 25.5s)
@@ -71,8 +71,8 @@ export const TM1FeederCommercial: React.FC = () => {
       <div style={{ position: 'absolute', inset: 0, opacity: blackboardOpacity, transition: 'opacity 0.4s ease-out' }}>
         <SpatialBoard cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY}>
 
-          {/* ── VECTOR CONNECTOR TRACES ── */}
-          <BoardConnector
+          {/* ── KINETIC PHOTON LASER CONDUITS ── */}
+          <KineticLaserConduit
             x1={-860}
             y1={-160}
             x2={-250}
@@ -81,7 +81,7 @@ export const TM1FeederCommercial: React.FC = () => {
             drawProgress={drawLine1}
           />
 
-          <BoardConnector
+          <KineticLaserConduit
             x1={250}
             y1={-160}
             x2={850}
@@ -91,9 +91,9 @@ export const TM1FeederCommercial: React.FC = () => {
           />
 
           {/* ═══════════════════════════════════════════════════════════
-              CLUSTER 1: THE STALL & EDITORIAL HUMOR (X: -1100)
+              CLUSTER 1: THE STALL & 3D EDITORIAL HUMOR (X: -1100)
              ═══════════════════════════════════════════════════════════ */}
-          <BoardNode
+          <KineticNode
             x={-1100}
             y={-160}
             width={480}
@@ -101,6 +101,9 @@ export const TM1FeederCommercial: React.FC = () => {
             badge="THREAD LOCK DETECTED"
             badgeType="crimson"
             isActive={currentTime < 8.0}
+            entranceDelayFrames={0}
+            cameraPanX={cameraPanX}
+            cameraPanY={cameraPanY}
           >
             <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 6 }}>
               Active Consolidation Latency
@@ -115,9 +118,9 @@ export const TM1FeederCommercial: React.FC = () => {
             <div style={{ marginTop: 6, width: '100%', height: 6, backgroundColor: '#E2E8F0', borderRadius: 3, overflow: 'hidden' }}>
               <div style={{ width: `${Math.min(92, latencyVal * 2.2)}%`, height: '100%', backgroundColor: IndustrialTheme.signals.crimson }} />
             </div>
-          </BoardNode>
+          </KineticNode>
 
-          <BoardNode
+          <KineticNode
             x={-1100}
             y={170}
             width={480}
@@ -125,14 +128,17 @@ export const TM1FeederCommercial: React.FC = () => {
             badge="HARDWARE MYTH"
             badgeType="amber"
             isActive={currentTime >= 3.0 && currentTime < 8.0}
+            entranceDelayFrames={Math.round(2.8 * fps)}
+            cameraPanX={cameraPanX}
+            cameraPanY={cameraPanY}
           >
             <InfraTeamHumorCard ramVal={ramVal} />
-          </BoardNode>
+          </KineticNode>
 
           {/* ═══════════════════════════════════════════════════════════
               CLUSTER 2: OVERFEEDING & MULTIPLIER EXPLOSION (X: 0)
              ═══════════════════════════════════════════════════════════ */}
-          <BoardNode
+          <KineticNode
             x={0}
             y={-160}
             width={500}
@@ -140,11 +146,14 @@ export const TM1FeederCommercial: React.FC = () => {
             badge="108M DERIVED CELLS"
             badgeType="crimson"
             isActive={currentTime >= 7.5 && currentTime < 17.0}
+            entranceDelayFrames={Math.round(7.2 * fps)}
+            cameraPanX={cameraPanX}
+            cameraPanY={cameraPanY}
           >
             <DimensionTopologyTree />
-          </BoardNode>
+          </KineticNode>
 
-          <BoardNode
+          <KineticNode
             x={0}
             y={170}
             width={500}
@@ -152,18 +161,21 @@ export const TM1FeederCommercial: React.FC = () => {
             badge="CRITICAL OVERFEED"
             badgeType="crimson"
             isActive={currentTime >= 7.5 && currentTime < 17.0}
+            entranceDelayFrames={Math.round(8.0 * fps)}
+            cameraPanX={cameraPanX}
+            cameraPanY={cameraPanY}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
               <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontWeight: 700 }}>Fed to Populated Ratio</span>
               <span style={{ fontSize: 22, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace' }}>250:1</span>
             </div>
             <BitLatticeGrid populatedCount={6} totalCount={128} isOverfed={true} />
-          </BoardNode>
+          </KineticNode>
 
           {/* ═══════════════════════════════════════════════════════════
               CLUSTER 3: TARGETED CONDITIONAL FEEDER & REMEDIATION (X: +1100)
              ═══════════════════════════════════════════════════════════ */}
-          <BoardNode
+          <KineticNode
             x={1100}
             y={-160}
             width={500}
@@ -171,6 +183,9 @@ export const TM1FeederCommercial: React.FC = () => {
             badge="CONDITIONAL ACTIVE"
             badgeType="mint"
             isActive={currentTime >= 16.5 && currentTime < 25.5}
+            entranceDelayFrames={Math.round(16.0 * fps)}
+            cameraPanX={cameraPanX}
+            cameraPanY={cameraPanY}
           >
             <div style={{ fontSize: 11, fontFamily: 'monospace', color: IndustrialTheme.text.primary, lineHeight: 1.5, background: IndustrialTheme.popout.recessedWell, padding: 12, borderRadius: 8, border: '1px solid rgba(0,0,0,0.06)' }}>
               <div><span style={{ color: IndustrialTheme.text.hero, fontWeight: 700 }}>['Units']</span> =&gt; DB(</div>
@@ -186,10 +201,9 @@ export const TM1FeederCommercial: React.FC = () => {
                 color="#0F172A"
               />
             </div>
-          </BoardNode>
+          </KineticNode>
 
-          {/* Clean Metric Card with Zero Button Crowding */}
-          <BoardNode
+          <KineticNode
             x={1100}
             y={170}
             width={500}
@@ -197,6 +211,9 @@ export const TM1FeederCommercial: React.FC = () => {
             badge="SUB-SECOND SPEED"
             badgeType="mint"
             isActive={currentTime >= 16.5 && currentTime < 25.5}
+            entranceDelayFrames={Math.round(17.0 * fps)}
+            cameraPanX={cameraPanX}
+            cameraPanY={cameraPanY}
           >
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, alignItems: 'center' }}>
               <div style={{ background: IndustrialTheme.popout.recessedWell, padding: 14, borderRadius: 10, border: '1px solid rgba(0,0,0,0.06)' }}>
@@ -215,7 +232,7 @@ export const TM1FeederCommercial: React.FC = () => {
                 <div style={{ fontSize: 10, color: IndustrialTheme.signals.mint, fontWeight: 700 }}>Sub-Second Speed</div>
               </div>
             </div>
-          </BoardNode>
+          </KineticNode>
 
         </SpatialBoard>
       </div>

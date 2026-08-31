@@ -7,6 +7,8 @@ export * from './components/SubtitleKaraoke';
 export * from './components/spatial/SpatialBoard';
 export * from './components/spatial/BoardNode';
 export * from './components/spatial/BoardConnector';
+export * from './components/spatial/KineticNode';
+export * from './components/spatial/KineticLaserConduit';
 export * from './components/forge/ChassisFrame';
 export * from './components/forge/DimensionTopologyTree';
 export * from './components/forge/BitLatticeGrid';
