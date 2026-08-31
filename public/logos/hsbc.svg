@@ -1,0 +1,10 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- HSBC Red/White Hexagon Triangles -->
+  <polygon points="15,30 30,15 30,45" fill="#EE1C25"/>
+  <polygon points="45,30 30,15 30,45" fill="#FFFFFF"/>
+  <polygon points="30,15 45,30 60,15" fill="#EE1C25"/>
+  <polygon points="30,45 45,30 60,45" fill="#EE1C25"/>
+  <polygon points="60,15 45,30 60,45" fill="#FFFFFF"/>
+  <polygon points="75,30 60,15 60,45" fill="#EE1C25"/>
+  <text x="90" y="39" font-family="'Inter', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="1.5">HSBC</text>
+</svg>

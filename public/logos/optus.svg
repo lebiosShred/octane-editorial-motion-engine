@@ -1,0 +1,5 @@
+<svg viewBox="0 0 190 60" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="18" fill="#FFDE00"/>
+  <text x="21" y="36" font-family="'Inter', sans-serif" font-weight="900" font-size="18" fill="#000000">YES</text>
+  <text x="60" y="38" font-family="'Inter', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="2">OPTUS</text>
+</svg>

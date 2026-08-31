@@ -1,7 +1,7 @@
 import React from 'react';
-import { AbsoluteFill, Audio, Sequence, Video, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Audio, Img, Sequence, Video, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 
-// Helper component for Scene Text Motion
+// Helper component for Standard Scene Text Motion
 const KineticScene: React.FC<{
   eyebrow?: string;
   title: React.ReactNode;
@@ -114,6 +114,169 @@ const KineticScene: React.FC<{
   );
 };
 
+// High-Velocity Logo Marquee Component
+const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const sp = spring({
+    frame,
+    fps,
+    config: { mass: 0.5, damping: 12, stiffness: 140 }
+  });
+
+  const opacity = interpolate(
+    frame,
+    [0, 8, durationInFrames - 8, durationInFrames],
+    [0, 1, 1, 0],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+
+  const scale = interpolate(sp, [0, 1], [0.88, 1]);
+  const translateY = interpolate(sp, [0, 1], [20, 0]);
+
+  // Brand logo sets
+  const row1Logos = [
+    'logos/unilever.svg',
+    'logos/hsbc.svg',
+    'logos/coca_cola.svg',
+    'logos/optus.svg',
+    'logos/lion.svg',
+    'logos/unilever.svg',
+    'logos/hsbc.svg',
+    'logos/coca_cola.svg',
+    'logos/optus.svg',
+    'logos/lion.svg'
+  ];
+
+  const row2Logos = [
+    'logos/adobe.svg',
+    'logos/sanofi.svg',
+    'logos/domain.svg',
+    'logos/qbe.svg',
+    'logos/boral.svg',
+    'logos/adobe.svg',
+    'logos/sanofi.svg',
+    'logos/domain.svg',
+    'logos/qbe.svg',
+    'logos/boral.svg'
+  ];
+
+  // High velocity shift: 12px per frame
+  const shift1 = (frame * 12) % 1350;
+  const shift2 = (frame * 12) % 1350;
+
+  const cardStyle: React.CSSProperties = {
+    background: 'rgba(9, 10, 12, 0.92)',
+    border: '1.5px solid rgba(77, 174, 235, 0.45)',
+    borderRadius: 14,
+    padding: '12px 32px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 64,
+    minWidth: 200,
+    boxShadow: '0 10px 35px rgba(0,0,0,0.85)'
+  };
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 22,
+        opacity,
+        transform: `scale(${scale}) translateY(${translateY}px)`
+      }}
+    >
+      {/* Top Eyebrow */}
+      <div
+        style={{
+          fontSize: 18,
+          fontWeight: 900,
+          letterSpacing: '0.18em',
+          fontFamily: "'JetBrains Mono', monospace",
+          color: '#4daeeb',
+          textTransform: 'uppercase',
+          background: 'rgba(9, 10, 12, 0.9)',
+          border: '1.5px solid #4daeeb',
+          padding: '6px 24px',
+          borderRadius: 8
+        }}
+      >
+        SHARING THE STAGE WITH CFOS FROM
+      </div>
+
+      {/* Dual High-Velocity Kinetic Logo Streams */}
+      <div
+        style={{
+          width: '100%',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          padding: '8px 0',
+          position: 'relative'
+        }}
+      >
+        {/* Row 1: Leftward Velocity */}
+        <div
+          style={{
+            display: 'flex',
+            gap: 20,
+            transform: `translateX(-${shift1}px)`,
+            whiteSpace: 'nowrap'
+          }}
+        >
+          {row1Logos.map((logo, idx) => (
+            <div key={`r1-${idx}`} style={cardStyle}>
+              <Img src={staticFile(logo)} style={{ height: 42, objectFit: 'contain' }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Row 2: Rightward Velocity */}
+        <div
+          style={{
+            display: 'flex',
+            gap: 20,
+            transform: `translateX(${shift2 - 1200}px)`,
+            whiteSpace: 'nowrap'
+          }}
+        >
+          {row2Logos.map((logo, idx) => (
+            <div key={`r2-${idx}`} style={cardStyle}>
+              <Img src={staticFile(logo)} style={{ height: 42, objectFit: 'contain' }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Subtitle */}
+      <div
+        style={{
+          fontSize: 22,
+          fontWeight: 800,
+          letterSpacing: '0.08em',
+          fontFamily: "'JetBrains Mono', monospace",
+          color: '#FFFFFF',
+          textTransform: 'uppercase',
+          background: 'rgba(9, 10, 12, 0.85)',
+          border: '1.5px solid rgba(77, 174, 235, 0.4)',
+          padding: '6px 24px',
+          borderRadius: 8
+        }}
+      >
+        CFO LEADERSHIP PRIORITIES FOR 2026
+      </div>
+    </div>
+  );
+};
+
 export const ForefrontSummitTeaser: React.FC = () => {
   const videoStyle: React.CSSProperties = {
     width: '100%',
@@ -167,23 +330,13 @@ export const ForefrontSummitTeaser: React.FC = () => {
       </Sequence>
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 2: SHARING THE STAGE WITH ENTERPRISE CFOS (150 - 300 frames / 5.0s - 10.0s)
+          SCENE 2: FAST KINETIC LOGO MARQUEE (150 - 300 frames / 5.0s - 10.0s)
           Footage: Executive Boardroom
          ══════════════════════════════════════════════════════════════ */}
       <Sequence from={150} durationInFrames={150}>
         <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
-        <KineticScene
-          eyebrow="SHARING THE STAGE WITH CFOS FROM"
-          title={
-            <>
-              UNILEVER • LION • HSBC <br />
-              <span style={{ color: '#4daeeb' }}>COCA-COLA • OPTUS</span>
-            </>
-          }
-          subtitle="CFO Leadership Priorities for 2026"
-          durationInFrames={150}
-        />
+        <FastLogoMarqueeScene durationInFrames={150} />
       </Sequence>
 
       {/* ══════════════════════════════════════════════════════════════

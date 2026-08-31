@@ -1,0 +1,5 @@
+<svg viewBox="0 0 190 60" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="12" fill="#7A00E6"/>
+  <circle cx="42" cy="24" r="7" fill="#00D7D7"/>
+  <text x="62" y="38" font-family="'Inter', sans-serif" font-weight="800" font-size="26" fill="#FFFFFF" letter-spacing="1">sanofi</text>
+</svg>
