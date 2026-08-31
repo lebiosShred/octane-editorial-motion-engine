@@ -99,7 +99,7 @@ export const CtaOutroStage: React.FC = () => {
           Master conditional feeder architecture, eliminate empty-cell traversal, and restore sub-second consolidation speeds.
         </div>
 
-        {/* Hero Action CTA Button */}
+        {/* Hero Action CTA Button matching spoken audio "in the link below" */}
         <div
           style={{
             background: '#090A0C',
@@ -116,8 +116,8 @@ export const CtaOutroStage: React.FC = () => {
             border: '1.5px solid #4daeeb'
           }}
         >
-          <span>Click the link above to read the whole blog</span>
-          <span style={{ color: '#4daeeb', fontSize: 20, fontWeight: 900 }}>↑</span>
+          <span>Click the link below to read the whole blog</span>
+          <span style={{ color: '#4daeeb', fontSize: 20, fontWeight: 900 }}>↓</span>
         </div>
       </div>
     </div>
