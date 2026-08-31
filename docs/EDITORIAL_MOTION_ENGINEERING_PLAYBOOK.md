@@ -480,9 +480,15 @@ flowchart TD
   - *Side-by-Side Beats* (Left Hero Text + Right Single Card) for analytical comparisons and problem definitions.
   - *Stacked Beats* (Top Single Card + Bottom Centered Hero Text) for narrative storytelling, humor, and grid visualizers.
 
+### 2. Strict Prohibition: Zero Storyboard / Debug Metadata Tags
+- **PROHIBITED**: Never render debug labels, storyboard markers, or bracketed scene tags (e.g. `[ SCENE 01 // LATENCY STALL ]`, `[ ROOT CAUSE // ARCHITECTURE ]`, `[ STAGE 02 ]`) above headlines.
+- **RATIONALE**: These tags look like developer script annotations, split visual focus, and distract the user from the core value proposition.
+- **RULE**: Headings must be clean, confident, and direct (e.g. *"When your dashboard takes 40 seconds to open..."*). Let the visuals and the headline carry the narrative without metadata noise.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 4.0.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 4.1.0 (Production Verified).*
+
 
 
 

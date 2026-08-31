@@ -104,9 +104,6 @@ export const TM1FeederCommercial: React.FC = () => {
         >
           {/* Left Hero Copy */}
           <div style={{ flex: 1, maxWidth: 540 }}>
-            <div style={{ fontSize: 13, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: IndustrialTheme.signals.crimson, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>
-              [ SCENE 01 // LATENCY STALL ]
-            </div>
             <div style={{ fontSize: 48, fontWeight: 800, color: '#FFFFFF', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
               When your dashboard takes <span style={{ color: IndustrialTheme.signals.crimson, fontWeight: 900 }}>40 seconds</span> to open...
             </div>
@@ -213,14 +210,8 @@ export const TM1FeederCommercial: React.FC = () => {
         >
           {/* Left Hero Copy */}
           <div style={{ flex: 1, maxWidth: 540 }}>
-            <div style={{ fontSize: 13, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: IndustrialTheme.signals.crimson, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>
-              [ ROOT CAUSE // ARCHITECTURE ]
-            </div>
             <div style={{ fontSize: 48, fontWeight: 800, color: '#FFFFFF', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
               The real bottleneck is <span style={{ color: IndustrialTheme.signals.crimson, fontWeight: 900 }}>overfeeding</span>.
-            </div>
-            <div style={{ fontSize: 18, color: '#94A3B8', marginTop: 16, lineHeight: 1.4 }}>
-              RAM cannot fix an algorithmic exponential Cartesian explosion.
             </div>
           </div>
 
