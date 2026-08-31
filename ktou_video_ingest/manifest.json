@@ -1,0 +1,481 @@
+{
+  "engine": "Google AI Studio Perception Engine v2.0",
+  "source": "https://www.youtube.com/watch?v=KTouYaBHxcM",
+  "total_seconds": 40,
+  "sampling_rate_fps": 1.0,
+  "audio_file": "ktou_video_ingest\\audio.mp3",
+  "transcript": [
+    {
+      "start": "00:00:00.000",
+      "end": "00:00:01.510",
+      "text": "Complexity,"
+    },
+    {
+      "start": "00:00:01.510",
+      "end": "00:00:01.520",
+      "text": "Complexity,"
+    },
+    {
+      "start": "00:00:01.520",
+      "end": "00:00:04.190",
+      "text": "Complexity, it's constant. Markets shift, demand"
+    },
+    {
+      "start": "00:00:04.190",
+      "end": "00:00:04.200",
+      "text": "it's constant. Markets shift, demand"
+    },
+    {
+      "start": "00:00:04.200",
+      "end": "00:00:07.030",
+      "text": "it's constant. Markets shift, demand changes, costs move. So, don't simplify"
+    },
+    {
+      "start": "00:00:07.030",
+      "end": "00:00:07.040",
+      "text": "changes, costs move. So, don't simplify"
+    },
+    {
+      "start": "00:00:07.040",
+      "end": "00:00:09.790",
+      "text": "changes, costs move. So, don't simplify your business. Simplify your path to"
+    },
+    {
+      "start": "00:00:09.790",
+      "end": "00:00:09.800",
+      "text": "your business. Simplify your path to"
+    },
+    {
+      "start": "00:00:09.800",
+      "end": "00:00:11.950",
+      "text": "your business. Simplify your path to better [music] decisions. Cubewise helps"
+    },
+    {
+      "start": "00:00:11.950",
+      "end": "00:00:11.960",
+      "text": "better [music] decisions. Cubewise helps"
+    },
+    {
+      "start": "00:00:11.960",
+      "end": "00:00:14.350",
+      "text": "better [music] decisions. Cubewise helps you harness complexity with partnership"
+    },
+    {
+      "start": "00:00:14.350",
+      "end": "00:00:14.360",
+      "text": "you harness complexity with partnership"
+    },
+    {
+      "start": "00:00:14.360",
+      "end": "00:00:16.150",
+      "text": "you harness complexity with partnership that feels in-house, [music]"
+    },
+    {
+      "start": "00:00:16.150",
+      "end": "00:00:16.160",
+      "text": "that feels in-house, [music]"
+    },
+    {
+      "start": "00:00:16.160",
+      "end": "00:00:18.430",
+      "text": "that feels in-house, [music] knowledge sharing that builds your team,"
+    },
+    {
+      "start": "00:00:18.430",
+      "end": "00:00:18.440",
+      "text": "knowledge sharing that builds your team,"
+    },
+    {
+      "start": "00:00:18.440",
+      "end": "00:00:21.870",
+      "text": "knowledge sharing that builds your team, craftsmanship that lasts, and innovation"
+    },
+    {
+      "start": "00:00:21.870",
+      "end": "00:00:21.880",
+      "text": "craftsmanship that lasts, and innovation"
+    },
+    {
+      "start": "00:00:21.880",
+      "end": "00:00:23.630",
+      "text": "craftsmanship that lasts, and innovation that keeps [music] you ahead."
+    },
+    {
+      "start": "00:00:23.630",
+      "end": "00:00:23.640",
+      "text": "that keeps [music] you ahead."
+    },
+    {
+      "start": "00:00:23.640",
+      "end": "00:00:27.510",
+      "text": "that keeps [music] you ahead. Built on IBM Planning Analytics TM1."
+    },
+    {
+      "start": "00:00:27.510",
+      "end": "00:00:27.520",
+      "text": "Built on IBM Planning Analytics TM1."
+    },
+    {
+      "start": "00:00:27.520",
+      "end": "00:00:30.190",
+      "text": "Built on IBM Planning Analytics TM1. Cubewise, IBM Platinum Business [music]"
+    },
+    {
+      "start": "00:00:30.190",
+      "end": "00:00:30.200",
+      "text": "Cubewise, IBM Platinum Business [music]"
+    },
+    {
+      "start": "00:00:30.200",
+      "end": "00:00:31.470",
+      "text": "Cubewise, IBM Platinum Business [music] Partner."
+    },
+    {
+      "start": "00:00:31.470",
+      "end": "00:00:31.480",
+      "text": "Partner."
+    },
+    {
+      "start": "00:00:31.480",
+      "end": "00:00:33.470",
+      "text": "Partner. Turn complexity into competitive"
+    },
+    {
+      "start": "00:00:33.470",
+      "end": "00:00:33.480",
+      "text": "Turn complexity into competitive"
+    },
+    {
+      "start": "00:00:33.480",
+      "end": "00:00:38.635",
+      "text": "Turn complexity into competitive advantage. Follow us on LinkedIn."
+    },
+    {
+      "start": "00:00:38.645",
+      "end": "00:00:40.665",
+      "text": "&gt;&gt; [music]"
+    }
+  ],
+  "timeline": [
+    {
+      "second": 1,
+      "timestamp": "00:01",
+      "frame_file": "frames\\frame_0001.jpg",
+      "spoken_text": "Complexity,",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 2,
+      "timestamp": "00:02",
+      "frame_file": "frames\\frame_0002.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 3,
+      "timestamp": "00:03",
+      "frame_file": "frames\\frame_0003.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 4,
+      "timestamp": "00:04",
+      "frame_file": "frames\\frame_0004.jpg",
+      "spoken_text": "it's constant. Markets shift, demand",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 5,
+      "timestamp": "00:05",
+      "frame_file": "frames\\frame_0005.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 6,
+      "timestamp": "00:06",
+      "frame_file": "frames\\frame_0006.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 7,
+      "timestamp": "00:07",
+      "frame_file": "frames\\frame_0007.jpg",
+      "spoken_text": "changes, costs move. So, don't simplify",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 8,
+      "timestamp": "00:08",
+      "frame_file": "frames\\frame_0008.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 9,
+      "timestamp": "00:09",
+      "frame_file": "frames\\frame_0009.jpg",
+      "spoken_text": "your business. Simplify your path to",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 10,
+      "timestamp": "00:10",
+      "frame_file": "frames\\frame_0010.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 11,
+      "timestamp": "00:11",
+      "frame_file": "frames\\frame_0011.jpg",
+      "spoken_text": "better [music] decisions. Cubewise helps",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 12,
+      "timestamp": "00:12",
+      "frame_file": "frames\\frame_0012.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 13,
+      "timestamp": "00:13",
+      "frame_file": "frames\\frame_0013.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 14,
+      "timestamp": "00:14",
+      "frame_file": "frames\\frame_0014.jpg",
+      "spoken_text": "you harness complexity with partnership",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 15,
+      "timestamp": "00:15",
+      "frame_file": "frames\\frame_0015.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 16,
+      "timestamp": "00:16",
+      "frame_file": "frames\\frame_0016.jpg",
+      "spoken_text": "that feels in-house, [music]",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 17,
+      "timestamp": "00:17",
+      "frame_file": "frames\\frame_0017.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 18,
+      "timestamp": "00:18",
+      "frame_file": "frames\\frame_0018.jpg",
+      "spoken_text": "knowledge sharing that builds your team,",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 19,
+      "timestamp": "00:19",
+      "frame_file": "frames\\frame_0019.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 20,
+      "timestamp": "00:20",
+      "frame_file": "frames\\frame_0020.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 21,
+      "timestamp": "00:21",
+      "frame_file": "frames\\frame_0021.jpg",
+      "spoken_text": "craftsmanship that lasts, and innovation",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 22,
+      "timestamp": "00:22",
+      "frame_file": "frames\\frame_0022.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 23,
+      "timestamp": "00:23",
+      "frame_file": "frames\\frame_0023.jpg",
+      "spoken_text": "that keeps [music] you ahead.",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 24,
+      "timestamp": "00:24",
+      "frame_file": "frames\\frame_0024.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 25,
+      "timestamp": "00:25",
+      "frame_file": "frames\\frame_0025.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 26,
+      "timestamp": "00:26",
+      "frame_file": "frames\\frame_0026.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 27,
+      "timestamp": "00:27",
+      "frame_file": "frames\\frame_0027.jpg",
+      "spoken_text": "Built on IBM Planning Analytics TM1.",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 28,
+      "timestamp": "00:28",
+      "frame_file": "frames\\frame_0028.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 29,
+      "timestamp": "00:29",
+      "frame_file": "frames\\frame_0029.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 30,
+      "timestamp": "00:30",
+      "frame_file": "frames\\frame_0030.jpg",
+      "spoken_text": "Cubewise, IBM Platinum Business [music]",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 31,
+      "timestamp": "00:31",
+      "frame_file": "frames\\frame_0031.jpg",
+      "spoken_text": "Partner.",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 32,
+      "timestamp": "00:32",
+      "frame_file": "frames\\frame_0032.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 33,
+      "timestamp": "00:33",
+      "frame_file": "frames\\frame_0033.jpg",
+      "spoken_text": "Turn complexity into competitive",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 34,
+      "timestamp": "00:34",
+      "frame_file": "frames\\frame_0034.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 35,
+      "timestamp": "00:35",
+      "frame_file": "frames\\frame_0035.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 36,
+      "timestamp": "00:36",
+      "frame_file": "frames\\frame_0036.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 37,
+      "timestamp": "00:37",
+      "frame_file": "frames\\frame_0037.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 38,
+      "timestamp": "00:38",
+      "frame_file": "frames\\frame_0038.jpg",
+      "spoken_text": "&gt;&gt; [music]",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 39,
+      "timestamp": "00:39",
+      "frame_file": "frames\\frame_0039.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    },
+    {
+      "second": 40,
+      "timestamp": "00:40",
+      "frame_file": "frames\\frame_0040.jpg",
+      "spoken_text": "",
+      "ocr_text": "",
+      "approx_tokens": 290
+    }
+  ]
+}
