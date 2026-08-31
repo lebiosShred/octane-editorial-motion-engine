@@ -17,41 +17,41 @@ export const TM1FeederCommercial: React.FC = () => {
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // ── INERTIAL DAMPED CAMERA PATH ──
+  // ── INERTIAL DAMPED CAMERA PATH (Aligned to 38.7s narration) ──
   const cameraScale = interpolate(
     currentTime,
-    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 25.5],
+    [0, 1.5, 9.0, 11.5, 18.5, 20.5, 27.5, 28.5],
     [1.20, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.10],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
 
   const cameraPanX = interpolate(
     currentTime,
-    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 25.5],
+    [0, 1.5, 9.0, 11.5, 18.5, 20.5, 27.5, 28.5],
     [1100, 1100, 1100, 0, 0, -1100, -1100, -1100],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
 
   const cameraPanY = interpolate(
     currentTime,
-    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 25.5],
+    [0, 1.5, 9.0, 11.5, 18.5, 20.5, 27.5, 28.5],
     [0, 0, 0, 0, 0, 0, 0, 0],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
 
   // Dynamic values
-  const latencyVal = interpolate(currentTime, [0, 2.5], [0.0, 42.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const ramVal = interpolate(currentTime, [3.3, 5.8], [16, 64], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const bloatReduction = interpolate(currentTime, [20.5, 23.5], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const subSecLatency = interpolate(currentTime, [22.0, 24.5], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const latencyVal = interpolate(currentTime, [0, 2.8], [0.0, 42.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const ramVal = interpolate(currentTime, [4.0, 7.8], [16, 64], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const bloatReduction = interpolate(currentTime, [22.5, 26.0], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const subSecLatency = interpolate(currentTime, [25.5, 27.8], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   // Self-drawing kinetic laser conduits
-  const drawLine1 = interpolate(currentTime, [6.2, 8.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const drawLine2 = interpolate(currentTime, [15.2, 17.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const drawLine1 = interpolate(currentTime, [8.8, 11.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const drawLine2 = interpolate(currentTime, [18.2, 20.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
-  // Blackboard dimming during Outro (t >= 25.5s)
-  const blackboardOpacity = interpolate(currentTime, [25.0, 26.0], [1.0, 0.12], {
+  // Blackboard dimming during Outro (t >= 28.2s)
+  const blackboardOpacity = interpolate(currentTime, [27.8, 28.8], [1.0, 0.12], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp'
   });
@@ -100,7 +100,7 @@ export const TM1FeederCommercial: React.FC = () => {
             title="Planning Analytics Workspace"
             badge="THREAD LOCK DETECTED"
             badgeType="crimson"
-            isActive={currentTime < 8.0}
+            isActive={currentTime < 10.0}
             entranceDelayFrames={0}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
@@ -127,8 +127,8 @@ export const TM1FeederCommercial: React.FC = () => {
             title="Infrastructure Advisory"
             badge="HARDWARE MYTH"
             badgeType="amber"
-            isActive={currentTime >= 3.0 && currentTime < 8.0}
-            entranceDelayFrames={Math.round(2.8 * fps)}
+            isActive={currentTime >= 3.5 && currentTime < 10.0}
+            entranceDelayFrames={Math.round(3.4 * fps)}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
@@ -145,8 +145,8 @@ export const TM1FeederCommercial: React.FC = () => {
             title="Root Bottleneck: Overfeeding Architecture"
             badge="108M DERIVED CELLS"
             badgeType="crimson"
-            isActive={currentTime >= 7.5 && currentTime < 17.0}
-            entranceDelayFrames={Math.round(7.2 * fps)}
+            isActive={currentTime >= 10.0 && currentTime < 19.5}
+            entranceDelayFrames={Math.round(9.8 * fps)}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
@@ -160,8 +160,8 @@ export const TM1FeederCommercial: React.FC = () => {
             title="Memory Lattice (16x8 Register)"
             badge="CRITICAL OVERFEED"
             badgeType="crimson"
-            isActive={currentTime >= 7.5 && currentTime < 17.0}
-            entranceDelayFrames={Math.round(8.0 * fps)}
+            isActive={currentTime >= 10.0 && currentTime < 19.5}
+            entranceDelayFrames={Math.round(11.0 * fps)}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
@@ -182,8 +182,8 @@ export const TM1FeederCommercial: React.FC = () => {
             title="Targeted Conditional Feeder Engine"
             badge="CONDITIONAL ACTIVE"
             badgeType="mint"
-            isActive={currentTime >= 16.5 && currentTime < 25.5}
-            entranceDelayFrames={Math.round(16.0 * fps)}
+            isActive={currentTime >= 19.0 && currentTime < 28.2}
+            entranceDelayFrames={Math.round(19.0 * fps)}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
@@ -210,8 +210,8 @@ export const TM1FeederCommercial: React.FC = () => {
             title="Diagnostic Remediation Result"
             badge="SUB-SECOND SPEED"
             badgeType="mint"
-            isActive={currentTime >= 16.5 && currentTime < 25.5}
-            entranceDelayFrames={Math.round(17.0 * fps)}
+            isActive={currentTime >= 19.0 && currentTime < 28.2}
+            entranceDelayFrames={Math.round(20.0 * fps)}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
@@ -237,8 +237,8 @@ export const TM1FeederCommercial: React.FC = () => {
         </SpatialBoard>
       </div>
 
-      {/* DEDICATED CINEMATIC OUTRO STAGE (t >= 25.0s) */}
-      {currentTime >= 25.0 && <CtaOutroStage />}
+      {/* DEDICATED CINEMATIC OUTRO STAGE (t >= 28.2s) */}
+      {currentTime >= 28.0 && <CtaOutroStage />}
 
       <SubtitleKaraoke words={timingData.words} currentTime={currentTime} />
     </AbsoluteFill>

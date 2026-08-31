@@ -6,8 +6,8 @@ export const CtaOutroStage: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Relative progress since start of outro (t = 25.5s)
-  const outroFrame = Math.max(0, frame - Math.round(25.5 * fps));
+  // Outro triggers at t = 28.2s
+  const outroFrame = Math.max(0, frame - Math.round(28.2 * fps));
 
   const cardScale = spring({
     frame: outroFrame,

@@ -11,21 +11,21 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Staggered spring animations for speech bubbles (t = 3.3s, 4.0s, 4.7s)
+  // Staggered spring animations aligned to narrator's IT delivery (t = 4.2s, 5.4s, 6.6s)
   const bubble1Progress = spring({
-    frame: frame - Math.round(3.3 * fps),
+    frame: frame - Math.round(4.2 * fps),
     fps,
     config: { damping: 12, stiffness: 140 }
   });
 
   const bubble2Progress = spring({
-    frame: frame - Math.round(4.0 * fps),
+    frame: frame - Math.round(5.4 * fps),
     fps,
     config: { damping: 12, stiffness: 140 }
   });
 
   const bubble3Progress = spring({
-    frame: frame - Math.round(4.7 * fps),
+    frame: frame - Math.round(6.6 * fps),
     fps,
     config: { damping: 12, stiffness: 140 }
   });
@@ -69,7 +69,7 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
         />
 
         {/* ── SPEECH BUBBLE 1: SysAdmin (Left) ── */}
-        {currentTime >= 3.3 && (
+        {currentTime >= 4.2 && (
           <div
             style={{
               position: 'absolute',
@@ -106,7 +106,7 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
         )}
 
         {/* ── SPEECH BUBBLE 2: Cloud Architect (Middle) ── */}
-        {currentTime >= 4.0 && (
+        {currentTime >= 5.4 && (
           <div
             style={{
               position: 'absolute',
@@ -144,7 +144,7 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
         )}
 
         {/* ── SPEECH BUBBLE 3: DevOps (Right) ── */}
-        {currentTime >= 4.7 && (
+        {currentTime >= 6.6 && (
           <div
             style={{
               position: 'absolute',
