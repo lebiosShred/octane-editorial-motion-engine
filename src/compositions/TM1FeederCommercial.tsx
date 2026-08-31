@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Audio, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
+import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import timingData from '../../public/voiceover.json';
 import { IndustrialTheme } from '../types/theme';
 import { StudioBackdrop } from '../components/StudioBackdrop';
@@ -9,6 +9,7 @@ import { CircuitConduit } from '../components/forge/CircuitConduit';
 import { BitLatticeGrid } from '../components/forge/BitLatticeGrid';
 import { TelemetryGauge } from '../components/forge/TelemetryGauge';
 import { HexRegisterDump } from '../components/forge/HexRegisterDump';
+import { DimensionTopologyTree } from '../components/forge/DimensionTopologyTree';
 
 export const TM1FeederCommercial: React.FC = () => {
   const frame = useCurrentFrame();
@@ -61,7 +62,7 @@ export const TM1FeederCommercial: React.FC = () => {
       <Audio src={staticFile('voiceover.wav')} />
       <StudioBackdrop />
 
-      {/* GUIDED MICRO-TARGET TOUR STAGE (NO EXTRANEOUS VIEWPORT HEADERS) */}
+      {/* GUIDED MICRO-TARGET TOUR STAGE */}
       <div
         style={{
           position: 'absolute',
@@ -142,7 +143,7 @@ export const TM1FeederCommercial: React.FC = () => {
           </div>
         )}
 
-        {/* SCENE 2: THE ROOT CAUSE (7.5s - 16.5s) */}
+        {/* SCENE 2: THE ROOT CAUSE (7.5s - 16.5s) - 100% PROGRAMMATIC TELEMETRY */}
         {currentTime >= 7.5 && currentTime < 16.5 && (
           <div style={{ opacity: scene2Opacity, width: 1040 }}>
             <ChassisFrame
@@ -152,9 +153,7 @@ export const TM1FeederCommercial: React.FC = () => {
               statusLed="error"
             >
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 24, alignItems: 'center' }}>
-                <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: IndustrialTheme.popout.recessedBorder, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
-                  <Img src={staticFile('tm1_lag_video_hero.jpg')} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                </div>
+                <DimensionTopologyTree />
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {/* Target 3: 108M Fed Cells Ticker & Bit-Lattice */}
