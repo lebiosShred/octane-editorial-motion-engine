@@ -140,7 +140,7 @@ const KineticScene: React.FC<KineticSceneProps> = ({
 };
 
 // ==========================================
-// FAST LOGO MARQUEE SCENE (CONTINUOUS VELOCITY)
+// FAST LOGO MARQUEE SCENE (VISUAL PSYCHOLOGY SCALE)
 // ==========================================
 const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
   const frame = useCurrentFrame();
@@ -204,30 +204,30 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 32,
+        gap: 36,
         opacity,
         transform: `scale(${scale}) translateY(${translateY}px)`
       }}
     >
-      {/* Top Eyebrow */}
+      {/* Commanding Display Headline (Scale = Emotion, No Box Trap) */}
       <div
         style={{
-          fontSize: 18,
+          fontSize: 52,
           fontWeight: 900,
-          letterSpacing: '0.18em',
-          fontFamily: "'JetBrains Mono', monospace",
-          color: '#4daeeb',
+          letterSpacing: '-0.03em',
+          fontFamily: "'Inter', sans-serif",
+          color: '#FFFFFF',
           textTransform: 'uppercase',
-          background: 'rgba(9, 10, 12, 0.9)',
-          border: '1.5px solid #4daeeb',
-          padding: '6px 24px',
-          borderRadius: 8
+          textAlign: 'center',
+          lineHeight: 1.08,
+          maxWidth: 1300,
+          textShadow: '0 8px 32px rgba(0,0,0,0.95)'
         }}
       >
-        SHARING THE STAGE WITH CFOS FROM
+        SHARING THE STAGE WITH <span style={{ color: '#4daeeb' }}>CFOS</span> FROM
       </div>
 
-      {/* Floating Seamless Stream Tracks (No Black Boxes) */}
+      {/* Floating Seamless Stream Tracks */}
       <div
         style={{
           width: '100%',
@@ -235,7 +235,7 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
           display: 'flex',
           flexDirection: 'column',
           gap: 28,
-          padding: '20px 0',
+          padding: '24px 0',
           position: 'relative',
           background: 'linear-gradient(180deg, rgba(9,10,12,0) 0%, rgba(9,10,12,0.75) 50%, rgba(9,10,12,0) 100%)'
         }}
@@ -269,18 +269,18 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         </div>
       </div>
 
-      {/* Bottom Subtitle */}
+      {/* Bottom Grounding Subtitle */}
       <div
         style={{
           fontSize: 22,
           fontWeight: 800,
-          letterSpacing: '0.08em',
+          letterSpacing: '0.06em',
           fontFamily: "'JetBrains Mono', monospace",
-          color: '#FFFFFF',
+          color: '#CBD5E1',
           textTransform: 'uppercase',
           background: 'rgba(9, 10, 12, 0.85)',
-          border: '1.5px solid rgba(77, 174, 235, 0.4)',
-          padding: '6px 24px',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          padding: '8px 28px',
           borderRadius: 8
         }}
       >
