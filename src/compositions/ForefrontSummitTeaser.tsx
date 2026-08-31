@@ -269,6 +269,210 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
   );
 };
 
+
+const KeynoteSpotlightScene: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const sp = spring({
+    frame,
+    fps,
+    config: { mass: 0.5, damping: 12, stiffness: 130 }
+  });
+
+  const opacity = interpolate(
+    frame,
+    [0, 12, durationInFrames - 12, durationInFrames],
+    [0, 1, 1, 1],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+
+  const scale = interpolate(sp, [0, 1], [0.92, 1]);
+  const translateY = interpolate(sp, [0, 1], [25, 0]);
+  const floatY = Math.sin((frame / 40) * Math.PI) * 4;
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
+        opacity,
+        transform: `scale(${scale}) translateY(${translateY}px)`
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 64,
+          maxWidth: 1300,
+          background: 'rgba(9, 10, 12, 0.82)',
+          border: '1.5px solid rgba(77, 174, 235, 0.35)',
+          padding: '48px 56px',
+          borderRadius: 24,
+          backdropFilter: 'blur(24px)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.75), 0 0 50px rgba(77, 174, 235, 0.15)'
+        }}
+      >
+        {/* Left: Speaker Portrait with Glowing Glass Frame */}
+        <div
+          style={{
+            position: 'relative',
+            flexShrink: 0,
+            transform: `translateY(${floatY}px)`
+          }}
+        >
+          {/* Glowing Aura Ring */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: -12,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(77, 174, 235, 0.5) 0%, transparent 70%)',
+              filter: 'blur(10px)',
+              zIndex: 0
+            }}
+          />
+          {/* Circular Portrait Image Container */}
+          <div
+            style={{
+              position: 'relative',
+              width: 240,
+              height: 240,
+              borderRadius: '50%',
+              overflow: 'hidden',
+              border: '4px solid #4daeeb',
+              boxShadow: '0 0 35px rgba(77, 174, 235, 0.5)',
+              background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)',
+              zIndex: 1
+            }}
+          >
+            <Img
+              src={staticFile('steny_sebastian.png')}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 15%'
+              }}
+            />
+          </div>
+          {/* Featured Speaker Badge */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: -10,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: '#4daeeb',
+              color: '#090A0C',
+              fontSize: 12,
+              fontWeight: 900,
+              fontFamily: "'JetBrains Mono', monospace",
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              padding: '4px 14px',
+              borderRadius: 20,
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.6)',
+              zIndex: 2,
+              whiteSpace: 'nowrap'
+            }}
+          >
+            KEYNOTE SPEAKER
+          </div>
+        </div>
+
+        {/* Right: Topic & Speaker Credentials */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 16
+          }}
+        >
+          {/* Eyebrow */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              fontSize: 14,
+              fontWeight: 900,
+              letterSpacing: '0.12em',
+              fontFamily: "'JetBrains Mono', monospace",
+              color: '#4daeeb',
+              textTransform: 'uppercase'
+            }}
+          >
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4daeeb' }} />
+            FEATURED CASE STUDY • OCTANE SOLUTIONS
+          </div>
+
+          {/* Keynote Title */}
+          <div
+            style={{
+              fontSize: 48,
+              fontWeight: 900,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.08,
+              color: '#FFFFFF',
+              textTransform: 'uppercase'
+            }}
+          >
+            THE AGENTIC FINANCE <br />
+            <span style={{ color: '#4daeeb' }}>DEPARTMENT</span>
+          </div>
+
+          {/* Subtitle */}
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 700,
+              color: '#CBD5E1',
+              letterSpacing: '-0.01em'
+            }}
+          >
+            Finance Teams Firmly in the Loop
+          </div>
+
+          {/* Speaker Bio Lockup */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 14,
+              marginTop: 8,
+              paddingTop: 16,
+              borderTop: '1px solid rgba(255, 255, 255, 0.12)'
+            }}
+          >
+            <div>
+              <div style={{ fontSize: 22, fontWeight: 800, color: '#FFFFFF' }}>
+                Steny Sebastian
+              </div>
+              <div
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  color: '#94A3B8',
+                  marginTop: 2
+                }}
+              >
+                Principal, Data & AI Platforms • Octane Solutions
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const ForefrontSummitTeaser: React.FC = () => {
   const videoStyle: React.CSSProperties = {
     width: '100%',
@@ -326,19 +530,8 @@ export const ForefrontSummitTeaser: React.FC = () => {
       {/* SCENE 3: OCTANE FEATURED KEYNOTE CASE STUDY (300 - 480 frames) */}
       <Sequence from={300} durationInFrames={180}>
         <Video src={staticFile('vid_office.mp4')} style={videoStyle} />
-        <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
-        <KineticScene
-          eyebrow="STREAM B: FP&A TRANSFORMATION • 12:10 PM"
-          title={
-            <>
-              THE AGENTIC FINANCE <br />
-              <span style={{ color: '#4daeeb' }}>DEPARTMENT</span>
-            </>
-          }
-          subtitle="Finance Teams Firmly in the Loop"
-          badge="FEATURED CASE STUDY BY STENY SEBASTIAN • OCTANE SOLUTIONS"
-          durationInFrames={180}
-        />
+        <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.85) 100%)' }} />
+        <KeynoteSpotlightScene durationInFrames={180} />
       </Sequence>
 
       {/* SCENE 4: IBM PLANNING ANALYTICS + AGENTIC AI (480 - 645 frames) */}
