@@ -1,0 +1,523 @@
+{
+  "audio_file": "forefront_voiceover.wav",
+  "duration_seconds": 38.99,
+  "total_words": 86,
+  "words": [
+    {
+      "word": "The",
+      "start": 0.0,
+      "end": 0.26,
+      "probability": 0.64
+    },
+    {
+      "word": "Premier",
+      "start": 0.26,
+      "end": 0.58,
+      "probability": 0.35
+    },
+    {
+      "word": "Finance",
+      "start": 0.58,
+      "end": 1.02,
+      "probability": 0.98
+    },
+    {
+      "word": "Transformation",
+      "start": 1.02,
+      "end": 1.68,
+      "probability": 0.932
+    },
+    {
+      "word": "Summit",
+      "start": 1.68,
+      "end": 2.24,
+      "probability": 0.93
+    },
+    {
+      "word": "is",
+      "start": 2.24,
+      "end": 2.62,
+      "probability": 0.975
+    },
+    {
+      "word": "coming",
+      "start": 2.62,
+      "end": 2.9,
+      "probability": 0.994
+    },
+    {
+      "word": "to",
+      "start": 2.9,
+      "end": 3.14,
+      "probability": 0.997
+    },
+    {
+      "word": "Sydney.",
+      "start": 3.14,
+      "end": 3.5,
+      "probability": 0.941
+    },
+    {
+      "word": "On",
+      "start": 4.22,
+      "end": 4.7,
+      "probability": 0.988
+    },
+    {
+      "word": "September",
+      "start": 4.7,
+      "end": 5.14,
+      "probability": 0.936
+    },
+    {
+      "word": "2nd",
+      "start": 5.14,
+      "end": 5.68,
+      "probability": 0.885
+    },
+    {
+      "word": "at",
+      "start": 5.68,
+      "end": 5.74,
+      "probability": 0.834
+    },
+    {
+      "word": "the",
+      "start": 5.74,
+      "end": 5.86,
+      "probability": 0.987
+    },
+    {
+      "word": "ICC,",
+      "start": 5.86,
+      "end": 6.4,
+      "probability": 0.908
+    },
+    {
+      "word": "over",
+      "start": 6.88,
+      "end": 7.06,
+      "probability": 0.982
+    },
+    {
+      "word": "200",
+      "start": 7.06,
+      "end": 7.54,
+      "probability": 0.971
+    },
+    {
+      "word": "finance",
+      "start": 7.54,
+      "end": 8.12,
+      "probability": 0.93
+    },
+    {
+      "word": "leaders",
+      "start": 8.12,
+      "end": 8.56,
+      "probability": 0.973
+    },
+    {
+      "word": "and",
+      "start": 8.56,
+      "end": 8.82,
+      "probability": 0.997
+    },
+    {
+      "word": "innovators",
+      "start": 8.82,
+      "end": 9.34,
+      "probability": 0.998
+    },
+    {
+      "word": "gather",
+      "start": 9.34,
+      "end": 9.64,
+      "probability": 0.984
+    },
+    {
+      "word": "to",
+      "start": 9.64,
+      "end": 9.92,
+      "probability": 0.999
+    },
+    {
+      "word": "shape",
+      "start": 9.92,
+      "end": 10.18,
+      "probability": 0.997
+    },
+    {
+      "word": "the",
+      "start": 10.18,
+      "end": 10.4,
+      "probability": 0.995
+    },
+    {
+      "word": "future",
+      "start": 10.4,
+      "end": 10.74,
+      "probability": 0.984
+    },
+    {
+      "word": "of",
+      "start": 10.74,
+      "end": 10.98,
+      "probability": 0.999
+    },
+    {
+      "word": "enterprise",
+      "start": 10.98,
+      "end": 11.36,
+      "probability": 0.567
+    },
+    {
+      "word": "planning.",
+      "start": 11.36,
+      "end": 12.04,
+      "probability": 0.999
+    },
+    {
+      "word": "Octane",
+      "start": 12.92,
+      "end": 13.5,
+      "probability": 0.82
+    },
+    {
+      "word": "Software",
+      "start": 13.5,
+      "end": 13.98,
+      "probability": 0.685
+    },
+    {
+      "word": "Solutions",
+      "start": 13.98,
+      "end": 14.46,
+      "probability": 0.949
+    },
+    {
+      "word": "is",
+      "start": 14.46,
+      "end": 14.84,
+      "probability": 0.993
+    },
+    {
+      "word": "proud",
+      "start": 14.84,
+      "end": 15.1,
+      "probability": 0.826
+    },
+    {
+      "word": "to",
+      "start": 15.1,
+      "end": 15.26,
+      "probability": 0.992
+    },
+    {
+      "word": "sponsor",
+      "start": 15.26,
+      "end": 15.7,
+      "probability": 0.999
+    },
+    {
+      "word": "Forefront",
+      "start": 15.7,
+      "end": 16.22,
+      "probability": 0.537
+    },
+    {
+      "word": "Sydney.",
+      "start": 16.22,
+      "end": 16.6,
+      "probability": 0.911
+    },
+    {
+      "word": "Discover",
+      "start": 17.28,
+      "end": 18.04,
+      "probability": 0.981
+    },
+    {
+      "word": "how",
+      "start": 18.04,
+      "end": 18.36,
+      "probability": 0.991
+    },
+    {
+      "word": "IBM",
+      "start": 18.36,
+      "end": 18.92,
+      "probability": 0.968
+    },
+    {
+      "word": "planning",
+      "start": 18.92,
+      "end": 19.56,
+      "probability": 0.592
+    },
+    {
+      "word": "analytics",
+      "start": 19.56,
+      "end": 20.22,
+      "probability": 0.969
+    },
+    {
+      "word": "and",
+      "start": 20.22,
+      "end": 20.46,
+      "probability": 0.961
+    },
+    {
+      "word": "agentic",
+      "start": 20.46,
+      "end": 21.16,
+      "probability": 0.675
+    },
+    {
+      "word": "AI",
+      "start": 21.16,
+      "end": 21.36,
+      "probability": 0.951
+    },
+    {
+      "word": "eliminate",
+      "start": 21.36,
+      "end": 21.94,
+      "probability": 0.971
+    },
+    {
+      "word": "month",
+      "start": 21.94,
+      "end": 22.32,
+      "probability": 0.803
+    },
+    {
+      "word": "-end",
+      "start": 22.32,
+      "end": 22.64,
+      "probability": 0.705
+    },
+    {
+      "word": "bottlenecks",
+      "start": 22.64,
+      "end": 23.32,
+      "probability": 0.994
+    },
+    {
+      "word": "and",
+      "start": 23.32,
+      "end": 23.52,
+      "probability": 0.967
+    },
+    {
+      "word": "accelerate",
+      "start": 23.52,
+      "end": 23.96,
+      "probability": 0.993
+    },
+    {
+      "word": "financial",
+      "start": 23.96,
+      "end": 24.6,
+      "probability": 0.999
+    },
+    {
+      "word": "agility.",
+      "start": 24.6,
+      "end": 25.12,
+      "probability": 0.991
+    },
+    {
+      "word": "Connect",
+      "start": 25.88,
+      "end": 26.5,
+      "probability": 0.99
+    },
+    {
+      "word": "with",
+      "start": 26.5,
+      "end": 26.76,
+      "probability": 0.997
+    },
+    {
+      "word": "our",
+      "start": 26.76,
+      "end": 26.88,
+      "probability": 0.997
+    },
+    {
+      "word": "team,",
+      "start": 26.88,
+      "end": 27.16,
+      "probability": 0.989
+    },
+    {
+      "word": "exchange",
+      "start": 27.44,
+      "end": 27.74,
+      "probability": 0.99
+    },
+    {
+      "word": "ideas",
+      "start": 27.74,
+      "end": 28.28,
+      "probability": 0.999
+    },
+    {
+      "word": "with",
+      "start": 28.28,
+      "end": 28.6,
+      "probability": 0.98
+    },
+    {
+      "word": "industry",
+      "start": 28.6,
+      "end": 28.98,
+      "probability": 0.991
+    },
+    {
+      "word": "peers,",
+      "start": 28.98,
+      "end": 29.32,
+      "probability": 0.997
+    },
+    {
+      "word": "and",
+      "start": 29.32,
+      "end": 29.6,
+      "probability": 0.808
+    },
+    {
+      "word": "see",
+      "start": 29.6,
+      "end": 29.82,
+      "probability": 0.964
+    },
+    {
+      "word": "modern",
+      "start": 29.82,
+      "end": 30.2,
+      "probability": 0.544
+    },
+    {
+      "word": "FP",
+      "start": 30.2,
+      "end": 30.68,
+      "probability": 0.769
+    },
+    {
+      "word": "and",
+      "start": 30.68,
+      "end": 31.0,
+      "probability": 0.409
+    },
+    {
+      "word": "A",
+      "start": 31.0,
+      "end": 31.22,
+      "probability": 0.949
+    },
+    {
+      "word": "in",
+      "start": 31.22,
+      "end": 31.42,
+      "probability": 0.993
+    },
+    {
+      "word": "action.",
+      "start": 31.42,
+      "end": 31.8,
+      "probability": 0.988
+    },
+    {
+      "word": "Join",
+      "start": 32.7,
+      "end": 33.08,
+      "probability": 0.995
+    },
+    {
+      "word": "us",
+      "start": 33.08,
+      "end": 33.26,
+      "probability": 0.997
+    },
+    {
+      "word": "on",
+      "start": 33.26,
+      "end": 33.42,
+      "probability": 0.996
+    },
+    {
+      "word": "September",
+      "start": 33.42,
+      "end": 33.82,
+      "probability": 0.98
+    },
+    {
+      "word": "2nd",
+      "start": 33.82,
+      "end": 34.44,
+      "probability": 0.805
+    },
+    {
+      "word": "at",
+      "start": 34.44,
+      "end": 34.54,
+      "probability": 0.981
+    },
+    {
+      "word": "ICC",
+      "start": 34.54,
+      "end": 35.04,
+      "probability": 0.904
+    },
+    {
+      "word": "Sydney,",
+      "start": 35.04,
+      "end": 35.58,
+      "probability": 0.768
+    },
+    {
+      "word": "dropped",
+      "start": 36.02,
+      "end": 36.16,
+      "probability": 0.57
+    },
+    {
+      "word": "by",
+      "start": 36.16,
+      "end": 36.42,
+      "probability": 0.998
+    },
+    {
+      "word": "booth",
+      "start": 36.42,
+      "end": 36.64,
+      "probability": 0.449
+    },
+    {
+      "word": "19",
+      "start": 36.64,
+      "end": 37.16,
+      "probability": 0.886
+    },
+    {
+      "word": "and",
+      "start": 37.16,
+      "end": 37.42,
+      "probability": 0.907
+    },
+    {
+      "word": "say",
+      "start": 37.42,
+      "end": 37.62,
+      "probability": 0.988
+    },
+    {
+      "word": "hello.",
+      "start": 37.62,
+      "end": 38.0,
+      "probability": 0.892
+    }
+  ]
+}
