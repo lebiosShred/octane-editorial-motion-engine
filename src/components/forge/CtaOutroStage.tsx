@@ -6,8 +6,8 @@ export const CtaOutroStage: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Outro triggers at t = 28.0s (aligned with new 31.88s audio)
-  const outroFrame = Math.max(0, frame - Math.round(28.0 * fps));
+  // Outro triggers at t = 25.4s (aligned with restored 32.8s audio)
+  const outroFrame = Math.max(0, frame - Math.round(25.4 * fps));
 
   const cardScale = spring({
     frame: outroFrame,
@@ -67,7 +67,7 @@ export const CtaOutroStage: React.FC = () => {
               textTransform: 'uppercase'
             }}
           >
-            OCTANE TECHNICAL ARTICLE
+            OCTANE DIAGNOSTIC PLAYBOOK
           </span>
         </div>
 
@@ -82,7 +82,7 @@ export const CtaOutroStage: React.FC = () => {
             marginBottom: 16
           }}
         >
-          Read the Complete Feeder Playbook.
+          Pinpoint Overfed Cubes in 10 Minutes.
         </div>
 
         {/* Value Proposition Description */}
@@ -99,7 +99,7 @@ export const CtaOutroStage: React.FC = () => {
           Master conditional feeder architecture, eliminate empty-cell traversal, and restore sub-second consolidation speeds.
         </div>
 
-        {/* Hero Action CTA Button with upward pointer arrow */}
+        {/* Hero Action CTA Button */}
         <div
           style={{
             background: '#090A0C',

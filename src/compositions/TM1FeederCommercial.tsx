@@ -12,10 +12,10 @@ export const TM1FeederCommercial: React.FC = () => {
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Dynamic values aligned to new 31.88s timeline
+  // Dynamic values aligned to original human voiceover (32.8s duration)
   const latencyVal = interpolate(currentTime, [0, 2.8], [0.0, 42.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const bloatReduction = interpolate(currentTime, [21.5, 25.0], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const subSecLatency = interpolate(currentTime, [24.5, 27.0], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const bloatReduction = interpolate(currentTime, [19.8, 22.0], [48.0, 6.0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const subSecLatency = interpolate(currentTime, [22.5, 24.8], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
   const getSceneSpring = (startSec: number) => {
@@ -27,10 +27,10 @@ export const TM1FeederCommercial: React.FC = () => {
   };
 
   const s1Spring = getSceneSpring(0.0);
-  const s2Spring = getSceneSpring(3.5);
-  const s3Spring = getSceneSpring(8.2);
-  const s4Spring = getSceneSpring(12.0);
-  const s5Spring = getSceneSpring(18.5);
+  const s2Spring = getSceneSpring(3.6);
+  const s3Spring = getSceneSpring(7.5);
+  const s4Spring = getSceneSpring(11.5);
+  const s5Spring = getSceneSpring(17.0);
 
   return (
     <AbsoluteFill
@@ -57,10 +57,10 @@ export const TM1FeederCommercial: React.FC = () => {
       <Audio src={staticFile('voiceover.wav')} />
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 1: THE LATENCY STALL (0.0s - 3.5s)
+          SCENE 1: THE LATENCY STALL (0.0s - 3.6s)
           Layout: Side-by-Side (Left Text + Right Card)
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime < 3.5 && (
+      {currentTime < 3.6 && (
         <div
           style={{
             position: 'absolute',
@@ -70,7 +70,7 @@ export const TM1FeederCommercial: React.FC = () => {
             justifyContent: 'center',
             gap: 70,
             padding: '0 120px',
-            opacity: interpolate(currentTime, [3.2, 3.5], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+            opacity: interpolate(currentTime, [3.3, 3.6], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
             transform: `translate3d(0, ${(1 - s1Spring) * 30}px, 0)`
           }}
         >
@@ -115,10 +115,10 @@ export const TM1FeederCommercial: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 2: THE HARDWARE ADVISORY (3.5s - 8.2s)
+          SCENE 2: THE HARDWARE ADVISORY (3.6s - 7.5s)
           Layout: De-Contained Floating 3D Characters + Bottom Text
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 3.4 && currentTime < 8.2 && (
+      {currentTime >= 3.5 && currentTime < 7.5 && (
         <div
           style={{
             position: 'absolute',
@@ -128,7 +128,7 @@ export const TM1FeederCommercial: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 28,
-            opacity: interpolate(currentTime, [3.4, 3.8, 7.8, 8.2], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+            opacity: interpolate(currentTime, [3.5, 3.8, 7.1, 7.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
             transform: `translate3d(0, ${(1 - s2Spring) * 30}px, 0)`
           }}
         >
@@ -145,10 +145,10 @@ export const TM1FeederCommercial: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 3: THE ROOT BOTTLENECK (8.2s - 12.0s)
+          SCENE 3: THE ROOT BOTTLENECK (7.5s - 11.5s)
           Layout: Side-by-Side (Left Text + Right Card)
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 8.1 && currentTime < 12.0 && (
+      {currentTime >= 7.4 && currentTime < 11.5 && (
         <div
           style={{
             position: 'absolute',
@@ -158,7 +158,7 @@ export const TM1FeederCommercial: React.FC = () => {
             justifyContent: 'center',
             gap: 70,
             padding: '0 120px',
-            opacity: interpolate(currentTime, [8.1, 8.5, 11.6, 12.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+            opacity: interpolate(currentTime, [7.4, 7.8, 11.1, 11.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
             transform: `translate3d(0, ${(1 - s3Spring) * 30}px, 0)`
           }}
         >
@@ -191,10 +191,10 @@ export const TM1FeederCommercial: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 4: MEMORY REGISTER LAYOUT (12.0s - 18.5s)
+          SCENE 4: MEMORY REGISTER LAYOUT (11.5s - 17.0s)
           Layout: Stacked (Top Card + Bottom Text)
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 11.9 && currentTime < 18.5 && (
+      {currentTime >= 11.4 && currentTime < 17.0 && (
         <div
           style={{
             position: 'absolute',
@@ -204,7 +204,7 @@ export const TM1FeederCommercial: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 36,
-            opacity: interpolate(currentTime, [11.9, 12.3, 18.1, 18.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+            opacity: interpolate(currentTime, [11.4, 11.8, 16.6, 17.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
             transform: `translate3d(0, ${(1 - s4Spring) * 30}px, 0)`
           }}
         >
@@ -230,17 +230,17 @@ export const TM1FeederCommercial: React.FC = () => {
           {/* Bottom Hero Copy */}
           <div style={{ maxWidth: 1200, textAlign: 'center' }}>
             <div style={{ fontSize: 42, fontWeight: 800, color: '#FFFFFF', lineHeight: 1.25, letterSpacing: '-0.02em' }}>
-              Forcing your server to scan millions of <span style={{ color: '#4daeeb', fontWeight: 900 }}>empty cells</span> as if they were live data.
+              Forcing your server to track millions of <span style={{ color: '#4daeeb', fontWeight: 900 }}>empty cells</span> as if they were active.
             </div>
           </div>
         </div>
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 5: TARGETED REMEDIATION (18.5s - 28.0s)
+          SCENE 5: TARGETED REMEDIATION (17.0s - 25.4s)
           Layout: Two-Column Cards + Bottom Text
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 18.4 && currentTime < 28.0 && (
+      {currentTime >= 16.9 && currentTime < 25.4 && (
         <div
           style={{
             position: 'absolute',
@@ -250,7 +250,7 @@ export const TM1FeederCommercial: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 34,
-            opacity: interpolate(currentTime, [18.4, 18.8, 27.6, 28.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+            opacity: interpolate(currentTime, [16.9, 17.3, 25.0, 25.4], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
             transform: `translate3d(0, ${(1 - s5Spring) * 30}px, 0)`
           }}
         >
@@ -330,16 +330,16 @@ export const TM1FeederCommercial: React.FC = () => {
           {/* Bottom Hero Copy */}
           <div style={{ maxWidth: 1200, textAlign: 'center' }}>
             <div style={{ fontSize: 40, fontWeight: 800, color: '#FFFFFF', lineHeight: 1.25, letterSpacing: '-0.02em' }}>
-              Targeted conditional feeders <span style={{ color: '#4daeeb', fontWeight: 900 }}>collapse the bloat</span>, slashing RAM down to 6GB and restoring sub-second speed.
+              Targeted conditional feeders <span style={{ color: '#4daeeb', fontWeight: 900 }}>cut memory bloat</span> from 48GB to 6GB, restoring sub-second speed.
             </div>
           </div>
         </div>
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 6: CINEMATIC OUTRO CTA (28.0s - 33.0s)
+          SCENE 6: CINEMATIC OUTRO CTA (25.4s - End)
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 27.8 && <CtaOutroStage />}
+      {currentTime >= 25.2 && <CtaOutroStage />}
     </AbsoluteFill>
   );
 };
