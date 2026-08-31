@@ -109,7 +109,9 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
         width,
         perspective: 1200,
         transform: `translate3d(calc(-50% + ${x}px), calc(-50% + ${y + harmonicFloat}px), 0)`,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        fontFamily: IndustrialTheme.fonts.sans,
+        ...IndustrialTheme.typography.antialiased
       }}
     >
       {/* 2.5D Tilted Ceramic Chassis */}
@@ -128,11 +130,13 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
           color: IndustrialTheme.text.hero,
           position: 'relative',
           opacity: chassisOpacity,
-          transform: `scale(${chassisSpring}) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+          transform: `scale(${chassisSpring}) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(0)`,
           transformOrigin: '50% 50%',
           transformStyle: 'preserve-3d',
           overflow: 'hidden',
-          transition: 'box-shadow 0.3s ease-out, border 0.3s ease-out'
+          transition: 'box-shadow 0.3s ease-out, border 0.3s ease-out',
+          backfaceVisibility: 'hidden',
+          willChange: 'transform'
         }}
       >
         {/* Specular Light Sheen Glint Sweep */}
@@ -148,10 +152,10 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
         />
 
         {/* Precision Corner Registration Ticks */}
-        <div style={{ position: 'absolute', top: 6, left: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┌</div>
-        <div style={{ position: 'absolute', top: 6, right: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┐</div>
-        <div style={{ position: 'absolute', bottom: 6, left: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>└</div>
-        <div style={{ position: 'absolute', bottom: 6, right: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┘</div>
+        <div style={{ position: 'absolute', top: 6, left: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┌</div>
+        <div style={{ position: 'absolute', top: 6, right: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┐</div>
+        <div style={{ position: 'absolute', bottom: 6, left: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>└</div>
+        <div style={{ position: 'absolute', bottom: 6, right: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┘</div>
 
         {/* ── PHASE 2: HEADER & BADGE ── */}
         <div
@@ -164,20 +168,20 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
             transform: `translateY(${interpolate(headerSpring, [0, 1], [8, 0])}px)`
           }}
         >
-          <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: '-0.02em', color: IndustrialTheme.text.hero }}>
+          <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: IndustrialTheme.text.hero }}>
             {title}
           </div>
           {badge && (
             <span
               style={{
-                fontSize: 9,
+                fontSize: 10,
                 fontWeight: 800,
                 letterSpacing: '0.08em',
-                fontFamily: 'monospace',
+                fontFamily: IndustrialTheme.fonts.mono,
                 color: badgeColors.text,
                 background: badgeColors.bg,
                 border: `1px solid ${badgeColors.border}`,
-                padding: '3px 8px',
+                padding: '3px 9px',
                 borderRadius: 5,
                 textTransform: 'uppercase'
               }}

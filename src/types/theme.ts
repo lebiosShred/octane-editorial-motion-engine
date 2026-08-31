@@ -4,6 +4,17 @@ export const IndustrialTheme = {
     baseGradient: 'radial-gradient(ellipse at 50% 30%, rgba(35, 38, 48, 0.5) 0%, rgba(11, 12, 14, 0.98) 85%)',
     gridLine: 'rgba(255, 255, 255, 0.03)'
   },
+  fonts: {
+    sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    mono: "'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace"
+  },
+  typography: {
+    antialiased: {
+      WebkitFontSmoothing: 'antialiased' as const,
+      MozOsxFontSmoothing: 'grayscale' as const,
+      textRendering: 'geometricPrecision' as const
+    }
+  },
   popout: {
     chassisBg: '#FFFFFF',
     chassisBorder: '1px solid rgba(0, 0, 0, 0.08)',

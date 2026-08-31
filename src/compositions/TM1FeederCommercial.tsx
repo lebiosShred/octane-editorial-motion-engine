@@ -49,7 +49,7 @@ export const TM1FeederCommercial: React.FC = () => {
   const drawLine1 = interpolate(currentTime, [8.8, 11.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const drawLine2 = interpolate(currentTime, [18.2, 20.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   
-  // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2 (Through open vertical gutter: Y=-25 to Y=35)
+  // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2 (Through open vertical gutter: Y=-40 to Y=50)
   const drawVerticalBridge = interpolate(currentTime, [14.0, 15.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
@@ -63,11 +63,24 @@ export const TM1FeederCommercial: React.FC = () => {
     <AbsoluteFill
       style={{
         backgroundColor: IndustrialTheme.surface.base,
-        fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif',
+        fontFamily: IndustrialTheme.fonts.sans,
+        ...IndustrialTheme.typography.antialiased,
         color: IndustrialTheme.text.hero,
         overflow: 'hidden'
       }}
     >
+      {/* Load Google Fonts (Inter + JetBrains Mono) */}
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800;900&display=swap');
+          * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: geometricPrecision;
+          }
+        `}
+      </style>
+
       <Audio src={staticFile('voiceover.wav')} />
 
       {/* INFINITE BLACKBOARD DRAFTING CANVAS */}
@@ -93,7 +106,7 @@ export const TM1FeederCommercial: React.FC = () => {
             drawProgress={drawLine2}
           />
 
-          {/* ── VERTICAL CAUSAL LASER BRIDGE (Through Open Vertical Gutter: Y=-25 to Y=35) ── */}
+          {/* ── VERTICAL CAUSAL LASER BRIDGE (Through Open Vertical Gutter: Y=-40 to Y=50) ── */}
           <KineticLaserConduit
             x1={0}
             y1={-40}
@@ -118,13 +131,13 @@ export const TM1FeederCommercial: React.FC = () => {
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
-            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 6 }}>
+            <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 6 }}>
               Active Consolidation Latency
             </div>
-            <div style={{ fontSize: 54, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace', letterSpacing: '-0.03em', lineHeight: 1 }}>
+            <div style={{ fontSize: 56, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: IndustrialTheme.fonts.mono, letterSpacing: '-0.03em', lineHeight: 1 }}>
               {latencyVal.toFixed(1)}s
             </div>
-            <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 10, color: IndustrialTheme.text.tertiary, fontFamily: 'monospace' }}>
+            <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 11, color: IndustrialTheme.text.tertiary, fontFamily: IndustrialTheme.fonts.mono }}>
               <span>Evaluating 8 Dimensions...</span>
               <span style={{ color: IndustrialTheme.signals.crimson, fontWeight: 700 }}>{Math.min(92, Math.round(latencyVal * 2.2))}% STALLED</span>
             </div>
@@ -196,7 +209,7 @@ export const TM1FeederCommercial: React.FC = () => {
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
-            <div style={{ fontSize: 11, fontFamily: 'monospace', color: IndustrialTheme.text.primary, lineHeight: 1.5, background: IndustrialTheme.popout.recessedWell, padding: 12, borderRadius: 8, border: '1px solid rgba(0,0,0,0.06)' }}>
+            <div style={{ fontSize: 12, fontFamily: IndustrialTheme.fonts.mono, color: IndustrialTheme.text.primary, lineHeight: 1.5, background: IndustrialTheme.popout.recessedWell, padding: 14, borderRadius: 10, border: '1px solid rgba(0,0,0,0.06)' }}>
               <div><span style={{ color: IndustrialTheme.text.hero, fontWeight: 700 }}>['Units']</span> =&gt; DB(</div>
               <div style={{ paddingLeft: 14 }}><span style={{ color: IndustrialTheme.signals.amber, fontWeight: 700 }}>IF</span>(DB('Control_Feeder_Flags', !Year, !Period, 'Active') == 1,</div>
               <div style={{ paddingLeft: 28 }}><span style={{ color: IndustrialTheme.signals.mint, fontWeight: 700 }}>'Revenue_Cube'</span>, ''</div>
@@ -226,19 +239,19 @@ export const TM1FeederCommercial: React.FC = () => {
           >
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, alignItems: 'center' }}>
               <div style={{ background: IndustrialTheme.popout.recessedWell, padding: 14, borderRadius: 10, border: '1px solid rgba(0,0,0,0.06)' }}>
-                <div style={{ fontSize: 10, color: IndustrialTheme.text.secondary, textTransform: 'uppercase', fontWeight: 700 }}>Server Memory</div>
-                <div style={{ fontSize: 26, fontWeight: 900, color: IndustrialTheme.signals.mint, fontFamily: 'monospace' }}>
+                <div style={{ fontSize: 11, color: IndustrialTheme.text.secondary, textTransform: 'uppercase', fontWeight: 700 }}>Server Memory</div>
+                <div style={{ fontSize: 28, fontWeight: 900, color: IndustrialTheme.signals.mint, fontFamily: IndustrialTheme.fonts.mono }}>
                   {bloatReduction.toFixed(1)} GB
                 </div>
-                <div style={{ fontSize: 10, color: IndustrialTheme.signals.mint, fontWeight: 700 }}>-87% Bloat Collapse</div>
+                <div style={{ fontSize: 11, color: IndustrialTheme.signals.mint, fontWeight: 700 }}>-87% Bloat Collapse</div>
               </div>
 
               <div style={{ background: IndustrialTheme.popout.recessedWell, padding: 14, borderRadius: 10, border: '1px solid rgba(0,0,0,0.06)' }}>
-                <div style={{ fontSize: 10, color: IndustrialTheme.text.secondary, textTransform: 'uppercase', fontWeight: 700 }}>Consolidated View</div>
-                <div style={{ fontSize: 26, fontWeight: 900, color: IndustrialTheme.signals.mint, fontFamily: 'monospace' }}>
+                <div style={{ fontSize: 11, color: IndustrialTheme.text.secondary, textTransform: 'uppercase', fontWeight: 700 }}>Consolidated View</div>
+                <div style={{ fontSize: 28, fontWeight: 900, color: IndustrialTheme.signals.mint, fontFamily: IndustrialTheme.fonts.mono }}>
                   {subSecLatency.toFixed(1)}s
                 </div>
-                <div style={{ fontSize: 10, color: IndustrialTheme.signals.mint, fontWeight: 700 }}>Sub-Second Speed</div>
+                <div style={{ fontSize: 11, color: IndustrialTheme.signals.mint, fontWeight: 700 }}>Sub-Second Speed</div>
               </div>
             </div>
           </KineticNode>

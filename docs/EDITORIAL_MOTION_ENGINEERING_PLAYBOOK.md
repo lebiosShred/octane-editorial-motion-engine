@@ -271,8 +271,48 @@ flowchart TD
 - **No Border Protrusion Dots**: Unibody chassis containers must never have protruding connector dots (`left: -4px`, `right: -4px`) intersecting their outer borders. Borders must remain continuous, sharp, and pristine.
 - **Elimination of Translucent Halos**: Conduits and lines must avoid fuzzy low-opacity outer ring halos that create visual noise on dark blackboard backgrounds.
 
+## 🔤 Part IX: Crisp Vector Typography & High-DPI Anti-Aliasing Architecture
+
+```mermaid
+flowchart TD
+    subgraph Fonts [1. Vector Webfont Stack]
+        F1["Primary UI Sans: 'Inter' (400, 600, 700, 800, 900)"]
+        F2["Technical / Data Mono: 'JetBrains Mono' (500, 700, 800, 900)"]
+    end
+
+    subgraph CSS [2. Hardware Anti-Aliasing CSS]
+        C1["-webkit-font-smoothing: antialiased"]
+        C2["-moz-osx-font-smoothing: grayscale"]
+        C3["text-rendering: geometricPrecision"]
+        C4["transform: translateZ(0) / will-change: transform"]
+    end
+
+    subgraph Scale [3. Video-Safe Macro Typography Hierarchy]
+        S1["Micro step badges: 10px-11px (FontWeight: 900, JetBrains Mono)"]
+        S2["Dimension counts & labels: 13px-14px (FontWeight: 800)"]
+        S3["Cartesian explosion & equations: 13px-15px (FontWeight: 900)"]
+        S4["Hero latency & memory numbers: 28px-56px"]
+        S5["Swiss subtitles: 26px (FontWeight: 900 active / 500 inactive)"]
+    end
+
+    Fonts --> CSS --> Scale
+```
+
+### 1. The Windows Headless Font Fallback Invariant
+- Never rely on default system font stacks (`-apple-system`, `SF Pro`) without explicit vector fallbacks.
+- Always preload genuine OpenType webfonts (`Inter` and `JetBrains Mono`) to prevent Windows headless Chromium from defaulting to aliased bitmap fonts (legacy Arial/Courier).
+
+### 2. The 3D GPU Raster Texture Fix
+- When rendering elements inside 3D perspective containers (`rotateX`, `rotateY`, `perspective`), Chromium by default rasterizes DOM trees to 1x GPU texture quads and bilinear-filters them when scaled by the camera.
+- Always apply `transform: translateZ(0)`, `backfaceVisibility: 'hidden'`, and `willChange: 'transform'` to force high-precision raster compositing.
+
+### 3. Video-Safe Macro Scale (Chroma Subsampling Protection)
+- In H.264 video compression, **YUV 4:2:0 chroma subsampling** compresses color in 2x2 pixel blocks. Text smaller than 10px loses color contrast and turns into blurry pixels.
+- All micro-typography, badges, SKU counts, and matrix indicators must maintain a minimum scale of **`10px - 14px`** with bold/black font weights (`700 - 900`).
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 2.2.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 2.3.0 (Production Verified).*
+
 
 
