@@ -13,7 +13,7 @@ import {
 } from 'remotion';
 
 // ==========================================
-// KINETIC SCENE COMPONENT
+// CINEMA KINETIC SCENE (UNBOXED VISUAL PSYCHOLOGY)
 // ==========================================
 interface KineticSceneProps {
   eyebrow?: string;
@@ -60,76 +60,74 @@ const KineticScene: React.FC<KineticSceneProps> = ({
         justifyContent: 'center',
         zIndex: 10,
         opacity,
-        transform: `scale(${scale}) translateY(${translateY}px)`
+        transform: `scale(${scale}) translateY(${translateY}px)`,
+        padding: '0 60px',
+        textAlign: 'center'
       }}
     >
+      {/* Kicker: Wide-Tracked Cinema Lead (No Pill Box) */}
       {eyebrow && (
         <div
           style={{
-            fontSize: 16,
-            fontWeight: 800,
-            letterSpacing: '0.2em',
+            fontSize: 18,
+            fontWeight: 900,
+            letterSpacing: '0.24em',
             fontFamily: "'JetBrains Mono', monospace",
             color: '#4daeeb',
             textTransform: 'uppercase',
-            marginBottom: 16,
-            background: 'rgba(9, 10, 12, 0.85)',
-            border: '1.5px solid #4daeeb',
-            padding: '6px 20px',
-            borderRadius: 6
+            marginBottom: 20,
+            textShadow: '0 4px 16px rgba(0,0,0,0.8)'
           }}
         >
           {eyebrow}
         </div>
       )}
 
+      {/* Dominant Headline: Scale = Emotion (72px+) */}
       <div
         style={{
-          fontSize: 64,
+          fontSize: 72,
           fontWeight: 900,
-          letterSpacing: '-0.03em',
-          lineHeight: 1.05,
-          textAlign: 'center',
+          letterSpacing: '-0.04em',
+          lineHeight: 1.04,
           color: '#FFFFFF',
           textTransform: 'uppercase',
-          maxWidth: 1400,
-          textShadow: '0 8px 32px rgba(0,0,0,0.9)'
+          maxWidth: 1500,
+          textShadow: '0 8px 36px rgba(0,0,0,0.95)'
         }}
       >
         {title}
       </div>
 
+      {/* Subtitle: High-Contrast Punchline (No Clutter Box) */}
       {subtitle && (
         <div
           style={{
             fontSize: 26,
             fontWeight: 700,
-            color: '#CBD5E1',
-            letterSpacing: '0.02em',
-            marginTop: 20,
-            background: 'rgba(9, 10, 12, 0.8)',
-            padding: '8px 28px',
-            borderRadius: 8,
-            border: '1px solid rgba(255, 255, 255, 0.15)'
+            color: '#E2E8F0',
+            letterSpacing: '-0.01em',
+            marginTop: 24,
+            maxWidth: 1100,
+            textShadow: '0 4px 20px rgba(0,0,0,0.9)'
           }}
         >
           {subtitle}
         </div>
       )}
 
+      {/* Context Badge: Clean Anchor */}
       {badge && (
         <div
           style={{
-            fontSize: 14,
+            fontSize: 15,
             fontWeight: 800,
-            letterSpacing: '0.12em',
+            letterSpacing: '0.14em',
             fontFamily: "'JetBrains Mono', monospace",
-            color: '#4daeeb',
-            marginTop: 24,
-            background: 'rgba(77, 174, 235, 0.12)',
-            border: '1px solid rgba(77, 174, 235, 0.4)',
-            padding: '6px 18px',
-            borderRadius: 4
+            color: '#94A3B8',
+            marginTop: 22,
+            textTransform: 'uppercase',
+            textShadow: '0 4px 16px rgba(0,0,0,0.8)'
           }}
         >
           {badge}
@@ -140,7 +138,7 @@ const KineticScene: React.FC<KineticSceneProps> = ({
 };
 
 // ==========================================
-// FAST LOGO MARQUEE SCENE (VISUAL PSYCHOLOGY SCALE)
+// SCENE 2: FAST LOGO MARQUEE (VISUAL PSYCHOLOGY SCALE)
 // ==========================================
 const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
   const frame = useCurrentFrame();
@@ -278,10 +276,7 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
           fontFamily: "'JetBrains Mono', monospace",
           color: '#CBD5E1',
           textTransform: 'uppercase',
-          background: 'rgba(9, 10, 12, 0.85)',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
-          padding: '8px 28px',
-          borderRadius: 8
+          textShadow: '0 4px 16px rgba(0,0,0,0.9)'
         }}
       >
         CFO LEADERSHIP PRIORITIES FOR 2026
@@ -335,7 +330,8 @@ export const ForefrontSummitTeaser: React.FC = () => {
               <span style={{ color: '#4daeeb' }}>Summit NSW 2026</span>
             </>
           }
-          subtitle="02 SEP 2026 • ICC SYDNEY"
+          subtitle="02 SEPTEMBER 2026 • ICC SYDNEY"
+          badge="DARLING HARBOUR • EXECUTIVE STRATEGY KEYNOTES"
           durationInFrames={150}
         />
       </Sequence>
@@ -365,11 +361,12 @@ export const ForefrontSummitTeaser: React.FC = () => {
         />
       </Sequence>
 
-      {/* SCENE 4: DATE & VENUE (500 - 640 frames / 16.6 - 21.3s) */}
+      {/* SCENE 4: DATE & VENUE HERO (500 - 640 frames / 16.6 - 21.3s) */}
       <Sequence from={500} durationInFrames={140}>
         <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
         <KineticScene
+          eyebrow="SAVE THE DATE"
           title="SEPTEMBER 2, 2026"
           subtitle="ICC Sydney • Darling Harbour"
           badge="FSI • RETAIL • HEALTHCARE • UTILITIES LEADERS"
@@ -462,19 +459,15 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         textAlign: 'center'
       }}
     >
-      {/* Eyebrow Badge */}
+      {/* Eyebrow */}
       <div
         style={{
-          fontSize: 14,
-          fontWeight: 800,
-          letterSpacing: '0.22em',
+          fontSize: 16,
+          fontWeight: 900,
+          letterSpacing: '0.24em',
           fontFamily: "'JetBrains Mono', monospace",
           color: '#4daeeb',
-          textTransform: 'uppercase',
-          background: 'rgba(77, 174, 235, 0.1)',
-          border: '1px solid rgba(77, 174, 235, 0.4)',
-          padding: '6px 20px',
-          borderRadius: 6
+          textTransform: 'uppercase'
         }}
       >
         EVENT SPONSOR & EXHIBITOR
@@ -483,12 +476,12 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
       {/* Brand Title (Razor Sharp Typography - Zero Glow) */}
       <div
         style={{
-          fontSize: 72,
+          fontSize: 76,
           fontWeight: 900,
           letterSpacing: '-0.04em',
           color: '#FFFFFF',
           textTransform: 'uppercase',
-          lineHeight: 1.05
+          lineHeight: 1.02
         }}
       >
         OCTANE <span style={{ color: '#4daeeb' }}>SOLUTIONS</span>
@@ -497,13 +490,13 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
       {/* Verbatim Booth 19 Messaging */}
       <div
         style={{
-          fontSize: 24,
+          fontSize: 26,
           fontWeight: 700,
           color: '#E2E8F0',
           letterSpacing: '-0.01em',
           lineHeight: 1.35,
-          maxWidth: 900,
-          marginTop: 4
+          maxWidth: 920,
+          marginTop: 6
         }}
       >
         Catch us on <span style={{ color: '#4daeeb', fontWeight: 800 }}>Booth 19</span> to chat with us about IBM Planning Analytics and Agentic AI
@@ -512,7 +505,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
       {/* Clean Solid Website Button (No Shadow Glow) */}
       <div
         style={{
-          marginTop: 14,
+          marginTop: 16,
           fontSize: 16,
           fontWeight: 800,
           fontFamily: "'JetBrains Mono', monospace",
