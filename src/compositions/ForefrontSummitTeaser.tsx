@@ -377,25 +377,16 @@ export const ForefrontSummitTeaser: React.FC = () => {
         />
       </Sequence>
 
-      {/* SCENE 5: OCTANE SPONSOR OUTRO (640 - 780 frames / 21.3 - 26.0s) */}
+      {/* SCENE 5: OCTANE SPONSOR OUTRO (640 - 780 frames / 21.3 - 26.0s) - CLEAN NO GLOW */}
       <Sequence from={640} durationInFrames={140}>
         <AbsoluteFill
           style={{
-            backgroundColor: '#000000',
+            backgroundColor: '#090A0C',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              width: 900,
-              height: 900,
-              background: 'radial-gradient(circle, rgba(77, 174, 235, 0.18) 0%, transparent 65%)',
-              borderRadius: '50%'
-            }}
-          />
           <KineticOutro durationInFrames={140} />
         </AbsoluteFill>
       </Sequence>
@@ -433,6 +424,9 @@ export const ForefrontSummitTeaser: React.FC = () => {
   );
 };
 
+// ==========================================
+// CLEAN BROADCAST OUTRO (NO GLOW)
+// ==========================================
 const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -450,7 +444,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
-  const scale = interpolate(sp, [0, 1], [0.88, 1]);
+  const scale = interpolate(sp, [0, 1], [0.92, 1]);
   const translateY = interpolate(sp, [0, 1], [20, 0]);
 
   return (
@@ -460,12 +454,15 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 24,
+        gap: 22,
         zIndex: 10,
         opacity,
-        transform: `scale(${scale}) translateY(${translateY}px)`
+        transform: `scale(${scale}) translateY(${translateY}px)`,
+        maxWidth: 1200,
+        textAlign: 'center'
       }}
     >
+      {/* Eyebrow Badge */}
       <div
         style={{
           fontSize: 14,
@@ -473,40 +470,49 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
           letterSpacing: '0.22em',
           fontFamily: "'JetBrains Mono', monospace",
           color: '#4daeeb',
-          textTransform: 'uppercase'
+          textTransform: 'uppercase',
+          background: 'rgba(77, 174, 235, 0.1)',
+          border: '1px solid rgba(77, 174, 235, 0.4)',
+          padding: '6px 20px',
+          borderRadius: 6
         }}
       >
         EVENT SPONSOR & EXHIBITOR
       </div>
 
+      {/* Brand Title (Razor Sharp Typography - Zero Glow) */}
       <div
         style={{
-          fontSize: 68,
+          fontSize: 72,
           fontWeight: 900,
           letterSpacing: '-0.04em',
           color: '#FFFFFF',
           textTransform: 'uppercase',
-          textShadow: '0 0 50px rgba(77, 174, 235, 0.6)'
+          lineHeight: 1.05
         }}
       >
         OCTANE <span style={{ color: '#4daeeb' }}>SOLUTIONS</span>
       </div>
 
+      {/* Verbatim Booth 19 Messaging */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 24,
           fontWeight: 700,
-          color: '#94A3B8',
-          letterSpacing: '0.04em',
-          marginTop: -4
+          color: '#E2E8F0',
+          letterSpacing: '-0.01em',
+          lineHeight: 1.35,
+          maxWidth: 900,
+          marginTop: 4
         }}
       >
-        Enterprise AI • Financial Planning & Analytics
+        Catch us on <span style={{ color: '#4daeeb', fontWeight: 800 }}>Booth 19</span> to chat with us about IBM Planning Analytics and Agentic AI
       </div>
 
+      {/* Clean Solid Website Button (No Shadow Glow) */}
       <div
         style={{
-          marginTop: 18,
+          marginTop: 14,
           fontSize: 16,
           fontWeight: 800,
           fontFamily: "'JetBrains Mono', monospace",
@@ -514,8 +520,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
           color: '#090A0C',
           background: '#4daeeb',
           padding: '10px 32px',
-          borderRadius: 8,
-          boxShadow: '0 0 30px rgba(77, 174, 235, 0.5)'
+          borderRadius: 8
         }}
       >
         OCTANESOLUTIONS.COM.AU
