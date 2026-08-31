@@ -492,15 +492,102 @@ flowchart TD
 
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 4.2.0 (Production Verified).*
+---
 
+## 🌌 Part XV: Spatial De-Containment (Frame Liberation & 3D Character Staging)
 
+```mermaid
+flowchart LR
+    A["Trapped UI Card (Box Pattern)"] -->|De-Containment| B["Spatial 3D Hero Entity"]
+    B --> C["Pure #000000 Void"]
+    B --> D["Decoupled Spring Speech Bubbles"]
+    B --> E["Specular Rim / Backlight Glow"]
+    B --> F["Swiss Typographic Anchor Pedestal"]
+```
 
+### 1. The De-Containment Invariant
+- **PROHIBITED**: Do not reflexively trap 3D characters or hero entities inside rounded rectangular white cards.
+- **RATIONALE**: In motion graphics, bounding boxes act like prison cells—they flatten 3D figures into 2D "stickers" or "widgets".
+- **RULE**: Extract 3D models and character illustrations using AI neural alpha matting (`rembg` with `u2net`) so they float freely directly in the pure `#000000` spatial void.
+- **DEPTH & STAGING**:
+  - Add specular backlighting / volumetric glow behind key held objects (e.g. glowing RAM stick).
+  - Add deep multi-layer drop shadows (`filter: drop-shadow(...)`) to create real physical depth.
+  - Anchor floating 3D objects with a large bold headline underneath acting as the visual floor/pedestal.
 
+### 2. Decoupled 2.5D Spring Physics
+- Never animate characters, speech bubbles, and text as a single rigid block.
+- **Characters**: Settle first with heavy mass (`damping: 14, stiffness: 90`).
+- **Speech Bubbles**: Staggered pop-in with bouncy spring overshoot (`damping: 10, stiffness: 160`, `scale: 0 → 1.15 → 1.0`) followed by subtle organic bobbing (`Math.sin(frame * 0.1) * 4px`).
+- **Headlines**: Slide smoothly into place as the grounding anchor.
 
+---
 
+## 🎨 Part XVI: Strict Monochromatic Brand Accent Rule (`#4daeeb` Invariant)
 
+```mermaid
+flowchart TD
+    subgraph BrandPalette [Pure Octane Color Palette]
+        C1["Canvas: Pure Solid Black #000000"]
+        C2["Chassis / Text: Pure White #FFFFFF / Dark Slate #090A0C"]
+        C3["Universal Signal Accent: Octane Sky Blue #4daeeb"]
+        C4["Banned Accents: NO Green, NO Red, NO Amber"]
+    end
+```
 
+### 1. The Single Brand Accent Law
+- **STRICTLY PROHIBITED**: Multi-colored signal rainbow schemes (e.g. green for success, red for danger, yellow for warnings).
+- **RULE**: All visual highlights, active words, latency counters, progress bars, radar beams, speech bubble borders, code highlights, and button glows MUST use **exclusively Octane Sky Blue (`#4daeeb`)**.
+- **SYSTEMIC ACCENT SYSTEM**:
+  - `accent`: `#4daeeb` (Primary vibrant signal)
+  - `accentBg`: `rgba(77, 174, 235, 0.12)` (Soft tinted badge fill)
+  - `accentBorder`: `rgba(77, 174, 235, 0.35)` (Crisp stroke highlight)
+  - `accentGlow`: `rgba(77, 174, 235, 0.45)` (Specular volumetric bloom)
 
+---
 
+## 🎯 Part XVII: Spoken-to-Visual Audio/CTA Synchronization Invariant
 
+```mermaid
+flowchart LR
+    A["Voiceover Audio: 'in the link below'"] <---> B["On-Screen CTA: 'Click the link below to read the whole blog ↓'"]
+```
+
+### 1. Zero Audio-Visual Directional Contradiction
+- **PROHIBITED**: Never display an upward arrow (`↑`) or say `"above"` on screen when the voiceover track says `"below"`, or vice-versa.
+- **RULE**: The on-screen call-to-action button, descriptive copy, and directional indicator arrows must match the spoken words **1:1**:
+  - If Audio says *"in the link below"* $\to$ Visual Button MUST read: **`Click the link below to read the whole blog ↓`** with a downward arrow.
+  - If Audio says *"in the link above"* $\to$ Visual Button MUST read: **`Click the link above to read the whole blog ↑`** with an upward arrow.
+
+---
+
+## 🎙️ Part XVIII: Authentic Human Audio Ingestion & WhisperX Alignment Invariant
+
+### 1. Human Voice Priority
+- Synthetic AI voices can often sound flat or mechanical in technical B2B commercials.
+- When an authentic, human-recorded voiceover track exists in the project repository, it **MUST be prioritized** over synthesized TTS.
+
+### 2. Monotonic WhisperX Sequence Alignment
+- Run Faster-Whisper / WhisperX on the lossless master `.wav` recording to generate millisecond-precise `voiceover.json`.
+- Dynamically compute composition duration: `Math.ceil((lastWord.end + 1.2) * fps)` in `Root.tsx`.
+- Lock all spring animations and scene cutovers directly to the spoken syllable timestamps in `voiceover.json`.
+
+---
+
+## 🧹 Part XIX: Zero-Chartjunk Data-to-Ink Ratio & High-Contrast Swiss Typography
+
+### 1. Extreme Visual Reductionism
+- **PROHIBITED**: Redundant labels (e.g. having `"Infrastructure Advisory"`, `"VM RAM: 35GB"`, and `"Hardware Myth"` all on the same screen).
+- **RULE (Tufte's Data-to-Ink Principle)**: Strip away every word, frame, or badge that does not deliver new meaning. The visual subject + 1 punchline bubble + 1 clean headline delivers the punchline 10x faster.
+
+### 2. High-Contrast Swiss Typography Standards
+- Font: **Inter (`800` / `900` ExtraBold/Black)**.
+- Size Hierarchy:
+  - Hero Latency & Metric Readouts: `76px - 96px` (JetBrains Mono).
+  - Scene Headlines: `44px - 52px` (Inter).
+  - Code & Technical Syntaxes: `14px - 16px` (JetBrains Mono).
+  - Outro Call-to-Action: `34px` Headline + `17px` Button.
+- Tracking: Negative tracking (`-0.02em` to `-0.03em`) on all large headings for tight, authoritative punch.
+
+---
+
+*Authored by the Octane Editorial Motion Team. Version 5.0.0 (Master Production Verified).*
