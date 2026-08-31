@@ -1,5 +1,5 @@
 import React from 'react';
-import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Img, staticFile, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { IndustrialTheme } from '../../types/theme';
 
 interface InfraTeamHumorCardProps {
@@ -11,6 +11,7 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
+  // Staggered spring animations for speech bubbles (t = 3.3s, 4.0s, 4.7s)
   const bubble1Progress = spring({
     frame: frame - Math.round(3.3 * fps),
     fps,
@@ -30,7 +31,7 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       {/* Top Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700 }}>
@@ -41,156 +42,146 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
         </div>
       </div>
 
-      {/* SVG Engineer Avatars & Comic Speech Bubbles */}
+      {/* 3D Claymorphic IT Illustration with Seamless #FFFFFF Blending & Anchored Speech Bubbles */}
       <div
         style={{
-          background: IndustrialTheme.popout.recessedWell,
+          background: '#FFFFFF',
           border: '1px solid rgba(0,0,0,0.06)',
           borderRadius: 14,
-          padding: '16px 14px 10px 14px',
           position: 'relative',
-          minHeight: 105,
+          height: 195,
+          overflow: 'hidden',
           display: 'flex',
-          justifyContent: 'space-around',
+          justifyContent: 'center',
           alignItems: 'flex-end'
         }}
       >
-        {/* AVATAR 1: Lead SysAdmin */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          {currentTime >= 3.3 && (
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 54,
-                transform: `scale(${Math.max(0, bubble1Progress)})`,
-                transformOrigin: '50% 100%',
-                background: IndustrialTheme.signals.amberBg,
-                border: `1.5px solid ${IndustrialTheme.signals.amberBorder}`,
-                borderRadius: 8,
-                padding: '4px 8px',
-                fontSize: 10,
-                fontWeight: 800,
-                color: IndustrialTheme.signals.amber,
-                whiteSpace: 'nowrap',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.06)'
-              }}
-            >
-              "More RAM!"
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: -5,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 0,
-                  height: 0,
-                  borderLeft: '5px solid transparent',
-                  borderRight: '5px solid transparent',
-                  borderTop: `5px solid ${IndustrialTheme.signals.amberBorder}`
-                }}
-              />
-            </div>
-          )}
-          <svg width="40" height="40" viewBox="0 0 42 42" fill="none">
-            <circle cx="21" cy="14" r="7" fill="#334155" />
-            <path d="M10 36 C10 26, 32 26, 32 36 Z" fill="#475569" />
-            <path d="M14 14 C14 8, 28 8, 28 14" stroke="#0EA5E9" strokeWidth="1.5" fill="none" />
-            <circle cx="14" cy="15" r="2" fill="#0EA5E9" />
-          </svg>
-          <span style={{ fontSize: 9, color: IndustrialTheme.text.tertiary, fontWeight: 600, marginTop: 2 }}>SysAdmin</span>
-        </div>
+        {/* High-End 3D Claymorphic IT Team Artwork */}
+        <Img
+          src={staticFile('it_team_ram_illustration.png')}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 12%',
+            mixBlendMode: 'multiply'
+          }}
+        />
 
-        {/* AVATAR 2: Cloud Architect */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          {currentTime >= 4.0 && (
+        {/* ── SPEECH BUBBLE 1: SysAdmin (Left) ── */}
+        {currentTime >= 3.3 && (
+          <div
+            style={{
+              position: 'absolute',
+              left: '4%',
+              top: '4%',
+              transform: `scale(${Math.max(0, bubble1Progress)})`,
+              transformOrigin: '70% 100%',
+              background: IndustrialTheme.signals.amberBg,
+              border: `1.5px solid ${IndustrialTheme.signals.amberBorder}`,
+              borderRadius: 8,
+              padding: '4px 9px',
+              fontSize: 10,
+              fontWeight: 800,
+              color: IndustrialTheme.signals.amber,
+              whiteSpace: 'nowrap',
+              boxShadow: '0 6px 14px rgba(245, 158, 11, 0.2)',
+              zIndex: 10
+            }}
+          >
+            "More RAM!"
             <div
               style={{
                 position: 'absolute',
-                bottom: 54,
-                transform: `scale(${Math.max(0, bubble2Progress)})`,
-                transformOrigin: '50% 100%',
-                background: IndustrialTheme.signals.crimsonBg,
-                border: `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`,
-                borderRadius: 8,
-                padding: '4px 8px',
-                fontSize: 10,
-                fontWeight: 800,
-                color: IndustrialTheme.signals.crimson,
-                whiteSpace: 'nowrap',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.06)'
+                bottom: -5,
+                right: 14,
+                width: 0,
+                height: 0,
+                borderLeft: '5px solid transparent',
+                borderRight: '5px solid transparent',
+                borderTop: `5px solid ${IndustrialTheme.signals.amberBorder}`
               }}
-            >
-              "Scale to 128 GB!"
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: -5,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 0,
-                  height: 0,
-                  borderLeft: '5px solid transparent',
-                  borderRight: '5px solid transparent',
-                  borderTop: `5px solid ${IndustrialTheme.signals.crimsonBorder}`
-                }}
-              />
-            </div>
-          )}
-          <svg width="40" height="40" viewBox="0 0 42 42" fill="none">
-            <circle cx="21" cy="14" r="7" fill="#1E293B" />
-            <path d="M10 36 C10 26, 32 26, 32 36 Z" fill="#334155" />
-            <circle cx="18" cy="14" r="2.5" stroke="#F59E0B" strokeWidth="1" />
-            <circle cx="24" cy="14" r="2.5" stroke="#F59E0B" strokeWidth="1" />
-            <line x1="20.5" y1="14" x2="21.5" y2="14" stroke="#F59E0B" strokeWidth="1" />
-          </svg>
-          <span style={{ fontSize: 9, color: IndustrialTheme.text.tertiary, fontWeight: 600, marginTop: 2 }}>Cloud Arch</span>
-        </div>
+            />
+          </div>
+        )}
 
-        {/* AVATAR 3: DevOps Lead */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          {currentTime >= 4.7 && (
+        {/* ── SPEECH BUBBLE 2: Cloud Architect (Middle) ── */}
+        {currentTime >= 4.0 && (
+          <div
+            style={{
+              position: 'absolute',
+              left: '32%',
+              top: '18%',
+              transform: `scale(${Math.max(0, bubble2Progress)})`,
+              transformOrigin: '50% 100%',
+              background: IndustrialTheme.signals.crimsonBg,
+              border: `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`,
+              borderRadius: 8,
+              padding: '4px 9px',
+              fontSize: 10,
+              fontWeight: 800,
+              color: IndustrialTheme.signals.crimson,
+              whiteSpace: 'nowrap',
+              boxShadow: '0 6px 14px rgba(225, 29, 72, 0.2)',
+              zIndex: 10
+            }}
+          >
+            "Scale to 128 GB!"
             <div
               style={{
                 position: 'absolute',
-                bottom: 54,
-                transform: `scale(${Math.max(0, bubble3Progress)})`,
-                transformOrigin: '50% 100%',
-                background: '#F1F5F9',
-                border: '1.5px solid #CBD5E1',
-                borderRadius: 8,
-                padding: '4px 8px',
-                fontSize: 10,
-                fontWeight: 800,
-                color: '#334155',
-                whiteSpace: 'nowrap',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.06)'
+                bottom: -5,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: 0,
+                height: 0,
+                borderLeft: '5px solid transparent',
+                borderRight: '5px solid transparent',
+                borderTop: `5px solid ${IndustrialTheme.signals.crimsonBorder}`
               }}
-            >
-              "Spin up another VM!"
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: -5,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 0,
-                  height: 0,
-                  borderLeft: '5px solid transparent',
-                  borderRight: '5px solid transparent',
-                  borderTop: '5px solid #CBD5E1'
-                }}
-              />
-            </div>
-          )}
-          <svg width="40" height="40" viewBox="0 0 42 42" fill="none">
-            <circle cx="21" cy="14" r="7" fill="#475569" />
-            <path d="M10 36 C10 26, 32 26, 32 36 Z" fill="#64748B" />
-          </svg>
-          <span style={{ fontSize: 9, color: IndustrialTheme.text.tertiary, fontWeight: 600, marginTop: 2 }}>DevOps</span>
-        </div>
+            />
+          </div>
+        )}
+
+        {/* ── SPEECH BUBBLE 3: DevOps (Right) ── */}
+        {currentTime >= 4.7 && (
+          <div
+            style={{
+              position: 'absolute',
+              right: '4%',
+              top: '4%',
+              transform: `scale(${Math.max(0, bubble3Progress)})`,
+              transformOrigin: '30% 100%',
+              background: '#F1F5F9',
+              border: '1.5px solid #94A3B8',
+              borderRadius: 8,
+              padding: '4px 9px',
+              fontSize: 10,
+              fontWeight: 800,
+              color: '#1E293B',
+              whiteSpace: 'nowrap',
+              boxShadow: '0 6px 14px rgba(15, 23, 42, 0.15)',
+              zIndex: 10
+            }}
+          >
+            "Spin up another VM!"
+            <div
+              style={{
+                position: 'absolute',
+                bottom: -5,
+                left: 14,
+                width: 0,
+                height: 0,
+                borderLeft: '5px solid transparent',
+                borderRight: '5px solid transparent',
+                borderTop: '5px solid #94A3B8'
+              }}
+            />
+          </div>
+        )}
       </div>
 
-      {/* Narrative Punchline */}
+      {/* Quantitative Narrative Punchline */}
       <div
         style={{
           background: IndustrialTheme.signals.crimsonBg,
