@@ -114,7 +114,7 @@ const KineticScene: React.FC<{
   );
 };
 
-// High-Velocity Logo Marquee Component with Official Verified Brand Assets
+// High-Velocity Borderless Floating Logo Marquee Component
 const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -135,48 +135,43 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
   const scale = interpolate(sp, [0, 1], [0.88, 1]);
   const translateY = interpolate(sp, [0, 1], [20, 0]);
 
-  // Official verified brand assets
+  // Official verified brand emblems
   const row1Logos = [
     'logos/unilever.svg',
     'logos/hsbc.svg',
     'logos/coca_cola.svg',
     'logos/optus.svg',
-    'logos/lion.png',
+    'logos/lion.svg',
     'logos/unilever.svg',
     'logos/hsbc.svg',
     'logos/coca_cola.svg',
     'logos/optus.svg',
-    'logos/lion.png'
+    'logos/lion.svg'
   ];
 
   const row2Logos = [
+    'logos/domain.svg',
     'logos/adobe.svg',
     'logos/sanofi.svg',
+    'logos/qbe.svg',
+    'logos/boral.svg',
     'logos/domain.svg',
-    'logos/qbe.png',
-    'logos/boral.png',
     'logos/adobe.svg',
     'logos/sanofi.svg',
-    'logos/domain.svg',
-    'logos/qbe.png',
-    'logos/boral.png'
+    'logos/qbe.svg',
+    'logos/boral.svg'
   ];
 
   // High velocity shift: 12px per frame
-  const shift1 = (frame * 12) % 1350;
-  const shift2 = (frame * 12) % 1350;
+  const shift1 = (frame * 12) % 1500;
+  const shift2 = (frame * 12) % 1500;
 
-  const cardStyle: React.CSSProperties = {
-    background: 'rgba(9, 10, 12, 0.92)',
-    border: '1.5px solid rgba(77, 174, 235, 0.45)',
-    borderRadius: 14,
-    padding: '12px 32px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 64,
-    minWidth: 200,
-    boxShadow: '0 10px 35px rgba(0,0,0,0.85)'
+  const logoImgStyle: React.CSSProperties = {
+    height: 54,
+    maxWidth: 220,
+    objectFit: 'contain',
+    filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.95))',
+    margin: '0 40px'
   };
 
   return (
@@ -188,7 +183,7 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 22,
+        gap: 28,
         opacity,
         transform: `scale(${scale}) translateY(${translateY}px)`
       }}
@@ -211,31 +206,30 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         SHARING THE STAGE WITH CFOS FROM
       </div>
 
-      {/* Dual High-Velocity Kinetic Logo Streams */}
+      {/* Floating Seamless Stream Tracks (No Black Boxes) */}
       <div
         style={{
           width: '100%',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          gap: 16,
-          padding: '8px 0',
-          position: 'relative'
+          gap: 24,
+          padding: '16px 0',
+          position: 'relative',
+          background: 'linear-gradient(180deg, rgba(9,10,12,0) 0%, rgba(9,10,12,0.7) 50%, rgba(9,10,12,0) 100%)'
         }}
       >
         {/* Row 1: Leftward Velocity */}
         <div
           style={{
             display: 'flex',
-            gap: 20,
+            alignItems: 'center',
             transform: `translateX(-${shift1}px)`,
             whiteSpace: 'nowrap'
           }}
         >
           {row1Logos.map((logo, idx) => (
-            <div key={`r1-${idx}`} style={cardStyle}>
-              <Img src={staticFile(logo)} style={{ height: 42, maxWidth: 160, objectFit: 'contain' }} />
-            </div>
+            <Img key={`r1-${idx}`} src={staticFile(logo)} style={logoImgStyle} />
           ))}
         </div>
 
@@ -243,15 +237,13 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         <div
           style={{
             display: 'flex',
-            gap: 20,
-            transform: `translateX(${shift2 - 1200}px)`,
+            alignItems: 'center',
+            transform: `translateX(${shift2 - 1300}px)`,
             whiteSpace: 'nowrap'
           }}
         >
           {row2Logos.map((logo, idx) => (
-            <div key={`r2-${idx}`} style={cardStyle}>
-              <Img src={staticFile(logo)} style={{ height: 42, maxWidth: 160, objectFit: 'contain' }} />
-            </div>
+            <Img key={`r2-${idx}`} src={staticFile(logo)} style={logoImgStyle} />
           ))}
         </div>
       </div>
@@ -294,7 +286,6 @@ export const ForefrontSummitTeaser: React.FC = () => {
         overflow: 'hidden'
       }}
     >
-      {/* Import Inter 900 & JetBrains Mono Fonts */}
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=JetBrains+Mono:wght@800;900&display=swap');
@@ -306,13 +297,9 @@ export const ForefrontSummitTeaser: React.FC = () => {
         `}
       </style>
 
-      {/* Original High-Energy Royalty-Free Trailer Audio */}
       <Audio src={staticFile('forefront_hype_music.mp3')} volume={1.0} />
 
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 1: EVENT IDENTITY & VENUE (0 - 150 frames / 0.0s - 5.0s)
-          Footage: Authentic Sydney Harbour & Skyline
-         ══════════════════════════════════════════════════════════════ */}
+      {/* SCENE 1: EVENT IDENTITY & VENUE (0 - 150 frames) */}
       <Sequence from={0} durationInFrames={150}>
         <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.8) 100%)' }} />
@@ -329,20 +316,14 @@ export const ForefrontSummitTeaser: React.FC = () => {
         />
       </Sequence>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 2: FAST KINETIC LOGO MARQUEE (150 - 300 frames / 5.0s - 10.0s)
-          Footage: Executive Boardroom
-         ══════════════════════════════════════════════════════════════ */}
+      {/* SCENE 2: FAST BORDERLESS LOGO MARQUEE (150 - 300 frames) */}
       <Sequence from={150} durationInFrames={150}>
         <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
         <FastLogoMarqueeScene durationInFrames={150} />
       </Sequence>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 3: OCTANE FEATURED KEYNOTE CASE STUDY (300 - 480 frames / 10.0s - 16.0s)
-          Footage: Modern Technology Workspace
-         ══════════════════════════════════════════════════════════════ */}
+      {/* SCENE 3: OCTANE FEATURED KEYNOTE CASE STUDY (300 - 480 frames) */}
       <Sequence from={300} durationInFrames={180}>
         <Video src={staticFile('vid_office.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
@@ -360,10 +341,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
         />
       </Sequence>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 4: IBM PLANNING ANALYTICS + AGENTIC AI (480 - 645 frames / 16.0s - 21.5s)
-          Footage: Financial Planning & Analytics Discussion
-         ══════════════════════════════════════════════════════════════ */}
+      {/* SCENE 4: IBM PLANNING ANALYTICS + AGENTIC AI (480 - 645 frames) */}
       <Sequence from={480} durationInFrames={165}>
         <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.8) 100%)' }} />
@@ -380,10 +358,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
         />
       </Sequence>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 5: DATE & VENUE (645 - 780 frames / 21.5s - 26.0s)
-          Footage: Sydney ICC Coordinates
-         ══════════════════════════════════════════════════════════════ */}
+      {/* SCENE 5: DATE & VENUE (645 - 780 frames) */}
       <Sequence from={645} durationInFrames={135}>
         <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
@@ -395,9 +370,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
         />
       </Sequence>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 6: OCTANE SPONSOR & SPEAKER CALLOUT (780 - 930 frames / 26.0s - 31.0s)
-         ══════════════════════════════════════════════════════════════ */}
+      {/* SCENE 6: OCTANE SPONSOR & SPEAKER CALLOUT (780 - 930 frames) */}
       <Sequence from={780} durationInFrames={150}>
         <AbsoluteFill
           style={{
@@ -407,7 +380,6 @@ export const ForefrontSummitTeaser: React.FC = () => {
             justifyContent: 'center'
           }}
         >
-          {/* Octane Radial Ambient Glow */}
           <div
             style={{
               position: 'absolute',
@@ -417,7 +389,6 @@ export const ForefrontSummitTeaser: React.FC = () => {
               borderRadius: '50%'
             }}
           />
-
           <KineticOutro durationInFrames={150} />
         </AbsoluteFill>
       </Sequence>
