@@ -379,9 +379,38 @@ flowchart TD
 - All UI indicators, numeric counters, badges, and background depth effects must be built using modular primitives in `src/components/primitives/`.
 - Never duplicate numeric counters or badge markup across components.
 
+## 💬 Part XII: 1:1 Contextual Kinetic Narrative HUD & Zero-Bleed Conduit Lifecycles
+
+```mermaid
+flowchart TD
+    subgraph NarrativeHUD [1. Top-Anchored Contextual Kinetic Narrative HUD]
+        N1["Anchor: top: 28px, center-aligned (Eliminates bottom clutter)"]
+        N2["Live Scene Telemetry Badge: [ SCENE 01-04 // TELEMETRY TAG ]"]
+        N3["Synchronized Word Glow: 20px Inter, 900 active weight, luminous text shadow"]
+    end
+
+    subgraph ConduitLifecycle [2. Strict Transition-Only Conduit Visibility]
+        C1["Inter-cluster conduits strictly active ONLY during camera pan transitions"]
+        C2["Line 1 (Cluster 1 -> 2): Active t: 8.8s - 11.0s, fades to 0 opacity at t >= 11.4s"]
+        C3["Line 2 (Cluster 2 -> 3): Active t: 18.2s - 20.2s, fades to 0 opacity at t >= 20.6s"]
+        C4["Eliminates orphaned horizontal lines, arrowheads, or bleeding artifacts in static frames"]
+    end
+
+    NarrativeHUD --> ConduitLifecycle
+```
+
+### 1. The Contextual Narrative Invariant
+- Avoid generic bottom-screen subtitles that mimic closed captions.
+- Anchor narrative copy to the top telemetry HUD or integrate dynamically into the visual layout, synchronized 1:1 with spoken timestamps.
+
+### 2. The Zero-Bleed Conduit Law
+- Never leave spatial conduits rendered with `drawProgress = 1` in the camera background when they cross between clusters.
+- All inter-cluster conduits must enforce transition-only opacity windows (`opacity: interpolate(...)`) so that static cluster frames remain pristine and free of edge artifacts.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 3.0.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 3.1.0 (Production Verified).*
+
 
 
 

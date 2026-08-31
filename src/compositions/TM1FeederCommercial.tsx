@@ -45,12 +45,16 @@ export const TM1FeederCommercial: React.FC = () => {
   const bloatReduction = interpolate(currentTime, [22.5, 26.0], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const subSecLatency = interpolate(currentTime, [25.5, 27.8], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
-  // Self-drawing kinetic laser conduits
-  const drawLine1 = interpolate(currentTime, [8.8, 11.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // Self-drawing kinetic laser conduits with STRICT TRANSITION-ONLY OPACITY (Zero Bleed!)
+  const drawLine1 = interpolate(currentTime, [8.8, 11.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const conduit1Opacity = interpolate(currentTime, [8.8, 9.2, 10.8, 11.4], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+
   const drawLine2 = interpolate(currentTime, [18.2, 20.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const conduit2Opacity = interpolate(currentTime, [18.2, 18.6, 20.0, 20.6], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   
   // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2 (Through open vertical gutter: Y=-65 to Y=65)
   const drawVerticalBridge = interpolate(currentTime, [14.0, 15.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const verticalBridgeOpacity = interpolate(currentTime, [14.0, 14.3, 19.0, 19.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
   // Blackboard dimming during Outro (t >= 28.2s)
@@ -87,7 +91,7 @@ export const TM1FeederCommercial: React.FC = () => {
       <div style={{ position: 'absolute', inset: 0, opacity: blackboardOpacity, transition: 'opacity 0.4s ease-out' }}>
         <SpatialBoard cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY}>
 
-          {/* ── HORIZONTAL INTER-CLUSTER LASER CONDUITS ── */}
+          {/* ── HORIZONTAL INTER-CLUSTER LASER CONDUITS (TRANSITION ONLY: Zero Bleed) ── */}
           <KineticLaserConduit
             x1={-1100}
             y1={-245}
@@ -95,6 +99,7 @@ export const TM1FeederCommercial: React.FC = () => {
             y2={-245}
             color={IndustrialTheme.signals.crimson}
             drawProgress={drawLine1}
+            opacity={conduit1Opacity}
           />
 
           <KineticLaserConduit
@@ -104,6 +109,7 @@ export const TM1FeederCommercial: React.FC = () => {
             y2={-245}
             color={IndustrialTheme.signals.mint}
             drawProgress={drawLine2}
+            opacity={conduit2Opacity}
           />
 
           {/* ── VERTICAL CAUSAL LASER BRIDGE (Through Open Vertical Gutter: Y=-65 to Y=65) ── */}
@@ -114,6 +120,7 @@ export const TM1FeederCommercial: React.FC = () => {
             y2={65}
             color={IndustrialTheme.signals.crimson}
             drawProgress={drawVerticalBridge}
+            opacity={verticalBridgeOpacity}
           />
 
           {/* ═══════════════════════════════════════════════════════════
@@ -262,6 +269,7 @@ export const TM1FeederCommercial: React.FC = () => {
       {/* DEDICATED CINEMATIC OUTRO STAGE (t >= 28.2s) */}
       {currentTime >= 28.0 && <CtaOutroStage />}
 
+      {/* TOP-ANCHORED 1:1 CONTEXTUAL KINETIC NARRATIVE HUD */}
       <SubtitleKaraoke words={timingData.words} currentTime={currentTime} />
     </AbsoluteFill>
   );

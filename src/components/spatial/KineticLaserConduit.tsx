@@ -8,6 +8,7 @@ interface KineticLaserConduitProps {
   y2: number;
   color?: string;
   drawProgress: number;
+  opacity?: number;
 }
 
 export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
@@ -16,11 +17,12 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
   x2,
   y2,
   color = '#E11D48',
-  drawProgress
+  drawProgress,
+  opacity = 1.0
 }) => {
   const frame = useCurrentFrame();
 
-  if (drawProgress <= 0.01) {
+  if (drawProgress <= 0.01 || opacity <= 0.01) {
     return null;
   }
 
@@ -52,7 +54,9 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
         width,
         height,
         pointerEvents: 'none',
-        zIndex: 5
+        zIndex: 5,
+        opacity,
+        transition: 'opacity 0.2s ease-out'
       }}
     >
       <svg width={width} height={height} style={{ overflow: 'visible' }}>
@@ -104,7 +108,7 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
           opacity={0.9}
         />
 
-        {/* Traveling Luminous Photon Streak (Zero Circles, Pure High-Speed Dash Streak) */}
+        {/* Traveling Luminous Photon Streak (Pure High-Speed Dash Streak) */}
         {drawProgress > 0.7 && (
           <path
             d={pathD}
