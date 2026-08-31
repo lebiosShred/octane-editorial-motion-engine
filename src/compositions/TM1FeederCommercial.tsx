@@ -9,13 +9,14 @@ import { BoardConnector } from '../components/spatial/BoardConnector';
 import { BitLatticeGrid } from '../components/forge/BitLatticeGrid';
 import { DimensionTopologyTree } from '../components/forge/DimensionTopologyTree';
 import { CircuitConduit } from '../components/forge/CircuitConduit';
+import { InfraTeamHumorCard } from '../components/forge/InfraTeamHumorCard';
 
 export const TM1FeederCommercial: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Calibrated Spatial Camera: Smoothly locks onto Cluster 1 (-1100), Cluster 2 (0), Cluster 3 (+1100), then pulls back to 0.72x
+  // Calibrated Spatial Camera: Locks onto Cluster 1 (-1100), Cluster 2 (0), Cluster 3 (+1100), then pulls back to 0.72x
   const cameraScale = interpolate(
     currentTime,
     [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 26.5, 34.0],
@@ -39,7 +40,7 @@ export const TM1FeederCommercial: React.FC = () => {
 
   // Dynamic values
   const latencyVal = interpolate(currentTime, [0, 2.5], [0.0, 42.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const ramVal = interpolate(currentTime, [3.5, 6.0], [16, 64], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const ramVal = interpolate(currentTime, [3.3, 5.8], [16, 64], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const bloatReduction = interpolate(currentTime, [20.5, 23.5], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const subSecLatency = interpolate(currentTime, [22.0, 24.5], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
@@ -62,8 +63,7 @@ export const TM1FeederCommercial: React.FC = () => {
       {/* INFINITE BLACKBOARD DRAFTING CANVAS */}
       <SpatialBoard cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY}>
 
-        {/* ── VECTOR CONNECTOR TRACES (CLEANLY DOCKED TO CARD PORTS) ── */}
-        {/* Connector 1: Right Port of Cluster 1 Top Node (-860, -160) -> Left Port of Cluster 2 Top Node (-250, -160) */}
+        {/* ── VECTOR CONNECTOR TRACES ── */}
         <BoardConnector
           x1={-860}
           y1={-160}
@@ -73,7 +73,6 @@ export const TM1FeederCommercial: React.FC = () => {
           drawProgress={drawLine1}
         />
 
-        {/* Connector 2: Right Port of Cluster 2 Top Node (+250, -160) -> Left Port of Cluster 3 Top Node (+850, -160) */}
         <BoardConnector
           x1={250}
           y1={-160}
@@ -84,7 +83,7 @@ export const TM1FeederCommercial: React.FC = () => {
         />
 
         {/* ═══════════════════════════════════════════════════════════
-            CLUSTER 1: THE STALL & HARDWARE MYTH (X: -1100)
+            CLUSTER 1: THE STALL & EDITORIAL HUMOR (X: -1100)
            ═══════════════════════════════════════════════════════════ */}
         <BoardNode
           x={-1100}
@@ -110,23 +109,17 @@ export const TM1FeederCommercial: React.FC = () => {
           </div>
         </BoardNode>
 
+        {/* Humorous Infrastructure Team Card */}
         <BoardNode
           x={-1100}
           y={170}
           width={480}
-          title="Infrastructure Action"
+          title="Infrastructure Advisory"
           badge="HARDWARE MYTH"
           badgeType="amber"
           isActive={(currentTime >= 3.0 && currentTime < 8.0) || currentTime >= 26.5}
         >
-          <div style={{ fontSize: 20, fontWeight: 800, color: IndustrialTheme.text.hero, marginBottom: 8 }}>
-            Scaled VM Memory: <span style={{ color: IndustrialTheme.text.primary, fontFamily: 'monospace' }}>{Math.round(ramVal)} GB RAM</span>
-          </div>
-          <div style={{ background: IndustrialTheme.signals.crimsonBg, border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`, borderRadius: 8, padding: '8px 12px' }}>
-            <div style={{ fontSize: 11, color: IndustrialTheme.signals.crimson, fontWeight: 700 }}>
-              RAM does not eliminate exponential zero-cell traversal.
-            </div>
-          </div>
+          <InfraTeamHumorCard ramVal={ramVal} />
         </BoardNode>
 
         {/* ═══════════════════════════════════════════════════════════
