@@ -437,9 +437,53 @@ flowchart LR
 ### 2. 2000px Inter-Cluster Isolation Rule
 - In a side-by-side layout, set cluster separation to **`2000px`** ($X = -2000, 0, +2000$) with `cameraPanX` shifted by $+250\text{px}$ to ensure adjacent cluster chassis never bleed into the viewport during camera holds.
 
+## 🎬 Part XIV: Scene-by-Scene Editorial Storytelling Architecture
+
+```mermaid
+flowchart TD
+    subgraph S1 [Scene 1: The Latency Stall (0.0s - 3.5s)]
+        S1L["Left: Large Bold Typography (48px Inter 800)"]
+        S1R["Right: Single Focused Card (Planning Analytics Workspace 42.4s)"]
+    end
+
+    subgraph S2 [Scene 2: The Hardware Advisory (3.5s - 9.0s)]
+        S2T["Top: Single Focused Card (3D Claymorphic IT Team + Speech Bubbles)"]
+        S2B["Bottom: Large Centered Bold Typography (44px Inter 800)"]
+    end
+
+    subgraph S3 [Scene 3: The Root Bottleneck (9.0s - 14.0s)]
+        S3L["Left: Large Bold Typography (48px Inter 800)"]
+        S3R["Right: Single Focused Card (Cartesian Explosion Topology)"]
+    end
+
+    subgraph S4 [Scene 4: Memory Register Layout (14.0s - 19.5s)]
+        S4T["Top: Single Focused Card (16x6 Bit Lattice Grid + Radar Beam)"]
+        S4B["Bottom: Large Centered Bold Typography (40px Inter 800)"]
+    end
+
+    subgraph S5 [Scene 5: Targeted Remediation (19.5s - 28.0s)]
+        S5Top["Top: Two Solution Cards (Feeder Syntax + Diagnostic Metric Results)"]
+        S5B["Bottom: Large Centered Bold Typography (38px Inter 800)"]
+    end
+
+    subgraph S6 [Scene 6: Cinematic Outro CTA (28.0s - 39.0s)]
+        S6C["Center: Dedicated High-Conversion Outro Card with Playbook Pill"]
+    end
+
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6
+```
+
+### 1. The Scene-by-Scene Composition Rule
+- Motion graphics must **think in scenes**, not continuous cluttered blackboards.
+- Each scene represents a single narrative thesis with **one dominant visual focal point** paired directly with its matching bold, Swiss-style kinetic copy.
+- **Alternating Layout Rhythms**:
+  - *Side-by-Side Beats* (Left Hero Text + Right Single Card) for analytical comparisons and problem definitions.
+  - *Stacked Beats* (Top Single Card + Bottom Centered Hero Text) for narrative storytelling, humor, and grid visualizers.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 3.2.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 4.0.0 (Production Verified).*
+
 
 
 
