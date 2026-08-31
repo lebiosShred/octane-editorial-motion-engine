@@ -1,31 +1,31 @@
 {
   "audio_file": "voiceover.wav",
-  "duration_seconds": 38.67,
-  "total_words": 84,
+  "duration_seconds": 31.88,
+  "total_words": 76,
   "words": [
     {
       "word": "When",
       "start": 0.0,
       "end": 0.28,
-      "probability": 0.668
+      "probability": 0.695
     },
     {
       "word": "your",
       "start": 0.28,
       "end": 0.42,
-      "probability": 0.953
+      "probability": 0.955
     },
     {
       "word": "TM1",
       "start": 0.42,
-      "end": 1.08,
-      "probability": 0.824
+      "end": 1.06,
+      "probability": 0.848
     },
     {
       "word": "dashboard",
-      "start": 1.08,
+      "start": 1.06,
       "end": 1.5,
-      "probability": 0.982
+      "probability": 0.981
     },
     {
       "word": "takes",
@@ -36,14 +36,14 @@
     {
       "word": "40",
       "start": 1.86,
-      "end": 2.26,
-      "probability": 0.972
+      "end": 2.28,
+      "probability": 0.968
     },
     {
       "word": "seconds",
-      "start": 2.26,
+      "start": 2.28,
       "end": 2.62,
-      "probability": 0.98
+      "probability": 0.985
     },
     {
       "word": "to",
@@ -54,26 +54,26 @@
     {
       "word": "open,",
       "start": 2.82,
-      "end": 3.1,
-      "probability": 0.996
+      "end": 3.08,
+      "probability": 0.997
     },
     {
       "word": "your",
       "start": 3.86,
       "end": 4.6,
-      "probability": 0.973
+      "probability": 0.978
     },
     {
       "word": "infrastructure",
       "start": 4.6,
       "end": 5.1,
-      "probability": 0.938
+      "probability": 0.921
     },
     {
       "word": "team",
       "start": 5.1,
       "end": 5.56,
-      "probability": 0.994
+      "probability": 0.995
     },
     {
       "word": "will",
@@ -97,43 +97,43 @@
       "word": "you,",
       "start": 6.34,
       "end": 6.64,
-      "probability": 0.997
+      "probability": 0.996
     },
     {
       "word": "just",
       "start": 6.86,
       "end": 7.02,
-      "probability": 0.568
+      "probability": 0.632
     },
     {
       "word": "add",
       "start": 7.02,
       "end": 7.24,
-      "probability": 0.978
+      "probability": 0.974
     },
     {
       "word": "more",
       "start": 7.24,
-      "end": 7.5,
-      "probability": 0.989
+      "end": 7.48,
+      "probability": 0.99
     },
     {
       "word": "RAM.",
-      "start": 7.5,
+      "start": 7.48,
       "end": 7.78,
-      "probability": 0.97
+      "probability": 0.967
     },
     {
       "word": "Here's",
-      "start": 9.2,
+      "start": 9.0,
       "end": 9.54,
-      "probability": 0.969
+      "probability": 0.965
     },
     {
       "word": "the",
       "start": 9.54,
       "end": 9.62,
-      "probability": 0.997
+      "probability": 0.996
     },
     {
       "word": "problem",
@@ -145,19 +145,19 @@
       "word": "that",
       "start": 9.96,
       "end": 10.24,
-      "probability": 0.601
+      "probability": 0.536
     },
     {
       "word": "does",
       "start": 10.24,
       "end": 10.42,
-      "probability": 0.962
+      "probability": 0.952
     },
     {
       "word": "not",
       "start": 10.42,
       "end": 10.56,
-      "probability": 0.997
+      "probability": 0.995
     },
     {
       "word": "fix",
@@ -173,37 +173,37 @@
     },
     {
       "word": "The",
-      "start": 12.26,
+      "start": 12.24,
       "end": 12.42,
-      "probability": 0.987
+      "probability": 0.989
     },
     {
       "word": "real",
       "start": 12.42,
       "end": 12.64,
-      "probability": 0.929
+      "probability": 0.917
     },
     {
       "word": "bottleneck",
       "start": 12.64,
       "end": 13.28,
-      "probability": 0.96
+      "probability": 0.939
     },
     {
       "word": "is",
       "start": 13.28,
       "end": 13.4,
-      "probability": 0.996
+      "probability": 0.995
     },
     {
       "word": "overfeeding,",
       "start": 13.4,
       "end": 13.94,
-      "probability": 0.809
+      "probability": 0.824
     },
     {
       "word": "forcing",
-      "start": 14.32,
+      "start": 14.3,
       "end": 14.56,
       "probability": 0.998
     },
@@ -211,17 +211,17 @@
       "word": "your",
       "start": 14.56,
       "end": 14.8,
-      "probability": 0.997
+      "probability": 0.998
     },
     {
       "word": "server",
       "start": 14.8,
-      "end": 15.12,
+      "end": 15.14,
       "probability": 0.997
     },
     {
       "word": "to",
-      "start": 15.12,
+      "start": 15.14,
       "end": 15.36,
       "probability": 0.998
     },
@@ -229,19 +229,19 @@
       "word": "scan",
       "start": 15.36,
       "end": 15.66,
-      "probability": 0.994
+      "probability": 0.995
     },
     {
       "word": "millions",
       "start": 15.66,
       "end": 16.08,
-      "probability": 0.993
+      "probability": 0.994
     },
     {
       "word": "of",
       "start": 16.08,
       "end": 16.42,
-      "probability": 0.998
+      "probability": 0.997
     },
     {
       "word": "empty",
@@ -253,25 +253,25 @@
       "word": "cells",
       "start": 16.7,
       "end": 17.1,
-      "probability": 0.988
+      "probability": 0.99
     },
     {
       "word": "as",
       "start": 17.1,
       "end": 17.42,
-      "probability": 0.932
+      "probability": 0.929
     },
     {
       "word": "if",
       "start": 17.42,
       "end": 17.58,
-      "probability": 0.983
+      "probability": 0.987
     },
     {
       "word": "they",
       "start": 17.58,
       "end": 17.72,
-      "probability": 0.994
+      "probability": 0.993
     },
     {
       "word": "were",
@@ -289,19 +289,19 @@
       "word": "data.",
       "start": 18.16,
       "end": 18.56,
-      "probability": 0.995
+      "probability": 0.997
     },
     {
       "word": "Targeted",
       "start": 20.02,
       "end": 20.64,
-      "probability": 0.972
+      "probability": 0.97
     },
     {
       "word": "conditional",
       "start": 20.64,
       "end": 21.1,
-      "probability": 0.907
+      "probability": 0.915
     },
     {
       "word": "feeders",
@@ -313,37 +313,37 @@
       "word": "collapse",
       "start": 21.56,
       "end": 21.96,
-      "probability": 0.95
+      "probability": 0.932
     },
     {
       "word": "that",
       "start": 21.96,
-      "end": 22.24,
+      "end": 22.26,
       "probability": 0.994
     },
     {
       "word": "bloat,",
-      "start": 22.24,
+      "start": 22.26,
       "end": 22.72,
-      "probability": 0.922
+      "probability": 0.908
     },
     {
       "word": "slashing",
       "start": 22.84,
       "end": 23.22,
-      "probability": 0.954
+      "probability": 0.953
     },
     {
       "word": "RAM",
       "start": 23.22,
       "end": 23.56,
-      "probability": 0.97
+      "probability": 0.973
     },
     {
       "word": "from",
       "start": 23.56,
       "end": 23.82,
-      "probability": 0.972
+      "probability": 0.975
     },
     {
       "word": "48",
@@ -354,158 +354,110 @@
     {
       "word": "gigs",
       "start": 24.3,
-      "end": 24.66,
-      "probability": 0.808
+      "end": 24.68,
+      "probability": 0.83
     },
     {
       "word": "down",
-      "start": 24.66,
+      "start": 24.68,
       "end": 25.0,
-      "probability": 0.151
+      "probability": 0.516
     },
     {
       "word": "to",
       "start": 25.0,
       "end": 25.2,
-      "probability": 0.987
+      "probability": 0.997
     },
     {
-      "word": "6,",
+      "word": "6",
       "start": 25.2,
       "end": 25.44,
-      "probability": 0.561
+      "probability": 0.68
     },
     {
       "word": "and",
-      "start": 25.84,
+      "start": 25.44,
       "end": 25.9,
-      "probability": 0.968
+      "probability": 0.615
     },
     {
       "word": "restoring",
       "start": 25.9,
-      "end": 26.3,
-      "probability": 0.98
+      "end": 26.32,
+      "probability": 0.972
     },
     {
       "word": "sub",
-      "start": 26.3,
+      "start": 26.32,
       "end": 26.7,
-      "probability": 0.776
+      "probability": 0.719
     },
     {
       "word": "-second",
       "start": 26.7,
       "end": 27.0,
-      "probability": 0.896
+      "probability": 0.881
     },
     {
       "word": "speed.",
       "start": 27.0,
-      "end": 27.46,
-      "probability": 0.984
+      "end": 27.44,
+      "probability": 0.986
     },
     {
-      "word": "Audit",
-      "start": 28.58,
-      "end": 29.38,
-      "probability": 0.909
-    },
-    {
-      "word": "your",
-      "start": 29.38,
-      "end": 29.54,
-      "probability": 0.927
-    },
-    {
-      "word": "cube's",
-      "start": 29.54,
-      "end": 29.96,
-      "probability": 0.582
-    },
-    {
-      "word": "feeder",
-      "start": 29.96,
-      "end": 30.16,
-      "probability": 0.944
-    },
-    {
-      "word": "ratio",
-      "start": 30.16,
-      "end": 30.7,
-      "probability": 0.99
-    },
-    {
-      "word": "in",
-      "start": 30.7,
-      "end": 30.96,
-      "probability": 0.994
-    },
-    {
-      "word": "10",
-      "start": 30.96,
-      "end": 31.26,
-      "probability": 0.79
-    },
-    {
-      "word": "minutes.",
-      "start": 31.26,
-      "end": 31.52,
-      "probability": 0.976
-    },
-    {
-      "word": "Grab",
-      "start": 32.08,
-      "end": 32.28,
-      "probability": 0.981
-    },
-    {
-      "word": "the",
-      "start": 32.28,
-      "end": 32.54,
-      "probability": 0.997
-    },
-    {
-      "word": "complete",
-      "start": 32.54,
-      "end": 32.98,
-      "probability": 0.926
-    },
-    {
-      "word": "diagnostic",
-      "start": 32.98,
-      "end": 33.58,
-      "probability": 0.782
-    },
-    {
-      "word": "playbook",
-      "start": 33.58,
-      "end": 34.24,
-      "probability": 0.955
-    },
-    {
-      "word": "at",
-      "start": 34.24,
-      "end": 34.42,
-      "probability": 0.987
-    },
-    {
-      "word": "octanesolutions",
-      "start": 34.42,
-      "end": 35.32,
-      "probability": 0.73
-    },
-    {
-      "word": ".com",
-      "start": 35.32,
-      "end": 36.08,
+      "word": "Click",
+      "start": 28.66,
+      "end": 29.22,
       "probability": 0.983
     },
     {
-      "word": ".oslashplaybook.",
-      "start": 36.08,
-      "end": 37.56,
-      "probability": 0.812
+      "word": "the",
+      "start": 29.22,
+      "end": 29.4,
+      "probability": 0.996
+    },
+    {
+      "word": "link",
+      "start": 29.4,
+      "end": 29.56,
+      "probability": 0.998
+    },
+    {
+      "word": "above",
+      "start": 29.56,
+      "end": 29.8,
+      "probability": 0.992
+    },
+    {
+      "word": "to",
+      "start": 29.8,
+      "end": 30.0,
+      "probability": 0.998
+    },
+    {
+      "word": "read",
+      "start": 30.0,
+      "end": 30.14,
+      "probability": 0.994
+    },
+    {
+      "word": "the",
+      "start": 30.14,
+      "end": 30.3,
+      "probability": 0.994
+    },
+    {
+      "word": "whole",
+      "start": 30.3,
+      "end": 30.44,
+      "probability": 0.995
+    },
+    {
+      "word": "blog.",
+      "start": 30.44,
+      "end": 30.72,
+      "probability": 0.991
     }
   ]
 }

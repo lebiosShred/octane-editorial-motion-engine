@@ -1,5 +1,5 @@
 import React from 'react';
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
 import { IndustrialTheme } from '../../types/theme';
 
 interface BitLatticeGridProps {
@@ -19,12 +19,10 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Staged Memory Focus
-  const isPhase1 = currentTime >= 14.5;
-  const isPhase2 = currentTime >= 16.2;
+  const isPhase1 = currentTime >= 12.5;
+  const isPhase2 = currentTime >= 14.5;
 
-  // Active Radar Scan line across full register
-  const scanProgress = interpolate(currentTime, [16.2, 18.2], [0, totalCount], {
+  const scanProgress = interpolate(currentTime, [14.5, 17.5], [0, totalCount], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp'
   });
@@ -45,7 +43,7 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
         ...IndustrialTheme.typography.antialiased
       }}
     >
-      {/* Streamlined Step Header with Zero Wrap */}
+      {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <span style={{ fontSize: 12, fontWeight: 900, background: '#0F172A', color: '#FFFFFF', padding: '4px 9px', borderRadius: 5, fontFamily: IndustrialTheme.fonts.mono, whiteSpace: 'nowrap' }}>
@@ -56,19 +54,12 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
           </span>
         </div>
 
-        {/* Dynamic Focus Callout Badge */}
-        {!isPhase2 ? (
-          <span style={{ fontSize: 12, fontWeight: 800, color: IndustrialTheme.signals.mint, background: IndustrialTheme.signals.mintBg, border: `1px solid ${IndustrialTheme.signals.mintBorder}`, padding: '4px 10px', borderRadius: 6, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
-            [ 6 LIVE CELLS ]
-          </span>
-        ) : (
-          <span style={{ fontSize: 12, fontWeight: 800, color: IndustrialTheme.signals.crimson, background: IndustrialTheme.signals.crimsonBg, border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`, padding: '4px 10px', borderRadius: 6, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
-            [ 250:1 OVERFEED ]
-          </span>
-        )}
+        <span style={{ fontSize: 12, fontWeight: 800, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '4px 10px', borderRadius: 6, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
+          {!isPhase2 ? '[ 6 LIVE CELLS ]' : '[ 250:1 OVERFEED ]'}
+        </span>
       </div>
 
-      {/* 16x6 Compact Matrix Grid with Balanced Density */}
+      {/* Grid */}
       <div
         style={{
           display: 'grid',
@@ -87,15 +78,15 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
           let cellScale = 1.0;
 
           if (isPopulated) {
-            bg = IndustrialTheme.signals.mint;
-            border = `1.5px solid ${IndustrialTheme.signals.mint}`;
+            bg = '#4daeeb';
+            border = '1.5px solid #4daeeb';
             textColor = '#FFFFFF';
             cellOpacity = 1.0;
             cellScale = isPhase1 && !isPhase2 ? 1.15 : 1.0;
           } else if (isScannedGhost) {
-            bg = IndustrialTheme.signals.crimsonBg;
-            border = `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`;
-            textColor = IndustrialTheme.signals.crimson;
+            bg = 'rgba(77, 174, 235, 0.2)';
+            border = '1.5px solid rgba(77, 174, 235, 0.5)';
+            textColor = '#4daeeb';
             cellOpacity = 1.0;
           }
 
@@ -125,12 +116,12 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
         })}
       </div>
 
-      {/* Quantitative Bottom Metric */}
+      {/* Bottom Metric */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#FFFFFF', padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(0,0,0,0.06)' }}>
         <span style={{ fontSize: 13, color: IndustrialTheme.text.secondary, fontWeight: 600 }}>
           {isPhase2 ? 'Traversal Waste:' : 'Populated Data:'}
         </span>
-        <span style={{ fontSize: 14, fontWeight: 900, color: isPhase2 ? IndustrialTheme.signals.crimson : IndustrialTheme.signals.mint, fontFamily: IndustrialTheme.fonts.mono }}>
+        <span style={{ fontSize: 14, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono }}>
           {isPhase2 ? '95.3% Empty Cells Scanned' : '6 Leaf Records'}
         </span>
       </div>

@@ -6,8 +6,8 @@ export const CtaOutroStage: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Outro triggers at t = 28.2s
-  const outroFrame = Math.max(0, frame - Math.round(28.2 * fps));
+  // Outro triggers at t = 28.0s (aligned with new 31.88s audio)
+  const outroFrame = Math.max(0, frame - Math.round(28.0 * fps));
 
   const cardScale = spring({
     frame: outroFrame,
@@ -15,12 +15,12 @@ export const CtaOutroStage: React.FC = () => {
     config: { damping: 14, stiffness: 120 }
   });
 
-  const cardOpacity = interpolate(outroFrame, [0, 15], [0, 1], {
+  const cardOpacity = interpolate(outroFrame, [0, 12], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp'
   });
 
-  const buttonGlow = (Math.sin(frame * 0.1) + 1) / 2;
+  const buttonGlow = (Math.sin(frame * 0.15) + 1) / 2;
 
   return (
     <div
@@ -36,12 +36,11 @@ export const CtaOutroStage: React.FC = () => {
     >
       <div
         style={{
-          width: 760,
-          background: IndustrialTheme.popout.chassisBg,
-          border: IndustrialTheme.popout.chassisBorder,
+          width: 780,
+          background: '#FFFFFF',
           borderRadius: 24,
-          boxShadow: '0 60px 140px -20px rgba(0, 0, 0, 0.95), 0 25px 60px -10px rgba(0, 0, 0, 0.7)',
-          padding: '38px 46px',
+          boxShadow: '0 60px 140px -20px rgba(0, 0, 0, 0.95), 0 0 50px rgba(77, 174, 235, 0.25)',
+          padding: '42px 50px',
           transform: `scale(${cardScale})`,
           opacity: cardOpacity,
           color: IndustrialTheme.text.hero,
@@ -52,79 +51,73 @@ export const CtaOutroStage: React.FC = () => {
           textAlign: 'center'
         }}
       >
-        {/* Precision Corner Registration Ticks */}
-        <div style={{ position: 'absolute', top: 8, left: 10, fontSize: 12, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┌</div>
-        <div style={{ position: 'absolute', top: 8, right: 10, fontSize: 12, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┐</div>
-        <div style={{ position: 'absolute', bottom: 8, left: 10, fontSize: 12, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>└</div>
-        <div style={{ position: 'absolute', bottom: 8, right: 10, fontSize: 12, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┘</div>
-
         {/* Top Status Pill */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 18 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
           <span
             style={{
-              fontSize: 10,
+              fontSize: 11,
               fontWeight: 800,
-              letterSpacing: '0.1em',
-              fontFamily: 'monospace',
-              color: IndustrialTheme.signals.mint,
-              background: IndustrialTheme.signals.mintBg,
-              border: `1px solid ${IndustrialTheme.signals.mintBorder}`,
-              padding: '4px 12px',
+              letterSpacing: '0.12em',
+              fontFamily: IndustrialTheme.fonts.mono,
+              color: '#4daeeb',
+              background: 'rgba(77, 174, 235, 0.12)',
+              border: '1px solid rgba(77, 174, 235, 0.35)',
+              padding: '5px 14px',
               borderRadius: 6,
               textTransform: 'uppercase'
             }}
           >
-            OCTANE DIAGNOSTIC PROTOCOL
+            OCTANE TECHNICAL ARTICLE
           </span>
         </div>
 
         {/* Main Headline */}
         <div
           style={{
-            fontSize: 32,
+            fontSize: 34,
             fontWeight: 900,
-            color: IndustrialTheme.text.hero,
+            color: '#090A0C',
             letterSpacing: '-0.03em',
-            lineHeight: 1.2,
-            marginBottom: 14
+            lineHeight: 1.25,
+            marginBottom: 16
           }}
         >
-          Pinpoint Overfed Cubes in 10 Minutes.
+          Read the Complete Feeder Playbook.
         </div>
 
         {/* Value Proposition Description */}
         <div
           style={{
-            fontSize: 14,
+            fontSize: 16,
             color: IndustrialTheme.text.secondary,
             lineHeight: 1.6,
-            maxWidth: 580,
-            marginBottom: 28,
+            maxWidth: 620,
+            marginBottom: 32,
             fontWeight: 500
           }}
         >
-          Run the diagnostic playbook to eliminate exponential zero-cell traversal, collapse RAM bloat, and restore sub-second consolidation speed.
+          Master conditional feeder architecture, eliminate empty-cell traversal, and restore sub-second consolidation speeds.
         </div>
 
-        {/* Hero Action CTA Button */}
+        {/* Hero Action CTA Button with upward pointer arrow */}
         <div
           style={{
-            background: '#0F172A',
+            background: '#090A0C',
             color: '#FFFFFF',
-            fontSize: 15,
+            fontSize: 17,
             fontWeight: 800,
-            letterSpacing: '0.04em',
-            padding: '16px 42px',
-            borderRadius: 12,
-            boxShadow: `0 12px 32px rgba(15, 23, 42, ${0.35 + buttonGlow * 0.15})`,
+            letterSpacing: '0.02em',
+            padding: '18px 46px',
+            borderRadius: 14,
+            boxShadow: `0 14px 36px rgba(77, 174, 235, ${0.3 + buttonGlow * 0.25})`,
             display: 'flex',
             alignItems: 'center',
-            gap: 12,
-            border: '1px solid rgba(255, 255, 255, 0.1)'
+            gap: 14,
+            border: '1.5px solid #4daeeb'
           }}
         >
-          <span>octanesolutions.com.au/playbook</span>
-          <span style={{ color: IndustrialTheme.signals.mint, fontSize: 16 }}>→</span>
+          <span>Click the link above to read the whole blog</span>
+          <span style={{ color: '#4daeeb', fontSize: 20, fontWeight: 900 }}>↑</span>
         </div>
       </div>
     </div>

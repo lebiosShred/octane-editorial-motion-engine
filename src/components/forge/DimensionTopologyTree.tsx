@@ -1,5 +1,5 @@
 import React from 'react';
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { IndustrialTheme } from '../../types/theme';
 
 interface DimensionTopologyTreeProps {
@@ -17,14 +17,14 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Staged Focus Timeline (Cluster 2 active t = 10.0s - 19.5s)
-  const p1 = currentTime >= 10.0;
-  const p2 = currentTime >= 11.2;
-  const p3 = currentTime >= 12.4;
-  const p4 = currentTime >= 13.6;
+  // Staged Focus Timeline
+  const p1 = currentTime >= 8.5;
+  const p2 = currentTime >= 9.6;
+  const p3 = currentTime >= 10.7;
+  const p4 = currentTime >= 11.5;
 
   const multSpring = spring({
-    frame: frame - Math.round(13.6 * fps),
+    frame: frame - Math.round(11.5 * fps),
     fps,
     config: { damping: 12, stiffness: 150 }
   });
@@ -49,7 +49,7 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
         ...IndustrialTheme.typography.antialiased
       }}
     >
-      {/* Streamlined Step Header */}
+      {/* Step Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <span style={{ fontSize: 12, fontWeight: 900, background: '#0F172A', color: '#FFFFFF', padding: '4px 9px', borderRadius: 5, fontFamily: IndustrialTheme.fonts.mono }}>
@@ -59,12 +59,12 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
             Dimensional Multiplier
           </span>
         </div>
-        <span style={{ fontSize: 12, fontFamily: IndustrialTheme.fonts.mono, fontWeight: 700, color: IndustrialTheme.signals.crimson, background: IndustrialTheme.signals.crimsonBg, border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`, padding: '4px 10px', borderRadius: 6 }}>
+        <span style={{ fontSize: 12, fontFamily: IndustrialTheme.fonts.mono, fontWeight: 700, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '4px 10px', borderRadius: 6 }}>
           UNFILTERED
         </span>
       </div>
 
-      {/* Progressive Row Spotlights with High-Contrast Legibility */}
+      {/* Rows */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
         {nodes.map((node, idx) => {
           const isFocused = (idx === 0 && p1 && !p2) || (idx === 1 && p2 && !p3) || (idx === 2 && p3 && !p4) || p4;
@@ -76,13 +76,13 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
               key={idx}
               style={{
                 background: '#FFFFFF',
-                border: isFocused ? `1.5px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(0,0,0,0.06)',
+                border: isFocused ? '1.5px solid rgba(77, 174, 235, 0.5)' : '1px solid rgba(0,0,0,0.06)',
                 borderRadius: 10,
                 padding: '11px 16px',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                boxShadow: isFocused ? '0 4px 16px rgba(225, 29, 72, 0.12)' : '0 1px 3px rgba(0,0,0,0.02)',
+                boxShadow: isFocused ? '0 4px 16px rgba(77, 174, 235, 0.15)' : '0 1px 3px rgba(0,0,0,0.02)',
                 opacity: rowOpacity,
                 transform: `scale(${rowScale})`,
                 transition: 'all 0.2s ease-out'
@@ -94,7 +94,7 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
                     width: 8,
                     height: 8,
                     borderRadius: '50%',
-                    backgroundColor: isFocused ? IndustrialTheme.signals.crimson : '#94A3B8'
+                    backgroundColor: isFocused ? '#4daeeb' : '#94A3B8'
                   }}
                 />
                 <div>
@@ -106,7 +106,7 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
                   </div>
                 </div>
               </div>
-              <span style={{ fontSize: 16, fontWeight: 800, color: isFocused ? IndustrialTheme.signals.crimson : IndustrialTheme.text.primary, fontFamily: IndustrialTheme.fonts.mono }}>
+              <span style={{ fontSize: 16, fontWeight: 800, color: isFocused ? '#4daeeb' : IndustrialTheme.text.primary, fontFamily: IndustrialTheme.fonts.mono }}>
                 {node.count}
               </span>
             </div>
@@ -117,8 +117,8 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
       {/* Cartesian Explosion Result Bar */}
       <div
         style={{
-          background: p4 ? IndustrialTheme.signals.crimsonBg : 'rgba(0,0,0,0.02)',
-          border: p4 ? `1.5px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px dashed rgba(0,0,0,0.1)',
+          background: p4 ? 'rgba(77, 174, 235, 0.12)' : 'rgba(0,0,0,0.02)',
+          border: p4 ? '1.5px solid rgba(77, 174, 235, 0.45)' : '1px dashed rgba(0,0,0,0.1)',
           borderRadius: 10,
           padding: '11px 16px',
           display: 'flex',
@@ -126,13 +126,13 @@ export const DimensionTopologyTree: React.FC<DimensionTopologyTreeProps> = ({
           alignItems: 'center',
           opacity: p4 ? 1.0 : 0.35,
           transform: `scale(${p4 ? Math.max(0, multSpring) : 1})`,
-          boxShadow: p4 ? '0 6px 20px rgba(225, 29, 72, 0.16)' : 'none'
+          boxShadow: p4 ? '0 6px 20px rgba(77, 174, 235, 0.2)' : 'none'
         }}
       >
-        <span style={{ fontSize: 13, fontWeight: 700, color: IndustrialTheme.signals.crimson, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#4daeeb', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Cartesian Explosion:
         </span>
-        <span style={{ fontSize: 16, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: IndustrialTheme.signals.crimson }}>
+        <span style={{ fontSize: 16, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb' }}>
           15k &times; 200 &times; 36 = 108M Cells
         </span>
       </div>

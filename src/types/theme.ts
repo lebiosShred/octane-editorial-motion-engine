@@ -33,18 +33,25 @@ export const IndustrialTheme = {
     mono: '#475569'
   },
   signals: {
-    amber: '#D97706',
-    amberBg: '#FEF3C7',
-    amberBorder: '#FDE68A',
-    
-    crimson: '#E11D48',
-    crimsonBg: '#FFE4E6',
-    crimsonBorder: '#FECDD3',
-    
-    mint: '#059669',
-    mintBg: '#D1FAE5',
-    mintBorder: '#A7F3D0',
-    
+    // Pure Octane Brand Cyan Accent (#4daeeb)
+    accent: '#4daeeb',
+    accentBg: 'rgba(77, 174, 235, 0.12)',
+    accentBorder: 'rgba(77, 174, 235, 0.35)',
+    accentGlow: 'rgba(77, 174, 235, 0.45)',
+
+    // All signals unified to #4daeeb
+    amber: '#4daeeb',
+    amberBg: 'rgba(77, 174, 235, 0.12)',
+    amberBorder: 'rgba(77, 174, 235, 0.35)',
+
+    crimson: '#4daeeb',
+    crimsonBg: 'rgba(77, 174, 235, 0.12)',
+    crimsonBorder: 'rgba(77, 174, 235, 0.35)',
+
+    mint: '#4daeeb',
+    mintBg: 'rgba(77, 174, 235, 0.12)',
+    mintBorder: 'rgba(77, 174, 235, 0.35)',
+
     darkAction: '#0F172A',
     darkActionHover: '#1E293B'
   }
