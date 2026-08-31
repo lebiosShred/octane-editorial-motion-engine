@@ -1,5 +1,6 @@
 import React from 'react';
 import { WordTiming } from '../types/motion';
+import { IndustrialTheme } from '../types/theme';
 
 interface SubtitleKaraokeProps {
   words: WordTiming[];
@@ -11,8 +12,8 @@ interface SubtitleKaraokeProps {
 export const SubtitleKaraoke: React.FC<SubtitleKaraokeProps> = ({
   words,
   currentTime,
-  highlightColor = '#38BDF8',
-  inactiveColor = '#64748B'
+  highlightColor = IndustrialTheme.text.hero,
+  inactiveColor = IndustrialTheme.text.tertiary
 }) => {
   const activeWordIndex = words.findIndex(
     (w) => currentTime >= w.start && currentTime <= w.end
@@ -41,7 +42,7 @@ export const SubtitleKaraoke: React.FC<SubtitleKaraokeProps> = ({
     >
       <div
         style={{
-          background: 'rgba(15, 23, 42, 0.85)',
+          background: 'rgba(18, 20, 24, 0.92)',
           backdropFilter: 'blur(30px)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: 30,
@@ -49,7 +50,7 @@ export const SubtitleKaraoke: React.FC<SubtitleKaraokeProps> = ({
           display: 'flex',
           alignItems: 'center',
           gap: 10,
-          boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
+          boxShadow: '0 20px 40px rgba(0,0,0,0.7)'
         }}
       >
         {visibleWords.map((w, idx) => {
@@ -63,7 +64,8 @@ export const SubtitleKaraoke: React.FC<SubtitleKaraokeProps> = ({
                 color: isActive ? highlightColor : inactiveColor,
                 letterSpacing: '-0.02em',
                 transform: isActive ? 'scale(1.06)' : 'scale(1)',
-                display: 'inline-block'
+                display: 'inline-block',
+                transition: 'all 0.1s ease-out'
               }}
             >
               {w.word}

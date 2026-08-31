@@ -1,4 +1,5 @@
 import React from 'react';
+import { IndustrialTheme } from '../../types/theme';
 
 interface HexRegisterDumpProps {
   entries?: { address: string; register: string; value: string; status?: string }[];
@@ -14,27 +15,27 @@ export const HexRegisterDump: React.FC<HexRegisterDumpProps> = ({
   return (
     <div
       style={{
-        background: '#020617',
-        border: '1px solid rgba(255, 255, 255, 0.04)',
+        background: IndustrialTheme.surface.recessedWell,
+        border: IndustrialTheme.surface.recessedBorder,
         borderRadius: 12,
         padding: '12px 16px',
         fontFamily: 'monospace',
         fontSize: 11,
-        color: '#64748B',
+        color: IndustrialTheme.text.secondary,
         display: 'flex',
         flexDirection: 'column',
         gap: 6
       }}
     >
-      <div style={{ fontSize: 9, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.15em', borderBottom: '1px solid rgba(255,255,255,0.04)', paddingBottom: 4 }}>
+      <div style={{ fontSize: 9, color: IndustrialTheme.text.tertiary, textTransform: 'uppercase', letterSpacing: '0.15em', borderBottom: '1px solid rgba(255,255,255,0.04)', paddingBottom: 4 }}>
         SYSTEM REGISTER DUMP
       </div>
       {entries.map((e, idx) => (
         <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ color: '#38BDF8' }}>{e.address}</span>
-          <span style={{ color: '#94A3B8' }}>{e.register}</span>
-          <span style={{ color: '#F8FAFC' }}>{e.value}</span>
-          <span style={{ color: e.status === 'ACTIVE' ? '#10B981' : e.status === 'OVERFED' ? '#F87171' : '#64748B' }}>
+          <span style={{ color: IndustrialTheme.text.primary }}>{e.address}</span>
+          <span style={{ color: IndustrialTheme.text.secondary }}>{e.register}</span>
+          <span style={{ color: IndustrialTheme.text.hero }}>{e.value}</span>
+          <span style={{ color: e.status === 'ACTIVE' ? IndustrialTheme.signals.mint : e.status === 'OVERFED' ? IndustrialTheme.signals.crimson : IndustrialTheme.text.tertiary }}>
             [{e.status}]
           </span>
         </div>

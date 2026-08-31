@@ -1,4 +1,5 @@
 import React from 'react';
+import { IndustrialTheme } from '../../types/theme';
 
 export type StatusLedState = 'active' | 'warning' | 'error' | 'success' | 'idle';
 
@@ -26,11 +27,11 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
   showTicks = true
 }) => {
   const ledColors: Record<StatusLedState, { bg: string; border: string; glow: string }> = {
-    active: { bg: '#38BDF8', border: 'rgba(56, 189, 248, 0.4)', glow: 'rgba(56, 189, 248, 0.6)' },
-    success: { bg: '#10B981', border: 'rgba(16, 185, 129, 0.4)', glow: 'rgba(16, 185, 129, 0.6)' },
-    warning: { bg: '#F59E0B', border: 'rgba(245, 158, 11, 0.4)', glow: 'rgba(245, 158, 11, 0.6)' },
-    error: { bg: '#EF4444', border: 'rgba(239, 68, 68, 0.4)', glow: 'rgba(239, 68, 68, 0.6)' },
-    idle: { bg: '#475569', border: 'rgba(71, 85, 105, 0.4)', glow: 'transparent' }
+    active: { bg: IndustrialTheme.signals.tungsten, border: 'rgba(255, 255, 255, 0.4)', glow: 'rgba(255, 255, 255, 0.6)' },
+    success: { bg: IndustrialTheme.signals.mint, border: IndustrialTheme.signals.mintBorder, glow: IndustrialTheme.signals.mint },
+    warning: { bg: IndustrialTheme.signals.amber, border: IndustrialTheme.signals.amberBorder, glow: IndustrialTheme.signals.amber },
+    error: { bg: IndustrialTheme.signals.crimson, border: IndustrialTheme.signals.crimsonBorder, glow: IndustrialTheme.signals.crimson },
+    idle: { bg: IndustrialTheme.text.tertiary, border: 'rgba(255,255,255,0.1)', glow: 'transparent' }
   };
 
   const led = ledColors[statusLed];
@@ -41,12 +42,12 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
         position: 'relative',
         width,
         height,
-        background: 'rgba(15, 23, 42, 0.88)',
+        background: IndustrialTheme.surface.chassis,
         backdropFilter: 'blur(40px) saturate(180%)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.22)',
+        border: IndustrialTheme.surface.chassisBorder,
+        borderTop: IndustrialTheme.surface.chassisTopBevel,
         borderRadius: 24,
-        boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+        boxShadow: IndustrialTheme.surface.chassisShadow,
         padding: '28px 34px',
         overflow: 'hidden',
         ...style
@@ -75,21 +76,21 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div
               style={{
-                width: 8,
-                height: 8,
+                width: 7,
+                height: 7,
                 borderRadius: '50%',
                 backgroundColor: led.bg,
-                boxShadow: '0 0 8px ' + led.glow,
-                border: '1px solid ' + led.border
+                boxShadow: `0 0 8px ${led.glow}`,
+                border: `1px solid ${led.border}`
               }}
             />
             {title && (
-              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.02em', color: '#F8FAFC' }}>
+              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '-0.01em', color: IndustrialTheme.text.hero }}>
                 {title}
               </span>
             )}
             {subtitle && (
-              <span style={{ fontSize: 12, color: '#64748B', marginLeft: 4 }}>
+              <span style={{ fontSize: 12, color: IndustrialTheme.text.secondary, marginLeft: 4 }}>
                 &bull; {subtitle}
               </span>
             )}
@@ -104,7 +105,7 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
                 fontFamily: 'monospace',
                 color: led.bg,
                 background: led.border,
-                border: '1px solid ' + led.border,
+                border: `1px solid ${led.border}`,
                 padding: '3px 10px',
                 borderRadius: 8,
                 textTransform: 'uppercase'

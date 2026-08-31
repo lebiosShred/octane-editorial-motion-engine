@@ -1,4 +1,5 @@
 import React from 'react';
+import { IndustrialTheme } from '../../types/theme';
 
 interface CircuitConduitProps {
   width?: number;
@@ -20,7 +21,7 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
   startY = 12,
   endX = 230,
   endY = 12,
-  color = '#38BDF8',
+  color = IndustrialTheme.signals.tungsten,
   pulseOffset = 0,
   labelStart,
   labelEnd
@@ -28,7 +29,7 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       {labelStart && (
-        <span style={{ fontSize: 11, color: '#94A3B8', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
           {labelStart}
         </span>
       )}
@@ -59,7 +60,7 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
       </svg>
 
       {labelEnd && (
-        <span style={{ fontSize: 11, color: '#10B981', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 11, color: IndustrialTheme.signals.mint, fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
           {labelEnd}
         </span>
       )}

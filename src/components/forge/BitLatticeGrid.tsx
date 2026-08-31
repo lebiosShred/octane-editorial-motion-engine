@@ -1,4 +1,5 @@
 import React from 'react';
+import { IndustrialTheme } from '../../types/theme';
 
 interface BitLatticeGridProps {
   rows?: number;
@@ -6,8 +7,6 @@ interface BitLatticeGridProps {
   populatedCount?: number;
   totalCount?: number;
   isOverfed?: boolean;
-  activeColor?: string;
-  emptyColor?: string;
 }
 
 export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
@@ -15,17 +14,15 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
   cols = 16,
   populatedCount = 12,
   totalCount = 128,
-  isOverfed = false,
-  activeColor = '#10B981',
-  emptyColor = '#EF4444'
+  isOverfed = false
 }) => {
   const cells = Array.from({ length: rows * cols });
 
   return (
     <div
       style={{
-        background: 'rgba(2, 6, 23, 0.8)',
-        border: '1px solid rgba(255, 255, 255, 0.06)',
+        background: IndustrialTheme.surface.recessedWell,
+        border: IndustrialTheme.surface.recessedBorder,
         borderRadius: 14,
         padding: 14,
         display: 'flex',
@@ -33,10 +30,10 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
         gap: 8
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 10, fontFamily: 'monospace', color: '#64748B' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 10, fontFamily: 'monospace', color: IndustrialTheme.text.tertiary }}>
         <span>MEMORY_LATTICE (16x8 REGISTER)</span>
-        <span style={{ color: isOverfed ? '#EF4444' : '#10B981' }}>
-          {isOverfed ? 'ZERO_CELL_TRAVERSAL_DETECTED' : 'SCOPED_DENSE_COMPACT'}
+        <span style={{ color: isOverfed ? IndustrialTheme.signals.crimson : IndustrialTheme.signals.mint, fontWeight: 700 }}>
+          {isOverfed ? 'ZERO_CELL_TRAVERSAL' : 'SCOPED_DENSE_COMPACT'}
         </span>
       </div>
 
@@ -52,15 +49,15 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
           const isWasted = isOverfed && !isPopulated && i < totalCount;
           
           const bg = isPopulated
-            ? activeColor
+            ? IndustrialTheme.signals.mint
             : isWasted
-            ? 'rgba(239, 68, 68, 0.35)'
-            : 'rgba(255, 255, 255, 0.04)';
+            ? 'rgba(244, 63, 94, 0.25)'
+            : 'rgba(255, 255, 255, 0.03)';
 
           const border = isPopulated
-            ? `1px solid ${activeColor}`
+            ? `1px solid ${IndustrialTheme.signals.mint}`
             : isWasted
-            ? '1px solid rgba(239, 68, 68, 0.6)'
+            ? `1px solid ${IndustrialTheme.signals.crimsonBorder}`
             : '1px solid transparent';
 
           return (
@@ -77,7 +74,7 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
                 alignItems: 'center',
                 fontSize: 8,
                 fontFamily: 'monospace',
-                color: isPopulated ? '#07090E' : isWasted ? '#F87171' : 'transparent',
+                color: isPopulated ? '#0B0C0E' : isWasted ? IndustrialTheme.signals.crimson : 'transparent',
                 fontWeight: 700
               }}
             >
