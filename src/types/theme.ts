@@ -1,8 +1,8 @@
 export const IndustrialTheme = {
   surface: {
-    base: '#0B0C0E',
-    baseGradient: 'radial-gradient(ellipse at 50% 30%, rgba(35, 38, 48, 0.5) 0%, rgba(11, 12, 14, 0.98) 85%)',
-    gridLine: 'rgba(255, 255, 255, 0.03)'
+    base: '#000000',
+    baseGradient: '#000000',
+    gridLine: 'transparent'
   },
   fonts: {
     sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",

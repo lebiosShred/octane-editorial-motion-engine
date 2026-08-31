@@ -485,9 +485,16 @@ flowchart TD
 - **RATIONALE**: These tags look like developer script annotations, split visual focus, and distract the user from the core value proposition.
 - **RULE**: Headings must be clean, confident, and direct (e.g. *"When your dashboard takes 40 seconds to open..."*). Let the visuals and the headline carry the narrative without metadata noise.
 
+### 3. Pure Monochromatic Background Rule (Pure `#000000` or Pure `#FFFFFF`)
+- **PROHIBITED**: No grid patterns, radial gradient vignetting, mesh gradients, or ambient particle noise on the canvas background.
+- **RULE**: Backgrounds must be pure solid black (`#000000`) or pure solid white (`#FFFFFF`).
+- **RATIONALE**: High-end Swiss typography and floating chassis demand maximum contrast. Removing all background textures gives the typography and 3D artwork 100% crisp separation with zero visual noise.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 4.1.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 4.2.0 (Production Verified).*
+
+
 
 
 

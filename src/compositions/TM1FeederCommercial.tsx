@@ -59,31 +59,6 @@ export const TM1FeederCommercial: React.FC = () => {
 
       <Audio src={staticFile('voiceover.wav')} />
 
-      {/* Expansive Ambient Blackboard Floor */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: IndustrialTheme.surface.baseGradient,
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Infinite Drafting Grid */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `linear-gradient(${IndustrialTheme.surface.gridLine} 1px, transparent 1px), linear-gradient(90deg, ${IndustrialTheme.surface.gridLine} 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-          backgroundPosition: 'center center',
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Ambient Parallax Particle Dust Field */}
-      <AmbientParticleField count={18} />
-
       {/* ══════════════════════════════════════════════════════════════
           SCENE 1: THE LATENCY STALL (0.0s - 3.5s)
           Layout: Side-by-Side (Left Text + Right Card)
