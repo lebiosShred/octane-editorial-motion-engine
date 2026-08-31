@@ -14,4 +14,5 @@ export * from './components/forge/CircuitConduit';
 export * from './components/forge/TelemetryGauge';
 export * from './components/forge/HexRegisterDump';
 export * from './components/forge/InfraTeamHumorCard';
+export * from './components/forge/CtaOutroStage';
 export * from './compositions/TM1FeederCommercial';
