@@ -13,13 +13,12 @@ import {
 } from 'remotion';
 
 // ==========================================
-// CINEMA KINETIC SCENE (UNBOXED VISUAL PSYCHOLOGY)
+// CINEMA KINETIC SCENE (3-TIER COGNITIVE CEILING)
 // ==========================================
 interface KineticSceneProps {
   eyebrow?: string;
   title: React.ReactNode;
   subtitle?: string;
-  badge?: string;
   durationInFrames: number;
 }
 
@@ -27,7 +26,6 @@ const KineticScene: React.FC<KineticSceneProps> = ({
   eyebrow,
   title,
   subtitle,
-  badge,
   durationInFrames
 }) => {
   const frame = useCurrentFrame();
@@ -65,7 +63,7 @@ const KineticScene: React.FC<KineticSceneProps> = ({
         textAlign: 'center'
       }}
     >
-      {/* Kicker: Wide-Tracked Cinema Lead (No Pill Box) */}
+      {/* Tier 1: Wide-Tracked Cinema Kicker (100% Luminance Cyan) */}
       {eyebrow && (
         <div
           style={{
@@ -76,14 +74,14 @@ const KineticScene: React.FC<KineticSceneProps> = ({
             color: '#4daeeb',
             textTransform: 'uppercase',
             marginBottom: 20,
-            textShadow: '0 4px 16px rgba(0,0,0,0.8)'
+            textShadow: '0 4px 16px rgba(0,0,0,0.85)'
           }}
         >
           {eyebrow}
         </div>
       )}
 
-      {/* Dominant Headline: Scale = Emotion (72px+) */}
+      {/* Tier 2: Dominant Headline (Pure White #FFFFFF • Scale = Emotion) */}
       <div
         style={{
           fontSize: 72,
@@ -99,38 +97,20 @@ const KineticScene: React.FC<KineticSceneProps> = ({
         {title}
       </div>
 
-      {/* Subtitle: High-Contrast Punchline (No Clutter Box) */}
+      {/* Tier 3: High-Contrast Punchline Subtitle (Pure White #FFFFFF) */}
       {subtitle && (
         <div
           style={{
             fontSize: 26,
             fontWeight: 700,
-            color: '#E2E8F0',
+            color: '#FFFFFF',
             letterSpacing: '-0.01em',
             marginTop: 24,
             maxWidth: 1100,
-            textShadow: '0 4px 20px rgba(0,0,0,0.9)'
+            textShadow: '0 4px 20px rgba(0,0,0,0.95)'
           }}
         >
           {subtitle}
-        </div>
-      )}
-
-      {/* Context Badge: Clean Anchor */}
-      {badge && (
-        <div
-          style={{
-            fontSize: 15,
-            fontWeight: 800,
-            letterSpacing: '0.14em',
-            fontFamily: "'JetBrains Mono', monospace",
-            color: '#94A3B8',
-            marginTop: 22,
-            textTransform: 'uppercase',
-            textShadow: '0 4px 16px rgba(0,0,0,0.8)'
-          }}
-        >
-          {badge}
         </div>
       )}
     </div>
@@ -207,7 +187,7 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         transform: `scale(${scale}) translateY(${translateY}px)`
       }}
     >
-      {/* Commanding Display Headline (Scale = Emotion, No Box Trap) */}
+      {/* Commanding Display Headline (Scale = Emotion, Pure White + Cyan) */}
       <div
         style={{
           fontSize: 52,
@@ -267,16 +247,16 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         </div>
       </div>
 
-      {/* Bottom Grounding Subtitle */}
+      {/* Bottom Grounding Subtitle (Pure White #FFFFFF) */}
       <div
         style={{
           fontSize: 22,
           fontWeight: 800,
           letterSpacing: '0.06em',
           fontFamily: "'JetBrains Mono', monospace",
-          color: '#CBD5E1',
+          color: '#FFFFFF',
           textTransform: 'uppercase',
-          textShadow: '0 4px 16px rgba(0,0,0,0.9)'
+          textShadow: '0 4px 16px rgba(0,0,0,0.95)'
         }}
       >
         CFO LEADERSHIP PRIORITIES FOR 2026
@@ -331,7 +311,6 @@ export const ForefrontSummitTeaser: React.FC = () => {
             </>
           }
           subtitle="02 SEPTEMBER 2026 • ICC SYDNEY"
-          badge="DARLING HARBOUR • EXECUTIVE STRATEGY KEYNOTES"
           durationInFrames={150}
         />
       </Sequence>
@@ -356,7 +335,6 @@ export const ForefrontSummitTeaser: React.FC = () => {
             </>
           }
           subtitle="Sub-Second Multi-Dimensional Models • Zero Spreadsheets"
-          badge="OCTANE SOLUTIONS • AI FINANCE AUTOMATION"
           durationInFrames={170}
         />
       </Sequence>
@@ -369,7 +347,6 @@ export const ForefrontSummitTeaser: React.FC = () => {
           eyebrow="SAVE THE DATE"
           title="SEPTEMBER 2, 2026"
           subtitle="ICC Sydney • Darling Harbour"
-          badge="FSI • RETAIL • HEALTHCARE • UTILITIES LEADERS"
           durationInFrames={140}
         />
       </Sequence>
@@ -422,7 +399,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
 };
 
 // ==========================================
-// CLEAN BROADCAST OUTRO (NO GLOW)
+// CLEAN BROADCAST OUTRO (PURE WHITE & CYAN)
 // ==========================================
 const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
   const frame = useCurrentFrame();
@@ -459,7 +436,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         textAlign: 'center'
       }}
     >
-      {/* Eyebrow */}
+      {/* Eyebrow (100% Cyan) */}
       <div
         style={{
           fontSize: 16,
@@ -473,7 +450,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         EVENT SPONSOR & EXHIBITOR
       </div>
 
-      {/* Brand Title (Razor Sharp Typography - Zero Glow) */}
+      {/* Brand Title (Pure White + Cyan Accent • Zero Glow) */}
       <div
         style={{
           fontSize: 76,
@@ -487,12 +464,12 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         OCTANE <span style={{ color: '#4daeeb' }}>SOLUTIONS</span>
       </div>
 
-      {/* Verbatim Booth 19 Messaging */}
+      {/* Verbatim Booth 19 Messaging (Pure Crisp White #FFFFFF) */}
       <div
         style={{
           fontSize: 26,
           fontWeight: 700,
-          color: '#E2E8F0',
+          color: '#FFFFFF',
           letterSpacing: '-0.01em',
           lineHeight: 1.35,
           maxWidth: 920,

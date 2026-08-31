@@ -97,7 +97,7 @@ export const TM1FeederCommercial: React.FC = () => {
                 THREAD LOCK DETECTED
               </span>
             </div>
-            <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#64748B', fontWeight: 800, marginBottom: 8 }}>
+            <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#FFFFFF', fontWeight: 800, marginBottom: 8 }}>
               Active Consolidation Latency
             </div>
             <div style={{ fontSize: 76, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono, letterSpacing: '-0.03em', lineHeight: 1 }}>
