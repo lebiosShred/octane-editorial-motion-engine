@@ -1,7 +1,6 @@
 import React from 'react';
 import { Composition, registerRoot } from 'remotion';
 import { TM1FeederCommercial } from './compositions/TM1FeederCommercial';
-import { KineticSpreadsheetsMontage } from './compositions/KineticSpreadsheetsMontage';
 import timingData from '../public/voiceover.json';
 
 export const Root: React.FC = () => {
@@ -9,7 +8,7 @@ export const Root: React.FC = () => {
 
   return (
     <>
-      {/* Master Expressive TM1 Feeder Commercial */}
+      {/* Master 16:9 Landscape (LinkedIn, YouTube, Desktop Web) */}
       <Composition
         id="TM1FeederCommercial"
         component={TM1FeederCommercial}
@@ -19,13 +18,23 @@ export const Root: React.FC = () => {
         height={1080}
       />
 
-      {/* Kinetic Spreadsheets Montage */}
+      {/* 9:16 Vertical (TikTok, Instagram Reels, YouTube Shorts) */}
       <Composition
-        id="KineticSpreadsheetsMontage"
-        component={KineticSpreadsheetsMontage}
-        durationInFrames={300}
+        id="TM1FeederCommercial-Vertical"
+        component={TM1FeederCommercial}
+        durationInFrames={durationInFrames}
         fps={30}
-        width={1920}
+        width={1080}
+        height={1920}
+      />
+
+      {/* 1:1 Square (Instagram Feed, LinkedIn Carousel) */}
+      <Composition
+        id="TM1FeederCommercial-Square"
+        component={TM1FeederCommercial}
+        durationInFrames={durationInFrames}
+        fps={30}
+        width={1080}
         height={1080}
       />
     </>

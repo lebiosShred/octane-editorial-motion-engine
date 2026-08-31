@@ -344,9 +344,45 @@ flowchart TD
 - Applying `scale(1.25)` or `scale(1.5)` on a camera parent container that wraps 3D perspective cards forces Chromium to rasterize at 1x and interpolate the bitmap texture quads with bilinear filtering, causing visual softness.
 - Setting **`cameraScale = 1.0`** allows Chromium to render every DOM element directly to screen pixels with 100% native sharpness.
 
+## 🚀 Part XI: Engine 3.0 Modular Architecture & Declarative Storyboard Framework
+
+```mermaid
+flowchart TD
+    subgraph EngineCore [1. Engine 3.0 Core Services]
+        E1["StoryboardEngine.ts: Declarative keyframe & scene manager"]
+        E2["CinematicCamera.tsx: Inertial pan/tilt, micro-harmonic float, impact shake"]
+        E3["Multi-Aspect Ratio Frustums: 16:9 Landscape, 9:16 Vertical, 1:1 Square"]
+    end
+
+    subgraph PrimitivesLib [2. Standard Motion Primitives Library]
+        P1["DataBadge.tsx: 6-tone industrial status pills (crimson, mint, amber, slate, cyan, purple)"]
+        P2["CountUpNumber.tsx: Spring-damped numeric counters with tabular-nums"]
+        P3["RadarScanOverlay.tsx: Phosphor decay scan lines"]
+        P4["SpecularGlint.tsx: Luxury ceramic light sheen sweeps"]
+        P5["AmbientParticleField.tsx: Multi-plane floating depth dust"]
+    end
+
+    subgraph DesignSystem [3. Unified Token Pipeline]
+        D1["IndustrialTheme.ts: Global surface, popout, signals, and typography tokens"]
+        D2["Google Fonts: Preloaded OpenType 'Inter' & 'JetBrains Mono'"]
+        D3["Hardware Antialiasing: geometricPrecision & translateZ(0)"]
+    end
+
+    EngineCore --> PrimitivesLib --> DesignSystem
+```
+
+### 1. The Declarative Storyboard Invariant
+- Storyboards should define scene keyframes semantically (`startSec`, `endSec`, `clusterIndex`, `cameraPanX`, `cameraPanY`) rather than hardcoding frame numbers inside individual component files.
+- `StoryboardEngine.getActiveScene(currentTime)` provides a unified single source of truth for all animations.
+
+### 2. The Modular Primitives Standard
+- All UI indicators, numeric counters, badges, and background depth effects must be built using modular primitives in `src/components/primitives/`.
+- Never duplicate numeric counters or badge markup across components.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 2.4.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 3.0.0 (Production Verified).*
+
 
 
 

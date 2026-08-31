@@ -1,10 +1,13 @@
 import React from 'react';
 import { IndustrialTheme } from '../../types/theme';
+import { CinematicCamera } from './CinematicCamera';
+import { AmbientParticleField } from '../primitives/AmbientParticleField';
 
 interface SpatialBoardProps {
   cameraScale: number;
   cameraPanX: number;
   cameraPanY: number;
+  shakeFrames?: number[];
   children: React.ReactNode;
 }
 
@@ -12,6 +15,7 @@ export const SpatialBoard: React.FC<SpatialBoardProps> = ({
   cameraScale,
   cameraPanX,
   cameraPanY,
+  shakeFrames,
   children
 }) => {
   return (
@@ -33,6 +37,9 @@ export const SpatialBoard: React.FC<SpatialBoardProps> = ({
         }}
       />
 
+      {/* Ambient Parallax Particle Dust Field */}
+      <AmbientParticleField count={20} cameraPanX={cameraPanX} cameraPanY={cameraPanY} />
+
       {/* Infinite Drafting Grid */}
       <div
         style={{
@@ -42,25 +49,15 @@ export const SpatialBoard: React.FC<SpatialBoardProps> = ({
           backgroundSize: '50px 50px',
           backgroundPosition: 'center center',
           pointerEvents: 'none',
-          transform: `scale(${cameraScale}) translate(${cameraPanX * 0.3}px, ${cameraPanY * 0.3}px)`,
+          transform: `scale(${cameraScale}) translate3d(${cameraPanX * 0.3}px, ${cameraPanY * 0.3}px, 0)`,
           transformOrigin: '50% 50%'
         }}
       />
 
-      {/* Gliding Spatial Stage */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          transform: `scale(${cameraScale}) translate(${cameraPanX}px, ${cameraPanY}px)`,
-          transformOrigin: '50% 50%'
-        }}
-      >
+      {/* Cinematic Gliding Spatial Stage with Impact Camera Shake */}
+      <CinematicCamera cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY} shakeFrames={shakeFrames}>
         {children}
-      </div>
+      </CinematicCamera>
     </div>
   );
 };
