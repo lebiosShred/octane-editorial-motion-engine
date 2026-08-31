@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Audio, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Audio, Video, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 
 export const ForefrontSummitTeaser: React.FC = () => {
   const frame = useCurrentFrame();
@@ -15,7 +15,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
     });
   };
 
-  // Text animation helper (slam in + subtle float)
+  // Text animation helper (slam in + subtle scale)
   const getTextMotion = (startSec: number, endSec: number) => {
     const sp = getSpring(startSec);
     const opacity = interpolate(currentTime, [startSec, startSec + 0.25, endSec - 0.25, endSec], [0, 1, 1, 0], {
@@ -27,12 +27,11 @@ export const ForefrontSummitTeaser: React.FC = () => {
     return { opacity, transform: `scale(${scale}) translateY(${translateY}px)` };
   };
 
-  // Footage zoom helper
-  const getZoom = (startSec: number, endSec: number) => {
-    return interpolate(currentTime, [startSec, endSec], [1.0, 1.08], {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp'
-    });
+  const videoStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    filter: 'brightness(0.9) contrast(1.1)'
   };
 
   return (
@@ -44,7 +43,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
         overflow: 'hidden'
       }}
     >
-      {/* Import Inter 900 Font */}
+      {/* Import Inter 900 & JetBrains Mono Fonts */}
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=JetBrains+Mono:wght@800;900&display=swap');
@@ -56,27 +55,19 @@ export const ForefrontSummitTeaser: React.FC = () => {
         `}
       </style>
 
-      {/* High-Energy Teaser Music (Direct from Reference Video) */}
-      <Audio src={staticFile('craft_teaser_music.mp3')} volume={1.0} />
+      {/* Original High-Energy Royalty-Free Trailer Music */}
+      <Audio src={staticFile('forefront_hype_music.mp3')} volume={1.0} />
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 1: SYDNEY / EVENT INTRO (0.0s - 4.5s)
-          Footage: Sydney Darling Harbour / ICC Dusk Skyline
-          Text: FINANCE TRANSFORMATION SUMMIT NSW
+          SCENE 1: EVENT TITLE & SYDNEY (0.0s - 5.0s)
+          Real Footage: Sydney Harbour & City (vid_sydney.mp4)
+          Text: FINANCE TRANSFORMATION SUMMIT NSW // SYDNEY
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime < 4.5 && (
-        <AbsoluteFill style={{ opacity: interpolate(currentTime, [4.2, 4.5], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-          <Img
-            src={staticFile('broll_skyline.jpg')}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: `scale(${getZoom(0, 4.5)})`
-            }}
-          />
-          {/* Cinematic Dark Overlay */}
-          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 100%)' }} />
+      {currentTime < 5.0 && (
+        <AbsoluteFill style={{ opacity: interpolate(currentTime, [4.7, 5.0], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+          <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
+          {/* Subtle Octane Dark Vignette */}
+          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.8) 100%)' }} />
 
           {/* Centered Kinetic Text */}
           <div
@@ -88,17 +79,21 @@ export const ForefrontSummitTeaser: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 16,
-              ...getTextMotion(0.2, 4.5)
+              ...getTextMotion(0.2, 5.0)
             }}
           >
             <div
               style={{
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: 900,
-                letterSpacing: '0.16em',
+                letterSpacing: '0.18em',
                 fontFamily: "'JetBrains Mono', monospace",
-                color: '#D8F209',
-                textTransform: 'uppercase'
+                color: '#4daeeb',
+                textTransform: 'uppercase',
+                background: 'rgba(9, 10, 12, 0.85)',
+                border: '1.5px solid #4daeeb',
+                padding: '6px 20px',
+                borderRadius: 8
               }}
             >
               FOREFRONT EVENTS PRESENTS
@@ -112,7 +107,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
                 lineHeight: 1.1,
                 maxWidth: 1200,
                 textTransform: 'uppercase',
-                textShadow: '0 10px 40px rgba(0,0,0,0.9)'
+                textShadow: '0 10px 40px rgba(0,0,0,0.95)'
               }}
             >
               Finance Transformation <br />
@@ -123,80 +118,14 @@ export const ForefrontSummitTeaser: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 2: 200+ LEADERS & CFOS (4.5s - 9.5s)
-          Footage: ICC Sydney 1800+ Auditorium & Audience
-          Text: 200+ ATTENDEES / FINANCE LEADERS & CFOS
+          SCENE 2: 200+ ATTENDEES & CFOS (5.0s - 10.0s)
+          Real Footage: Boardroom Leadership Gathering (vid_boardroom.mp4)
+          Text: 200+ ATTENDEES // FINANCE LEADERS & CFOS
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 4.3 && currentTime < 9.5 && (
-        <AbsoluteFill style={{ opacity: interpolate(currentTime, [4.3, 4.6, 9.2, 9.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-          <Img
-            src={staticFile('broll_auditorium.jpg')}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: `scale(${getZoom(4.5, 9.5)})`
-            }}
-          />
-          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%)' }} />
-
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 12,
-              ...getTextMotion(4.6, 9.5)
-            }}
-          >
-            <div
-              style={{
-                fontSize: 96,
-                fontWeight: 900,
-                letterSpacing: '-0.04em',
-                textAlign: 'center',
-                lineHeight: 1.0,
-                textShadow: '0 10px 40px rgba(0,0,0,0.9)'
-              }}
-            >
-              200+ attendees
-            </div>
-            <div
-              style={{
-                fontSize: 28,
-                fontWeight: 900,
-                letterSpacing: '0.1em',
-                fontFamily: "'JetBrains Mono', monospace",
-                color: '#D8F209',
-                textTransform: 'uppercase'
-              }}
-            >
-              Finance Leaders & CFOs
-            </div>
-          </div>
-        </AbsoluteFill>
-      )}
-
-      {/* ══════════════════════════════════════════════════════════════
-          SCENE 3: KEYNOTE SPEAKERS & INNOVATION (9.5s - 15.0s)
-          Footage: Keynote Speaker on Stage with Visuals
-          Text: KEYNOTE SPEAKERS / FUTURE OF FP&A
-         ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 9.3 && currentTime < 15.0 && (
-        <AbsoluteFill style={{ opacity: interpolate(currentTime, [9.3, 9.6, 14.7, 15.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-          <Img
-            src={staticFile('broll_speaker.jpg')}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: `scale(${getZoom(9.5, 15.0)})`
-            }}
-          />
-          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%)' }} />
+      {currentTime >= 4.8 && currentTime < 10.0 && (
+        <AbsoluteFill style={{ opacity: interpolate(currentTime, [4.8, 5.1, 9.7, 10.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+          <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
+          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
 
           <div
             style={{
@@ -207,54 +136,50 @@ export const ForefrontSummitTeaser: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 14,
-              ...getTextMotion(9.6, 15.0)
+              ...getTextMotion(5.1, 10.0)
             }}
           >
             <div
               style={{
-                fontSize: 84,
+                fontSize: 96,
                 fontWeight: 900,
-                letterSpacing: '-0.03em',
+                letterSpacing: '-0.04em',
                 textAlign: 'center',
                 lineHeight: 1.0,
-                textShadow: '0 10px 40px rgba(0,0,0,0.9)'
+                textShadow: '0 10px 40px rgba(0,0,0,0.95)'
               }}
             >
-              Industry Keynotes
+              200+ attendees
             </div>
             <div
               style={{
                 fontSize: 26,
                 fontWeight: 900,
-                letterSpacing: '0.08em',
+                letterSpacing: '0.12em',
                 fontFamily: "'JetBrains Mono', monospace",
                 color: '#4daeeb',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                background: 'rgba(9, 10, 12, 0.85)',
+                border: '1.5px solid rgba(77, 174, 235, 0.5)',
+                padding: '6px 20px',
+                borderRadius: 8
               }}
             >
-              Enterprise Transformation & Planning Strategy
+              Finance Leaders & CFOs
             </div>
           </div>
         </AbsoluteFill>
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 4: IBM PLANNING ANALYTICS & AGENTIC AI (15.0s - 21.0s)
-          Footage: Modern AI Finance Dashboard on Tablet
-          Text: IBM PLANNING ANALYTICS // AGENTIC AI
+          SCENE 3: KEYNOTE PRESENTATION (10.0s - 15.5s)
+          Real Footage: Modern Enterprise Workspace (vid_office.mp4)
+          Text: INDUSTRY KEYNOTES // MODERN FP&A AGILITY
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 14.8 && currentTime < 21.0 && (
-        <AbsoluteFill style={{ opacity: interpolate(currentTime, [14.8, 15.1, 20.7, 21.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-          <Img
-            src={staticFile('broll_ai_screen.jpg')}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: `scale(${getZoom(15.0, 21.0)})`
-            }}
-          />
-          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 100%)' }} />
+      {currentTime >= 9.8 && currentTime < 15.5 && (
+        <AbsoluteFill style={{ opacity: interpolate(currentTime, [9.8, 10.1, 15.2, 15.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+          <Video src={staticFile('vid_office.mp4')} style={videoStyle} />
+          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
 
           <div
             style={{
@@ -265,21 +190,75 @@ export const ForefrontSummitTeaser: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 16,
-              ...getTextMotion(15.1, 21.0)
+              ...getTextMotion(10.1, 15.5)
             }}
           >
             <div
               style={{
-                fontSize: 64,
+                fontSize: 84,
+                fontWeight: 900,
+                letterSpacing: '-0.03em',
+                textAlign: 'center',
+                lineHeight: 1.0,
+                textShadow: '0 10px 40px rgba(0,0,0,0.95)'
+              }}
+            >
+              Industry Keynotes
+            </div>
+            <div
+              style={{
+                fontSize: 24,
+                fontWeight: 900,
+                letterSpacing: '0.1em',
+                fontFamily: "'JetBrains Mono', monospace",
+                color: '#4daeeb',
+                textTransform: 'uppercase',
+                background: 'rgba(9, 10, 12, 0.85)',
+                border: '1.5px solid rgba(77, 174, 235, 0.5)',
+                padding: '6px 20px',
+                borderRadius: 8
+              }}
+            >
+              Enterprise Transformation & Planning Strategy
+            </div>
+          </div>
+        </AbsoluteFill>
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 4: IBM PLANNING ANALYTICS & AGENTIC AI (15.5s - 21.0s)
+          Real Footage: Collaborative Planning & Modeling (vid_boardroom.mp4)
+          Text: IBM PLANNING ANALYTICS + AGENTIC AI
+         ══════════════════════════════════════════════════════════════ */}
+      {currentTime >= 15.3 && currentTime < 21.0 && (
+        <AbsoluteFill style={{ opacity: interpolate(currentTime, [15.3, 15.6, 20.7, 21.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+          <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
+          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.8) 100%)' }} />
+
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 16,
+              ...getTextMotion(15.6, 21.0)
+            }}
+          >
+            <div
+              style={{
+                fontSize: 66,
                 fontWeight: 900,
                 letterSpacing: '-0.03em',
                 textAlign: 'center',
                 lineHeight: 1.15,
-                textShadow: '0 10px 40px rgba(0,0,0,0.9)'
+                textShadow: '0 10px 40px rgba(0,0,0,0.95)'
               }}
             >
               IBM Planning Analytics <br />
-              <span style={{ color: '#D8F209' }}>+ Agentic AI</span>
+              <span style={{ color: '#4daeeb' }}>+ Agentic AI</span>
             </div>
             <div
               style={{
@@ -289,9 +268,9 @@ export const ForefrontSummitTeaser: React.FC = () => {
                 fontFamily: "'JetBrains Mono', monospace",
                 color: '#FFFFFF',
                 textTransform: 'uppercase',
-                background: 'rgba(77, 174, 235, 0.25)',
+                background: 'rgba(9, 10, 12, 0.9)',
                 border: '1.5px solid #4daeeb',
-                padding: '6px 20px',
+                padding: '8px 24px',
                 borderRadius: 8
               }}
             >
@@ -302,22 +281,14 @@ export const ForefrontSummitTeaser: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 5: DATE & VENUE COORDINATES (21.0s - 26.5s)
-          Footage: Expo Booth Floor & Networking
+          SCENE 5: DATE & VENUE COORDINATES (21.0s - 26.0s)
+          Real Footage: Sydney Harbour & City (vid_sydney.mp4)
           Text: SEPTEMBER 2, 2026 // ICC SYDNEY
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 20.8 && currentTime < 26.5 && (
-        <AbsoluteFill style={{ opacity: interpolate(currentTime, [20.8, 21.1, 26.2, 26.5], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-          <Img
-            src={staticFile('broll_booth.jpg')}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: `scale(${getZoom(21.0, 26.5)})`
-            }}
-          />
-          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)' }} />
+      {currentTime >= 20.8 && currentTime < 26.0 && (
+        <AbsoluteFill style={{ opacity: interpolate(currentTime, [20.8, 21.1, 25.7, 26.0], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+          <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
+          <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
 
           <div
             style={{
@@ -328,7 +299,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 14,
-              ...getTextMotion(21.1, 26.5)
+              ...getTextMotion(21.1, 26.0)
             }}
           >
             <div
@@ -339,19 +310,23 @@ export const ForefrontSummitTeaser: React.FC = () => {
                 textAlign: 'center',
                 lineHeight: 1.0,
                 textTransform: 'uppercase',
-                textShadow: '0 10px 40px rgba(0,0,0,0.9)'
+                textShadow: '0 10px 40px rgba(0,0,0,0.95)'
               }}
             >
               SEPTEMBER 2, 2026
             </div>
             <div
               style={{
-                fontSize: 28,
+                fontSize: 26,
                 fontWeight: 900,
                 letterSpacing: '0.12em',
                 fontFamily: "'JetBrains Mono', monospace",
-                color: '#D8F209',
-                textTransform: 'uppercase'
+                color: '#4daeeb',
+                textTransform: 'uppercase',
+                background: 'rgba(9, 10, 12, 0.85)',
+                border: '1.5px solid rgba(77, 174, 235, 0.5)',
+                padding: '6px 22px',
+                borderRadius: 8
               }}
             >
               ICC Sydney • Darling Harbour
@@ -361,26 +336,26 @@ export const ForefrontSummitTeaser: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════
-          SCENE 6: SPONSOR OUTRO & BOOTH 19 (26.5s - End / 33.0s)
-          Theme: Craft Hub Style Closing Logo + Octane Booth 19 Callout
+          SCENE 6: SPONSOR OUTRO & BOOTH 19 (26.0s - End / 31.0s)
+          Theme: Clean Octane Obsidian Void + Booth 19 Hero Callout
          ══════════════════════════════════════════════════════════════ */}
-      {currentTime >= 26.3 && (
+      {currentTime >= 25.8 && (
         <AbsoluteFill
           style={{
-            backgroundColor: '#06070B',
-            opacity: interpolate(currentTime, [26.3, 26.7], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+            backgroundColor: '#000000',
+            opacity: interpolate(currentTime, [25.8, 26.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
         >
-          {/* Background Ambient Radial Glow */}
+          {/* Octane Radial Ambient Glow */}
           <div
             style={{
               position: 'absolute',
               width: 900,
               height: 900,
-              background: 'radial-gradient(circle, rgba(43, 25, 242, 0.35) 0%, rgba(77, 174, 235, 0.15) 50%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(77, 174, 235, 0.18) 0%, transparent 65%)',
               borderRadius: '50%'
             }}
           />
@@ -393,16 +368,17 @@ export const ForefrontSummitTeaser: React.FC = () => {
               alignItems: 'center',
               textAlign: 'center',
               gap: 20,
-              ...getTextMotion(26.6, 33.0)
+              ...getTextMotion(26.2, 31.0)
             }}
           >
             {/* Sponsor Eyebrow Badge */}
             <div
               style={{
-                background: '#D8F209',
-                color: '#06070B',
+                background: 'rgba(77, 174, 235, 0.12)',
+                border: '1.5px solid #4daeeb',
+                color: '#4daeeb',
                 padding: '8px 24px',
-                borderRadius: 6,
+                borderRadius: 8,
                 fontSize: 14,
                 fontWeight: 900,
                 fontFamily: "'JetBrains Mono', monospace",
@@ -410,7 +386,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
                 textTransform: 'uppercase'
               }}
             >
-              PROUD EVENT SPONSOR
+              OFFICIAL EVENT SPONSOR
             </div>
 
             {/* Main Octane Brand Callout */}
@@ -451,14 +427,14 @@ export const ForefrontSummitTeaser: React.FC = () => {
                 fontWeight: 900,
                 fontFamily: "'JetBrains Mono', monospace",
                 color: '#FFFFFF',
-                boxShadow: '0 20px 60px rgba(77, 174, 235, 0.3)',
+                boxShadow: '0 20px 60px rgba(77, 174, 235, 0.35)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 16
               }}
             >
-              <span style={{ color: '#D8F209' }}>BOOTH 19</span>
-              <span style={{ color: '#4daeeb' }}>•</span>
+              <span style={{ color: '#4daeeb' }}>BOOTH 19</span>
+              <span style={{ color: 'rgba(255,255,255,0.4)' }}>•</span>
               <span>COME FIND US & SAY HELLO</span>
             </div>
           </div>
@@ -479,15 +455,15 @@ export const ForefrontSummitTeaser: React.FC = () => {
       >
         <span
           style={{
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: 900,
             fontFamily: "'JetBrains Mono', monospace",
             letterSpacing: '0.12em',
             color: '#FFFFFF',
-            background: 'rgba(0,0,0,0.6)',
+            background: 'rgba(9, 10, 12, 0.85)',
             padding: '6px 14px',
             borderRadius: 6,
-            border: '1px solid rgba(255,255,255,0.15)'
+            border: '1px solid rgba(77, 174, 235, 0.4)'
           }}
         >
           FOREFRONT // SYDNEY 2026
