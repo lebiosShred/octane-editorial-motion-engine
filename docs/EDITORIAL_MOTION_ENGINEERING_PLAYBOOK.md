@@ -266,7 +266,13 @@ flowchart TD
   - **Phase 1**: Spotlight ONLY the positive/active cells (e.g. 6 green leaf cells `[1]`) with a mint callout badge `[ 6 ACTIVE LEAF CELLS ]`.
   - **Phase 2**: Animate a progressive radar scanning sweep beam across the negative/waste cells (e.g. 122 red ghost cells `[0]`) in sync with the narrator's voiceover (*"scanning millions of empty cells"*), dynamically updating the badge to `[ 122 GHOST CELLS (250:1 OVERFEED) ]`.
 
+### 5. The Zero Floating Debris & Clean Chassis Invariant
+- **No Floating Port Terminal Circles**: Vector laser conduits must never render static standalone circles or detached ripple rings at start/end coordinates. Conduits must terminate cleanly into card edges without stray decorative clutter.
+- **No Border Protrusion Dots**: Unibody chassis containers must never have protruding connector dots (`left: -4px`, `right: -4px`) intersecting their outer borders. Borders must remain continuous, sharp, and pristine.
+- **Elimination of Translucent Halos**: Conduits and lines must avoid fuzzy low-opacity outer ring halos that create visual noise on dark blackboard backgrounds.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 2.1.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 2.2.0 (Production Verified).*
+
 
