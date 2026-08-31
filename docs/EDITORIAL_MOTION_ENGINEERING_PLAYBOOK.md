@@ -225,6 +225,48 @@ src/
 └── Root.tsx                          # Dynamic duration registration root
 ```
 
+## 🎯 Part VIII: Guided Eye-Trace & Progressive Focus Choreography Suite
+
+```mermaid
+flowchart TD
+    subgraph S1 [Step 01: Multiplier Escalation]
+        A1[Dim_Product 15k SKUs Spotlighted] --> A2[Dim_Store 200 Stores Spotlighted]
+        A2 --> A3[Dim_Time 36 Periods Spotlighted]
+        A3 --> A4[Cartesian Explosion Bar Surges: 108M Cells]
+    end
+
+    subgraph Bridge [Vertical Causal Laser Bridge]
+        B1[Conduit fires downwards from Step 01 into Step 02]
+    end
+
+    subgraph S2 [Step 02: Staged Memory Scanning]
+        C1[6 Live Mint Leaf Cells [1] Pulse First]
+        C2[Radar Scan Sweeps Across 122 Ghost Red Cells [0]]
+        C3[Callout: 122 Ghost Feeders Scanned / 250:1 Overfeed]
+    end
+
+    S1 --> Bridge --> S2
+```
+
+### 1. The Progressive Focus & Dimming Invariant
+- **The Core Rule**: When presenting multi-row datasets, calculation trees, or dense registers, **NEVER display all items at full contrast simultaneously**.
+- Inactive rows must be dimmed to **`opacity: 0.25 - 0.30`**, while the currently explained item is elevated to **`opacity: 1.0`**, scale `1.02`, and glowing border.
+
+### 2. Explicit Step-Sequence Anchors
+- Tag complex multi-stage diagrams with clear step badges:
+  - Top Module: `[STEP 01: DIMENSIONAL MULTIPLIER]`
+  - Bottom Module: `[STEP 02: MEMORY REGISTER LAYOUT]`
+- This gives the viewer immediate subconscious orientation on reading order (top $\to$ bottom, left $\to$ right).
+
+### 3. Causal Vertical Laser Bridges
+- When an upper node causes a consequence in a lower node, physically draw a **vertical kinetic laser conduit** from the top node's exit port straight down into the bottom node's entry port.
+
+### 4. Staged Grid & Register Scanning
+- In dense grid visualizers (e.g. $16 \times 8$ bit registers):
+  - **Phase 1**: Spotlight ONLY the positive/active cells (e.g. 6 green leaf cells `[1]`) with a mint callout badge `[ 6 ACTIVE LEAF CELLS ]`.
+  - **Phase 2**: Animate a progressive radar scanning sweep beam across the negative/waste cells (e.g. 122 red ghost cells `[0]`) in sync with the narrator's voiceover (*"scanning millions of empty cells"*), dynamically updating the badge to `[ 122 GHOST CELLS (250:1 OVERFEED) ]`.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 2.0.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 2.1.0 (Production Verified).*
+

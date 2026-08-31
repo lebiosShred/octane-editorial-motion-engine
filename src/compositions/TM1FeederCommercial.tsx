@@ -48,6 +48,9 @@ export const TM1FeederCommercial: React.FC = () => {
   // Self-drawing kinetic laser conduits
   const drawLine1 = interpolate(currentTime, [8.8, 11.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const drawLine2 = interpolate(currentTime, [18.2, 20.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  
+  // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2
+  const drawVerticalBridge = interpolate(currentTime, [13.8, 15.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
   // Blackboard dimming during Outro (t >= 28.2s)
@@ -71,7 +74,7 @@ export const TM1FeederCommercial: React.FC = () => {
       <div style={{ position: 'absolute', inset: 0, opacity: blackboardOpacity, transition: 'opacity 0.4s ease-out' }}>
         <SpatialBoard cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY}>
 
-          {/* ── KINETIC PHOTON LASER CONDUITS ── */}
+          {/* ── HORIZONTAL INTER-CLUSTER LASER CONDUITS ── */}
           <KineticLaserConduit
             x1={-860}
             y1={-160}
@@ -88,6 +91,16 @@ export const TM1FeederCommercial: React.FC = () => {
             y2={-160}
             color={IndustrialTheme.signals.mint}
             drawProgress={drawLine2}
+          />
+
+          {/* ── VERTICAL CAUSAL LASER BRIDGE (Cluster 2 Step 01 -> Step 02) ── */}
+          <KineticLaserConduit
+            x1={0}
+            y1={-10}
+            x2={0}
+            y2={65}
+            color={IndustrialTheme.signals.crimson}
+            drawProgress={drawVerticalBridge}
           />
 
           {/* ═══════════════════════════════════════════════════════════
@@ -157,18 +170,14 @@ export const TM1FeederCommercial: React.FC = () => {
             x={0}
             y={170}
             width={500}
-            title="Memory Lattice (16x8 Register)"
-            badge="CRITICAL OVERFEED"
+            title="Memory Register Layout"
+            badge="EXPONENTIAL BLOAT"
             badgeType="crimson"
-            isActive={currentTime >= 10.0 && currentTime < 19.5}
-            entranceDelayFrames={Math.round(11.0 * fps)}
+            isActive={currentTime >= 14.5 && currentTime < 19.5}
+            entranceDelayFrames={Math.round(14.5 * fps)}
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontWeight: 700 }}>Fed to Populated Ratio</span>
-              <span style={{ fontSize: 22, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace' }}>250:1</span>
-            </div>
             <BitLatticeGrid populatedCount={6} totalCount={128} isOverfed={true} />
           </KineticNode>
 
