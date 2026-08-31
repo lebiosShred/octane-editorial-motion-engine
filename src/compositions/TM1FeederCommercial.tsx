@@ -15,24 +15,24 @@ export const TM1FeederCommercial: React.FC = () => {
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Fluid Spatial Glide Blackboard Camera
+  // Calibrated Spatial Camera: Smoothly locks onto Cluster 1 (-1100), Cluster 2 (0), Cluster 3 (+1100), then pulls back to 0.72x
   const cameraScale = interpolate(
     currentTime,
-    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 25.0, 27.0, 34.0],
-    [1.15, 1.25, 1.25, 1.20, 1.20, 1.25, 1.25, 1.02, 1.02],
+    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 26.5, 34.0],
+    [1.20, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 0.72, 0.72],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
 
   const cameraPanX = interpolate(
     currentTime,
-    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 25.0, 27.0, 34.0],
-    [650, 650, 650, 0, 0, -680, -680, 0, 0],
+    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 26.5, 34.0],
+    [1100, 1100, 1100, 0, 0, -1100, -1100, 0, 0],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
 
   const cameraPanY = interpolate(
     currentTime,
-    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 25.0, 27.0, 34.0],
+    [0, 1.5, 6.5, 8.5, 15.5, 17.5, 24.5, 26.5, 34.0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
@@ -43,7 +43,7 @@ export const TM1FeederCommercial: React.FC = () => {
   const bloatReduction = interpolate(currentTime, [20.5, 23.5], [48.0, 6.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const subSecLatency = interpolate(currentTime, [22.0, 24.5], [42.4, 0.4], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
-  // Self-drawing chalk/laser lines
+  // Self-drawing clean docked laser lines
   const drawLine1 = interpolate(currentTime, [6.5, 8.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const drawLine2 = interpolate(currentTime, [15.5, 17.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
@@ -62,43 +62,43 @@ export const TM1FeederCommercial: React.FC = () => {
       {/* INFINITE BLACKBOARD DRAFTING CANVAS */}
       <SpatialBoard cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY}>
 
-        {/* ── VECTOR CONNECTOR TRACES (DRAWN LIVE ON THE BOARD) ── */}
+        {/* ── VECTOR CONNECTOR TRACES (CLEANLY DOCKED TO CARD PORTS) ── */}
+        {/* Connector 1: Right Port of Cluster 1 Top Node (-860, -160) -> Left Port of Cluster 2 Top Node (-250, -160) */}
         <BoardConnector
-          x1={-460}
-          y1={0}
-          x2={-230}
-          y2={0}
-          label="EXPLODES INTO"
+          x1={-860}
+          y1={-160}
+          x2={-250}
+          y2={-160}
           color={IndustrialTheme.signals.crimson}
           drawProgress={drawLine1}
         />
 
+        {/* Connector 2: Right Port of Cluster 2 Top Node (+250, -160) -> Left Port of Cluster 3 Top Node (+850, -160) */}
         <BoardConnector
-          x1={230}
-          y1={0}
-          x2={450}
-          y2={0}
-          label="REMEDIATED VIA CONTROL CUBE"
+          x1={250}
+          y1={-160}
+          x2={850}
+          y2={-160}
           color={IndustrialTheme.signals.mint}
           drawProgress={drawLine2}
         />
 
         {/* ═══════════════════════════════════════════════════════════
-            CLUSTER 1: THE STALL & HARDWARE MYTH (X: -680)
+            CLUSTER 1: THE STALL & HARDWARE MYTH (X: -1100)
            ═══════════════════════════════════════════════════════════ */}
         <BoardNode
-          x={-680}
-          y={-140}
-          width={420}
+          x={-1100}
+          y={-160}
+          width={480}
           title="Planning Analytics Workspace"
           badge="THREAD LOCK DETECTED"
           badgeType="crimson"
-          isActive={currentTime < 8.0}
+          isActive={currentTime < 8.0 || currentTime >= 26.5}
         >
           <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 6 }}>
             Active Consolidation Latency
           </div>
-          <div style={{ fontSize: 52, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace', letterSpacing: '-0.03em', lineHeight: 1 }}>
+          <div style={{ fontSize: 54, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace', letterSpacing: '-0.03em', lineHeight: 1 }}>
             {latencyVal.toFixed(1)}s
           </div>
           <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 10, color: IndustrialTheme.text.tertiary, fontFamily: 'monospace' }}>
@@ -111,13 +111,13 @@ export const TM1FeederCommercial: React.FC = () => {
         </BoardNode>
 
         <BoardNode
-          x={-680}
-          y={150}
-          width={420}
+          x={-1100}
+          y={170}
+          width={480}
           title="Infrastructure Action"
           badge="HARDWARE MYTH"
           badgeType="amber"
-          isActive={currentTime >= 3.0 && currentTime < 8.0}
+          isActive={(currentTime >= 3.0 && currentTime < 8.0) || currentTime >= 26.5}
         >
           <div style={{ fontSize: 20, fontWeight: 800, color: IndustrialTheme.text.hero, marginBottom: 8 }}>
             Scaled VM Memory: <span style={{ color: IndustrialTheme.text.primary, fontFamily: 'monospace' }}>{Math.round(ramVal)} GB RAM</span>
@@ -134,24 +134,24 @@ export const TM1FeederCommercial: React.FC = () => {
            ═══════════════════════════════════════════════════════════ */}
         <BoardNode
           x={0}
-          y={-170}
-          width={440}
+          y={-160}
+          width={500}
           title="Root Bottleneck: Overfeeding Architecture"
           badge="108M DERIVED CELLS"
           badgeType="crimson"
-          isActive={currentTime >= 7.5 && currentTime < 17.0}
+          isActive={(currentTime >= 7.5 && currentTime < 17.0) || currentTime >= 26.5}
         >
           <DimensionTopologyTree />
         </BoardNode>
 
         <BoardNode
           x={0}
-          y={150}
-          width={440}
+          y={170}
+          width={500}
           title="Memory Lattice (16x8 Register)"
           badge="CRITICAL OVERFEED"
           badgeType="crimson"
-          isActive={currentTime >= 7.5 && currentTime < 17.0}
+          isActive={(currentTime >= 7.5 && currentTime < 17.0) || currentTime >= 26.5}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
             <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontWeight: 700 }}>Fed to Populated Ratio</span>
@@ -161,12 +161,12 @@ export const TM1FeederCommercial: React.FC = () => {
         </BoardNode>
 
         {/* ═══════════════════════════════════════════════════════════
-            CLUSTER 3: TARGETED CONDITIONAL FEEDER & REMEDIATION (X: 680)
+            CLUSTER 3: TARGETED CONDITIONAL FEEDER & REMEDIATION (X: +1100)
            ═══════════════════════════════════════════════════════════ */}
         <BoardNode
-          x={680}
-          y={-150}
-          width={450}
+          x={1100}
+          y={-160}
+          width={500}
           title="Targeted Conditional Feeder Engine"
           badge="CONDITIONAL ACTIVE"
           badgeType="mint"
@@ -189,9 +189,9 @@ export const TM1FeederCommercial: React.FC = () => {
         </BoardNode>
 
         <BoardNode
-          x={680}
-          y={150}
-          width={450}
+          x={1100}
+          y={170}
+          width={500}
           title="Diagnostic Remediation Result"
           badge="SUB-SECOND SPEED"
           badgeType="mint"
