@@ -31,13 +31,13 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {/* Top Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700 }}>
+        <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700 }}>
           Infrastructure Team Advisory
         </div>
-        <div style={{ fontSize: 13, fontWeight: 800, color: IndustrialTheme.text.hero, fontFamily: 'monospace' }}>
+        <div style={{ fontSize: 15, fontWeight: 800, color: IndustrialTheme.text.hero, fontFamily: IndustrialTheme.fonts.mono }}>
           VM RAM: <span style={{ color: IndustrialTheme.signals.crimson }}>{Math.round(ramVal)} GB</span>
         </div>
       </div>
@@ -47,9 +47,9 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
         style={{
           background: '#FFFFFF',
           border: '1px solid rgba(0,0,0,0.06)',
-          borderRadius: 14,
+          borderRadius: 16,
           position: 'relative',
-          height: 195,
+          height: 235,
           overflow: 'hidden',
           display: 'flex',
           justifyContent: 'center',
@@ -73,19 +73,19 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
           <div
             style={{
               position: 'absolute',
-              left: '4%',
-              top: '4%',
+              left: '5%',
+              top: '5%',
               transform: `scale(${Math.max(0, bubble1Progress)})`,
               transformOrigin: '70% 100%',
               background: IndustrialTheme.signals.amberBg,
               border: `1.5px solid ${IndustrialTheme.signals.amberBorder}`,
               borderRadius: 8,
-              padding: '4px 9px',
-              fontSize: 10,
+              padding: '6px 12px',
+              fontSize: 12,
               fontWeight: 800,
               color: IndustrialTheme.signals.amber,
               whiteSpace: 'nowrap',
-              boxShadow: '0 6px 14px rgba(245, 158, 11, 0.2)',
+              boxShadow: '0 6px 16px rgba(245, 158, 11, 0.25)',
               zIndex: 10
             }}
           >
@@ -93,13 +93,13 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
             <div
               style={{
                 position: 'absolute',
-                bottom: -5,
-                right: 14,
+                bottom: -6,
+                right: 16,
                 width: 0,
                 height: 0,
-                borderLeft: '5px solid transparent',
-                borderRight: '5px solid transparent',
-                borderTop: `5px solid ${IndustrialTheme.signals.amberBorder}`
+                borderLeft: '6px solid transparent',
+                borderRight: '6px solid transparent',
+                borderTop: `6px solid ${IndustrialTheme.signals.amberBorder}`
               }}
             />
           </div>
@@ -110,19 +110,19 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
           <div
             style={{
               position: 'absolute',
-              left: '32%',
+              left: '34%',
               top: '18%',
               transform: `scale(${Math.max(0, bubble2Progress)})`,
               transformOrigin: '50% 100%',
               background: IndustrialTheme.signals.crimsonBg,
               border: `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`,
               borderRadius: 8,
-              padding: '4px 9px',
-              fontSize: 10,
+              padding: '6px 12px',
+              fontSize: 12,
               fontWeight: 800,
               color: IndustrialTheme.signals.crimson,
               whiteSpace: 'nowrap',
-              boxShadow: '0 6px 14px rgba(225, 29, 72, 0.2)',
+              boxShadow: '0 6px 16px rgba(225, 29, 72, 0.25)',
               zIndex: 10
             }}
           >
@@ -130,14 +130,14 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
             <div
               style={{
                 position: 'absolute',
-                bottom: -5,
+                bottom: -6,
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: 0,
                 height: 0,
-                borderLeft: '5px solid transparent',
-                borderRight: '5px solid transparent',
-                borderTop: `5px solid ${IndustrialTheme.signals.crimsonBorder}`
+                borderLeft: '6px solid transparent',
+                borderRight: '6px solid transparent',
+                borderTop: `6px solid ${IndustrialTheme.signals.crimsonBorder}`
               }}
             />
           </div>
@@ -148,19 +148,19 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
           <div
             style={{
               position: 'absolute',
-              right: '4%',
-              top: '4%',
+              right: '5%',
+              top: '5%',
               transform: `scale(${Math.max(0, bubble3Progress)})`,
               transformOrigin: '30% 100%',
               background: '#F1F5F9',
               border: '1.5px solid #94A3B8',
               borderRadius: 8,
-              padding: '4px 9px',
-              fontSize: 10,
+              padding: '6px 12px',
+              fontSize: 12,
               fontWeight: 800,
               color: '#1E293B',
               whiteSpace: 'nowrap',
-              boxShadow: '0 6px 14px rgba(15, 23, 42, 0.15)',
+              boxShadow: '0 6px 16px rgba(15, 23, 42, 0.18)',
               zIndex: 10
             }}
           >
@@ -168,13 +168,13 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
             <div
               style={{
                 position: 'absolute',
-                bottom: -5,
-                left: 14,
+                bottom: -6,
+                left: 16,
                 width: 0,
                 height: 0,
-                borderLeft: '5px solid transparent',
-                borderRight: '5px solid transparent',
-                borderTop: '5px solid #94A3B8'
+                borderLeft: '6px solid transparent',
+                borderRight: '6px solid transparent',
+                borderTop: '6px solid #94A3B8'
               }}
             />
           </div>
@@ -185,18 +185,18 @@ export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }
       <div
         style={{
           background: IndustrialTheme.signals.crimsonBg,
-          border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`,
-          borderRadius: 8,
-          padding: '8px 12px',
+          border: `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`,
+          borderRadius: 10,
+          padding: '10px 16px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
         }}
       >
-        <span style={{ fontSize: 10, color: IndustrialTheme.signals.crimson, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+        <span style={{ fontSize: 12, color: IndustrialTheme.signals.crimson, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Hardware Myth:
         </span>
-        <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontWeight: 600 }}>
+        <span style={{ fontSize: 13, color: IndustrialTheme.text.secondary, fontWeight: 600 }}>
           RAM cannot fix algorithmic zero-cell traversal.
         </span>
       </div>

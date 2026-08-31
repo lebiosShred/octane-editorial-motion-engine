@@ -21,17 +21,17 @@ export const SubtitleKaraoke: React.FC<SubtitleKaraokeProps> = ({ words, current
     <div
       style={{
         position: 'absolute',
-        bottom: 48,
+        bottom: 40,
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: 10,
-        background: 'rgba(11, 12, 14, 0.88)',
-        padding: '10px 24px',
-        borderRadius: 24,
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.6)',
-        backdropFilter: 'blur(8px)',
+        gap: 12,
+        background: 'rgba(11, 12, 14, 0.92)',
+        padding: '12px 28px',
+        borderRadius: 28,
+        border: '1px solid rgba(255, 255, 255, 0.12)',
+        boxShadow: '0 16px 40px rgba(0, 0, 0, 0.7)',
+        backdropFilter: 'blur(10px)',
         zIndex: 100,
         fontFamily: IndustrialTheme.fonts.sans,
         ...IndustrialTheme.typography.antialiased
@@ -43,11 +43,11 @@ export const SubtitleKaraoke: React.FC<SubtitleKaraokeProps> = ({ words, current
           <span
             key={idx}
             style={{
-              fontSize: 26,
+              fontSize: 32,
               fontWeight: isCurrent ? 900 : 500,
               color: isCurrent ? '#FFFFFF' : 'rgba(255, 255, 255, 0.45)',
-              textShadow: isCurrent ? '0 0 16px rgba(255, 255, 255, 0.5)' : 'none',
-              transform: `scale(${isCurrent ? 1.04 : 1.0})`,
+              textShadow: isCurrent ? '0 0 20px rgba(255, 255, 255, 0.6)' : 'none',
+              transform: `scale(${isCurrent ? 1.05 : 1.0})`,
               transition: 'all 0.12s ease-out'
             }}
           >

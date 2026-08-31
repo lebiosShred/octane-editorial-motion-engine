@@ -310,9 +310,44 @@ flowchart TD
 - In H.264 video compression, **YUV 4:2:0 chroma subsampling** compresses color in 2x2 pixel blocks. Text smaller than 10px loses color contrast and turns into blurry pixels.
 - All micro-typography, badges, SKU counts, and matrix indicators must maintain a minimum scale of **`10px - 14px`** with bold/black font weights (`700 - 900`).
 
+## 🎬 Part X: Cinema Macro Scale & Native 1:1 Pixel Mapping Architecture
+
+```mermaid
+flowchart TD
+    subgraph Scale [1. Physical Canvas Proportions]
+        C1["Card Width: 840px - 880px (occupies 46% of 1080p frame width)"]
+        C2["Vertical Gutter: 140px clean breathing space (Y: ±245)"]
+        C3["Cluster Coordinates: X = -1550 (C1), X = 0 (C2), X = 1550 (C3)"]
+    end
+
+    subgraph Raster [2. Zero-Stretching 1:1 Pixel Mapping]
+        R1["cameraScale: 1.0 (Locked 1:1 screen pixel density)"]
+        R2["Eliminates Chromium bilinear texture quad stretching"]
+        R3["Direct OpenType vector-to-screen pixel rasterization"]
+    end
+
+    subgraph Typography [3. High-Density Macro Typography Hierarchy]
+        T1["Card Titles: 18px - 20px (FontWeight: 800)"]
+        T2["Metrics & SKU Readouts: 16px - 18px (JetBrains Mono Bold)"]
+        T3["Matrix Register Cells: 24px-28px height with 12px-14px bold glyphs"]
+        T4["Subtitles: 32px Inter (FontWeight: 900 active)"]
+    end
+
+    Scale --> Raster --> Typography
+```
+
+### 1. The Undersized Chassis Trap
+- Never render cards smaller than 800px width on a 1920x1080 canvas. Small cards force micro-typography into sub-11px territory, where H.264 chroma subsampling degrades character edges into blurry pixels.
+- Standardizing cards at **`840px - 880px`** ensures all text renders with hundreds of physical pixels per glyph.
+
+### 2. The 1:1 Native Pixel Mapping Rule
+- Applying `scale(1.25)` or `scale(1.5)` on a camera parent container that wraps 3D perspective cards forces Chromium to rasterize at 1x and interpolate the bitmap texture quads with bilinear filtering, causing visual softness.
+- Setting **`cameraScale = 1.0`** allows Chromium to render every DOM element directly to screen pixels with 100% native sharpness.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 2.3.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 2.4.0 (Production Verified).*
+
 
 
 

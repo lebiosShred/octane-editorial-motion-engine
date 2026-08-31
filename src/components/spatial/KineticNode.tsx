@@ -73,12 +73,12 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
   const deltaX = (x + cameraPanX);
   const deltaY = (y + cameraPanY);
 
-  const tiltY = interpolate(deltaX, [-1200, 1200], [5.5, -5.5], {
+  const tiltY = interpolate(deltaX, [-1500, 1500], [5.0, -5.0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp'
   });
 
-  const tiltX = interpolate(deltaY, [-800, 800], [-4.0, 4.0], {
+  const tiltX = interpolate(deltaY, [-900, 900], [-3.5, 3.5], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp'
   });
@@ -122,11 +122,11 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
           border: isActive
             ? '1.5px solid rgba(15, 23, 42, 0.16)'
             : '1px solid rgba(0, 0, 0, 0.06)',
-          borderRadius: 20,
+          borderRadius: 24,
           boxShadow: isActive
-            ? '0 30px 70px -10px rgba(0, 0, 0, 0.55), 0 12px 30px -6px rgba(0, 0, 0, 0.35)'
-            : '0 10px 25px -5px rgba(0, 0, 0, 0.25)',
-          padding: '24px 28px',
+            ? '0 35px 80px -10px rgba(0, 0, 0, 0.55), 0 15px 35px -6px rgba(0, 0, 0, 0.35)'
+            : '0 12px 28px -5px rgba(0, 0, 0, 0.25)',
+          padding: '24px 30px',
           color: IndustrialTheme.text.hero,
           position: 'relative',
           opacity: chassisOpacity,
@@ -152,10 +152,10 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
         />
 
         {/* Precision Corner Registration Ticks */}
-        <div style={{ position: 'absolute', top: 6, left: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┌</div>
-        <div style={{ position: 'absolute', top: 6, right: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┐</div>
-        <div style={{ position: 'absolute', bottom: 6, left: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>└</div>
-        <div style={{ position: 'absolute', bottom: 6, right: 8, fontSize: 12, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┘</div>
+        <div style={{ position: 'absolute', top: 8, left: 10, fontSize: 14, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┌</div>
+        <div style={{ position: 'absolute', top: 8, right: 10, fontSize: 14, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┐</div>
+        <div style={{ position: 'absolute', bottom: 8, left: 10, fontSize: 14, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>└</div>
+        <div style={{ position: 'absolute', bottom: 8, right: 10, fontSize: 14, color: 'rgba(0,0,0,0.22)', fontFamily: IndustrialTheme.fonts.mono }}>┘</div>
 
         {/* ── PHASE 2: HEADER & BADGE ── */}
         <div
@@ -168,21 +168,21 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
             transform: `translateY(${interpolate(headerSpring, [0, 1], [8, 0])}px)`
           }}
         >
-          <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: IndustrialTheme.text.hero }}>
+          <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: IndustrialTheme.text.hero }}>
             {title}
           </div>
           {badge && (
             <span
               style={{
-                fontSize: 10,
+                fontSize: 12,
                 fontWeight: 800,
                 letterSpacing: '0.08em',
                 fontFamily: IndustrialTheme.fonts.mono,
                 color: badgeColors.text,
                 background: badgeColors.bg,
                 border: `1px solid ${badgeColors.border}`,
-                padding: '3px 9px',
-                borderRadius: 5,
+                padding: '4px 12px',
+                borderRadius: 6,
                 textTransform: 'uppercase'
               }}
             >

@@ -36,33 +36,33 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
       style={{
         background: IndustrialTheme.popout.recessedWell,
         border: IndustrialTheme.popout.recessedBorder,
-        borderRadius: 16,
-        padding: '18px 20px',
+        borderRadius: 18,
+        padding: '18px 22px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 11,
+        gap: 12,
         fontFamily: IndustrialTheme.fonts.sans,
         ...IndustrialTheme.typography.antialiased
       }}
     >
       {/* Streamlined Step Header with Zero Wrap */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: 8 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-          <span style={{ fontSize: 10, fontWeight: 900, background: '#0F172A', color: '#FFFFFF', padding: '3px 7px', borderRadius: 4, fontFamily: IndustrialTheme.fonts.mono, whiteSpace: 'nowrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+          <span style={{ fontSize: 12, fontWeight: 900, background: '#0F172A', color: '#FFFFFF', padding: '4px 9px', borderRadius: 5, fontFamily: IndustrialTheme.fonts.mono, whiteSpace: 'nowrap' }}>
             STEP 02
           </span>
-          <span style={{ fontSize: 11, fontFamily: IndustrialTheme.fonts.mono, color: IndustrialTheme.text.secondary, fontWeight: 700, whiteSpace: 'nowrap' }}>
+          <span style={{ fontSize: 14, fontFamily: IndustrialTheme.fonts.mono, color: IndustrialTheme.text.secondary, fontWeight: 700, whiteSpace: 'nowrap' }}>
             MEMORY REGISTER
           </span>
         </div>
 
         {/* Dynamic Focus Callout Badge */}
         {!isPhase2 ? (
-          <span style={{ fontSize: 10, fontWeight: 800, color: IndustrialTheme.signals.mint, background: IndustrialTheme.signals.mintBg, border: `1px solid ${IndustrialTheme.signals.mintBorder}`, padding: '3px 8px', borderRadius: 5, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
+          <span style={{ fontSize: 12, fontWeight: 800, color: IndustrialTheme.signals.mint, background: IndustrialTheme.signals.mintBg, border: `1px solid ${IndustrialTheme.signals.mintBorder}`, padding: '4px 10px', borderRadius: 6, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
             [ 6 LIVE CELLS ]
           </span>
         ) : (
-          <span style={{ fontSize: 10, fontWeight: 800, color: IndustrialTheme.signals.crimson, background: IndustrialTheme.signals.crimsonBg, border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`, padding: '3px 8px', borderRadius: 5, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
+          <span style={{ fontSize: 12, fontWeight: 800, color: IndustrialTheme.signals.crimson, background: IndustrialTheme.signals.crimsonBg, border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`, padding: '4px 10px', borderRadius: 6, whiteSpace: 'nowrap', fontFamily: IndustrialTheme.fonts.mono }}>
             [ 250:1 OVERFEED ]
           </span>
         )}
@@ -73,7 +73,7 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(16, 1fr)',
-          gap: 4
+          gap: 5
         }}
       >
         {cells.map((_, i) => {
@@ -88,13 +88,13 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
 
           if (isPopulated) {
             bg = IndustrialTheme.signals.mint;
-            border = `1px solid ${IndustrialTheme.signals.mint}`;
+            border = `1.5px solid ${IndustrialTheme.signals.mint}`;
             textColor = '#FFFFFF';
             cellOpacity = 1.0;
             cellScale = isPhase1 && !isPhase2 ? 1.15 : 1.0;
           } else if (isScannedGhost) {
             bg = IndustrialTheme.signals.crimsonBg;
-            border = `1px solid ${IndustrialTheme.signals.crimsonBorder}`;
+            border = `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`;
             textColor = IndustrialTheme.signals.crimson;
             cellOpacity = 1.0;
           }
@@ -103,14 +103,14 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
             <div
               key={i}
               style={{
-                height: 17,
-                borderRadius: 3,
+                height: 24,
+                borderRadius: 4,
                 backgroundColor: bg,
                 border,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                fontSize: 9.5,
+                fontSize: 12,
                 fontFamily: IndustrialTheme.fonts.mono,
                 color: textColor,
                 fontWeight: 800,
@@ -126,11 +126,11 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
       </div>
 
       {/* Quantitative Bottom Metric */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#FFFFFF', padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(0,0,0,0.06)' }}>
-        <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontWeight: 600 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#FFFFFF', padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(0,0,0,0.06)' }}>
+        <span style={{ fontSize: 13, color: IndustrialTheme.text.secondary, fontWeight: 600 }}>
           {isPhase2 ? 'Traversal Waste:' : 'Populated Data:'}
         </span>
-        <span style={{ fontSize: 12, fontWeight: 900, color: isPhase2 ? IndustrialTheme.signals.crimson : IndustrialTheme.signals.mint, fontFamily: IndustrialTheme.fonts.mono }}>
+        <span style={{ fontSize: 14, fontWeight: 900, color: isPhase2 ? IndustrialTheme.signals.crimson : IndustrialTheme.signals.mint, fontFamily: IndustrialTheme.fonts.mono }}>
           {isPhase2 ? '95.3% Empty Cells Scanned' : '6 Leaf Records'}
         </span>
       </div>
