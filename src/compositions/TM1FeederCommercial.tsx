@@ -49,8 +49,8 @@ export const TM1FeederCommercial: React.FC = () => {
   const drawLine1 = interpolate(currentTime, [8.8, 11.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const drawLine2 = interpolate(currentTime, [18.2, 20.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   
-  // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2
-  const drawVerticalBridge = interpolate(currentTime, [13.8, 15.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2 (Through open vertical gutter: Y=-25 to Y=35)
+  const drawVerticalBridge = interpolate(currentTime, [14.0, 15.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const pulseOffset = (frame * 3) % 200;
 
   // Blackboard dimming during Outro (t >= 28.2s)
@@ -77,28 +77,28 @@ export const TM1FeederCommercial: React.FC = () => {
           {/* ── HORIZONTAL INTER-CLUSTER LASER CONDUITS ── */}
           <KineticLaserConduit
             x1={-860}
-            y1={-160}
+            y1={-185}
             x2={-250}
-            y2={-160}
+            y2={-185}
             color={IndustrialTheme.signals.crimson}
             drawProgress={drawLine1}
           />
 
           <KineticLaserConduit
             x1={250}
-            y1={-160}
+            y1={-185}
             x2={850}
-            y2={-160}
+            y2={-185}
             color={IndustrialTheme.signals.mint}
             drawProgress={drawLine2}
           />
 
-          {/* ── VERTICAL CAUSAL LASER BRIDGE (Cluster 2 Step 01 -> Step 02) ── */}
+          {/* ── VERTICAL CAUSAL LASER BRIDGE (Through Open Vertical Gutter: Y=-25 to Y=35) ── */}
           <KineticLaserConduit
             x1={0}
-            y1={-10}
+            y1={-40}
             x2={0}
-            y2={65}
+            y2={50}
             color={IndustrialTheme.signals.crimson}
             drawProgress={drawVerticalBridge}
           />
@@ -108,7 +108,7 @@ export const TM1FeederCommercial: React.FC = () => {
              ═══════════════════════════════════════════════════════════ */}
           <KineticNode
             x={-1100}
-            y={-160}
+            y={-185}
             width={480}
             title="Planning Analytics Workspace"
             badge="THREAD LOCK DETECTED"
@@ -135,7 +135,7 @@ export const TM1FeederCommercial: React.FC = () => {
 
           <KineticNode
             x={-1100}
-            y={170}
+            y={195}
             width={480}
             title="Infrastructure Advisory"
             badge="HARDWARE MYTH"
@@ -153,7 +153,7 @@ export const TM1FeederCommercial: React.FC = () => {
              ═══════════════════════════════════════════════════════════ */}
           <KineticNode
             x={0}
-            y={-160}
+            y={-185}
             width={500}
             title="Root Bottleneck: Overfeeding Architecture"
             badge="108M DERIVED CELLS"
@@ -168,7 +168,7 @@ export const TM1FeederCommercial: React.FC = () => {
 
           <KineticNode
             x={0}
-            y={170}
+            y={195}
             width={500}
             title="Memory Register Layout"
             badge="EXPONENTIAL BLOAT"
@@ -178,7 +178,7 @@ export const TM1FeederCommercial: React.FC = () => {
             cameraPanX={cameraPanX}
             cameraPanY={cameraPanY}
           >
-            <BitLatticeGrid populatedCount={6} totalCount={128} isOverfed={true} />
+            <BitLatticeGrid populatedCount={6} totalCount={96} />
           </KineticNode>
 
           {/* ═══════════════════════════════════════════════════════════
@@ -186,7 +186,7 @@ export const TM1FeederCommercial: React.FC = () => {
              ═══════════════════════════════════════════════════════════ */}
           <KineticNode
             x={1100}
-            y={-160}
+            y={-185}
             width={500}
             title="Targeted Conditional Feeder Engine"
             badge="CONDITIONAL ACTIVE"
@@ -214,7 +214,7 @@ export const TM1FeederCommercial: React.FC = () => {
 
           <KineticNode
             x={1100}
-            y={170}
+            y={195}
             width={500}
             title="Diagnostic Remediation Result"
             badge="SUB-SECOND SPEED"

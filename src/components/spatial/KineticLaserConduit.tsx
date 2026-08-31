@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentFrame, interpolate } from 'remotion';
+import { useCurrentFrame } from 'remotion';
 
 interface KineticLaserConduitProps {
   x1: number;
@@ -39,13 +39,8 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
   const pathD = `M ${startX} ${startY} C ${startX + dx * 0.45} ${startY}, ${startX + dx * 0.55} ${endY}, ${endX} ${endY}`;
   const totalLength = Math.sqrt(dx * dx + dy * dy) * 1.15;
 
-  // Active Photon Pulse Packet (Only active when line is substantially drawn)
-  const photonProgress = (frame * 5) % totalLength;
-  const photonFraction = drawProgress > 0.8 ? (photonProgress / totalLength) : 0;
-  const photonX = startX + dx * photonFraction;
-  const photonY = startY + dy * photonFraction;
-
   const markerId = `laser-arrow-${color.replace('#', '')}`;
+  const pulseOffset = -(frame * 8);
 
   return (
     <div
@@ -109,12 +104,19 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
           opacity={0.9}
         />
 
-        {/* High-Velocity Photon Energy Pulse (Single clean traveling pulse) */}
-        {drawProgress > 0.6 && (
-          <g transform={`translate(${photonX}, ${photonY})`}>
-            <circle r="5" fill={color} opacity={0.7} filter="url(#laserGlow)" />
-            <circle r="2.5" fill="#FFFFFF" />
-          </g>
+        {/* Traveling Luminous Photon Streak (Zero Circles, Pure High-Speed Dash Streak) */}
+        {drawProgress > 0.7 && (
+          <path
+            d={pathD}
+            fill="none"
+            stroke="#FFFFFF"
+            strokeWidth="2.5"
+            strokeDasharray="24 160"
+            strokeDashoffset={pulseOffset}
+            strokeLinecap="round"
+            filter="url(#laserGlow)"
+            opacity={0.95}
+          />
         )}
       </svg>
     </div>
