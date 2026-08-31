@@ -2,204 +2,184 @@ import React from 'react';
 import { Img, staticFile, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { IndustrialTheme } from '../../types/theme';
 
-interface InfraTeamHumorCardProps {
-  ramVal: number;
-}
-
-export const InfraTeamHumorCard: React.FC<InfraTeamHumorCardProps> = ({ ramVal }) => {
+export const InfraTeamHumorCard: React.FC<{ ramVal?: number }> = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // Staggered spring animations aligned to narrator's IT delivery (t = 4.2s, 5.4s, 6.6s)
+  // Staggered spring animations aligned to narrator's IT delivery (t = 4.2s, 5.2s, 6.4s)
   const bubble1Progress = spring({
     frame: frame - Math.round(4.2 * fps),
     fps,
-    config: { damping: 12, stiffness: 140 }
+    config: { damping: 10, stiffness: 160 }
   });
 
   const bubble2Progress = spring({
-    frame: frame - Math.round(5.4 * fps),
+    frame: frame - Math.round(5.2 * fps),
     fps,
-    config: { damping: 12, stiffness: 140 }
+    config: { damping: 10, stiffness: 160 }
   });
 
   const bubble3Progress = spring({
-    frame: frame - Math.round(6.6 * fps),
+    frame: frame - Math.round(6.4 * fps),
     fps,
-    config: { damping: 12, stiffness: 140 }
+    config: { damping: 10, stiffness: 160 }
   });
 
+  // Micro-floating organic bobbing for speech bubbles
+  const bob1 = Math.sin((frame / fps) * 3.5) * 4;
+  const bob2 = Math.cos((frame / fps) * 3.2) * 5;
+  const bob3 = Math.sin((frame / fps) * 4.0) * 4;
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      {/* Top Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700 }}>
-          Infrastructure Team Advisory
-        </div>
-        <div style={{ fontSize: 15, fontWeight: 800, color: IndustrialTheme.text.hero, fontFamily: IndustrialTheme.fonts.mono }}>
-          VM RAM: <span style={{ color: IndustrialTheme.signals.crimson }}>{Math.round(ramVal)} GB</span>
-        </div>
-      </div>
-
-      {/* 3D Claymorphic IT Illustration with Seamless #FFFFFF Blending & Anchored Speech Bubbles */}
+    <div
+      style={{
+        position: 'relative',
+        width: 780,
+        height: 380,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-end'
+      }}
+    >
+      {/* Volumetric Emerald Back-Glow for RAM Stick */}
       <div
         style={{
-          background: '#FFFFFF',
-          border: '1px solid rgba(0,0,0,0.06)',
-          borderRadius: 16,
-          position: 'relative',
-          height: 235,
-          overflow: 'hidden',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-end'
+          position: 'absolute',
+          top: 40,
+          left: '38%',
+          width: 180,
+          height: 180,
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, rgba(16, 185, 129, 0.1) 50%, transparent 75%)',
+          filter: 'blur(16px)',
+          pointerEvents: 'none'
         }}
-      >
-        {/* High-End 3D Claymorphic IT Team Artwork */}
-        <Img
-          src={staticFile('it_team_ram_illustration.png')}
+      />
+
+      {/* 3D Claymorphic Characters (De-Contained Floating Cutout) */}
+      <Img
+        src={staticFile('it_team_cutout.png')}
+        style={{
+          height: 380,
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 25px 45px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.05))'
+        }}
+      />
+
+      {/* ── SPEECH BUBBLE 1: SysAdmin (Left) ── */}
+      {currentTime >= 4.0 && (
+        <div
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 12%',
-            mixBlendMode: 'multiply'
+            position: 'absolute',
+            left: 20,
+            top: 40 + bob1,
+            transform: `scale(${Math.max(0, bubble1Progress)})`,
+            transformOrigin: '70% 100%',
+            background: '#FEF3C7',
+            border: '2px solid #F59E0B',
+            borderRadius: 12,
+            padding: '10px 18px',
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#B45309',
+            fontFamily: IndustrialTheme.fonts.sans,
+            whiteSpace: 'nowrap',
+            boxShadow: '0 12px 30px rgba(245, 158, 11, 0.35)',
+            zIndex: 10
           }}
-        />
-
-        {/* ── SPEECH BUBBLE 1: SysAdmin (Left) ── */}
-        {currentTime >= 4.2 && (
+        >
+          "More RAM!"
           <div
             style={{
               position: 'absolute',
-              left: '5%',
-              top: '5%',
-              transform: `scale(${Math.max(0, bubble1Progress)})`,
-              transformOrigin: '70% 100%',
-              background: IndustrialTheme.signals.amberBg,
-              border: `1.5px solid ${IndustrialTheme.signals.amberBorder}`,
-              borderRadius: 8,
-              padding: '6px 12px',
-              fontSize: 12,
-              fontWeight: 800,
-              color: IndustrialTheme.signals.amber,
-              whiteSpace: 'nowrap',
-              boxShadow: '0 6px 16px rgba(245, 158, 11, 0.25)',
-              zIndex: 10
+              bottom: -8,
+              right: 24,
+              width: 0,
+              height: 0,
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid transparent',
+              borderTop: '8px solid #F59E0B'
             }}
-          >
-            "More RAM!"
-            <div
-              style={{
-                position: 'absolute',
-                bottom: -6,
-                right: 16,
-                width: 0,
-                height: 0,
-                borderLeft: '6px solid transparent',
-                borderRight: '6px solid transparent',
-                borderTop: `6px solid ${IndustrialTheme.signals.amberBorder}`
-              }}
-            />
-          </div>
-        )}
+          />
+        </div>
+      )}
 
-        {/* ── SPEECH BUBBLE 2: Cloud Architect (Middle) ── */}
-        {currentTime >= 5.4 && (
+      {/* ── SPEECH BUBBLE 2: Cloud Architect (Middle) ── */}
+      {currentTime >= 5.0 && (
+        <div
+          style={{
+            position: 'absolute',
+            left: '35%',
+            top: 0 + bob2,
+            transform: `scale(${Math.max(0, bubble2Progress)})`,
+            transformOrigin: '50% 100%',
+            background: '#FFE4E6',
+            border: '2px solid #E11D48',
+            borderRadius: 12,
+            padding: '10px 18px',
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#BE123C',
+            fontFamily: IndustrialTheme.fonts.sans,
+            whiteSpace: 'nowrap',
+            boxShadow: '0 12px 30px rgba(225, 29, 72, 0.35)',
+            zIndex: 10
+          }}
+        >
+          "Scale to 128 GB!"
           <div
             style={{
               position: 'absolute',
-              left: '34%',
-              top: '18%',
-              transform: `scale(${Math.max(0, bubble2Progress)})`,
-              transformOrigin: '50% 100%',
-              background: IndustrialTheme.signals.crimsonBg,
-              border: `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`,
-              borderRadius: 8,
-              padding: '6px 12px',
-              fontSize: 12,
-              fontWeight: 800,
-              color: IndustrialTheme.signals.crimson,
-              whiteSpace: 'nowrap',
-              boxShadow: '0 6px 16px rgba(225, 29, 72, 0.25)',
-              zIndex: 10
+              bottom: -8,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 0,
+              height: 0,
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid transparent',
+              borderTop: '8px solid #E11D48'
             }}
-          >
-            "Scale to 128 GB!"
-            <div
-              style={{
-                position: 'absolute',
-                bottom: -6,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 0,
-                height: 0,
-                borderLeft: '6px solid transparent',
-                borderRight: '6px solid transparent',
-                borderTop: `6px solid ${IndustrialTheme.signals.crimsonBorder}`
-              }}
-            />
-          </div>
-        )}
+          />
+        </div>
+      )}
 
-        {/* ── SPEECH BUBBLE 3: DevOps (Right) ── */}
-        {currentTime >= 6.6 && (
+      {/* ── SPEECH BUBBLE 3: DevOps (Right) ── */}
+      {currentTime >= 6.2 && (
+        <div
+          style={{
+            position: 'absolute',
+            right: 10,
+            top: 30 + bob3,
+            transform: `scale(${Math.max(0, bubble3Progress)})`,
+            transformOrigin: '30% 100%',
+            background: '#E0F2FE',
+            border: '2px solid #0284C7',
+            borderRadius: 12,
+            padding: '10px 18px',
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#0369A1',
+            fontFamily: IndustrialTheme.fonts.sans,
+            whiteSpace: 'nowrap',
+            boxShadow: '0 12px 30px rgba(2, 132, 199, 0.35)',
+            zIndex: 10
+          }}
+        >
+          "Spin up another VM!"
           <div
             style={{
               position: 'absolute',
-              right: '5%',
-              top: '5%',
-              transform: `scale(${Math.max(0, bubble3Progress)})`,
-              transformOrigin: '30% 100%',
-              background: '#F1F5F9',
-              border: '1.5px solid #94A3B8',
-              borderRadius: 8,
-              padding: '6px 12px',
-              fontSize: 12,
-              fontWeight: 800,
-              color: '#1E293B',
-              whiteSpace: 'nowrap',
-              boxShadow: '0 6px 16px rgba(15, 23, 42, 0.18)',
-              zIndex: 10
+              bottom: -8,
+              left: 24,
+              width: 0,
+              height: 0,
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid transparent',
+              borderTop: '8px solid #0284C7'
             }}
-          >
-            "Spin up another VM!"
-            <div
-              style={{
-                position: 'absolute',
-                bottom: -6,
-                left: 16,
-                width: 0,
-                height: 0,
-                borderLeft: '6px solid transparent',
-                borderRight: '6px solid transparent',
-                borderTop: '6px solid #94A3B8'
-              }}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* Quantitative Narrative Punchline */}
-      <div
-        style={{
-          background: IndustrialTheme.signals.crimsonBg,
-          border: `1.5px solid ${IndustrialTheme.signals.crimsonBorder}`,
-          borderRadius: 10,
-          padding: '10px 16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
-      >
-        <span style={{ fontSize: 12, color: IndustrialTheme.signals.crimson, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-          Hardware Myth:
-        </span>
-        <span style={{ fontSize: 13, color: IndustrialTheme.text.secondary, fontWeight: 600 }}>
-          RAM cannot fix algorithmic zero-cell traversal.
-        </span>
-      </div>
+          />
+        </div>
+      )}
     </div>
   );
 };
