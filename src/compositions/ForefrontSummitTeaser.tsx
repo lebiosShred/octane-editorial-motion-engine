@@ -6,8 +6,9 @@ const KineticScene: React.FC<{
   eyebrow?: string;
   title: React.ReactNode;
   subtitle?: string;
+  badge?: string;
   durationInFrames: number;
-}> = ({ eyebrow, title, subtitle, durationInFrames }) => {
+}> = ({ eyebrow, title, subtitle, badge, durationInFrames }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -50,7 +51,7 @@ const KineticScene: React.FC<{
             fontFamily: "'JetBrains Mono', monospace",
             color: '#4daeeb',
             textTransform: 'uppercase',
-            background: 'rgba(9, 10, 12, 0.85)',
+            background: 'rgba(9, 10, 12, 0.9)',
             border: '1.5px solid #4daeeb',
             padding: '6px 20px',
             borderRadius: 8
@@ -61,12 +62,12 @@ const KineticScene: React.FC<{
       )}
       <div
         style={{
-          fontSize: 68,
+          fontSize: 64,
           fontWeight: 900,
           letterSpacing: '-0.03em',
           textAlign: 'center',
           lineHeight: 1.1,
-          maxWidth: 1200,
+          maxWidth: 1300,
           textTransform: 'uppercase',
           textShadow: '0 10px 40px rgba(0,0,0,0.95)'
         }}
@@ -77,18 +78,36 @@ const KineticScene: React.FC<{
         <div
           style={{
             fontSize: 24,
-            fontWeight: 900,
-            letterSpacing: '0.12em',
+            fontWeight: 800,
+            letterSpacing: '0.08em',
             fontFamily: "'JetBrains Mono', monospace",
-            color: '#4daeeb',
+            color: '#FFFFFF',
             textTransform: 'uppercase',
             background: 'rgba(9, 10, 12, 0.85)',
-            border: '1.5px solid rgba(77, 174, 235, 0.5)',
-            padding: '6px 20px',
+            border: '1.5px solid rgba(77, 174, 235, 0.4)',
+            padding: '6px 22px',
             borderRadius: 8
           }}
         >
           {subtitle}
+        </div>
+      )}
+      {badge && (
+        <div
+          style={{
+            fontSize: 16,
+            fontWeight: 900,
+            letterSpacing: '0.14em',
+            fontFamily: "'JetBrains Mono', monospace",
+            color: '#4daeeb',
+            textTransform: 'uppercase',
+            background: 'rgba(9, 10, 12, 0.9)',
+            border: '1px solid #4daeeb',
+            padding: '4px 16px',
+            borderRadius: 6
+          }}
+        >
+          {badge}
         </div>
       )}
     </div>
@@ -100,7 +119,7 @@ export const ForefrontSummitTeaser: React.FC = () => {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    filter: 'brightness(0.9) contrast(1.1)'
+    filter: 'brightness(0.85) contrast(1.15)'
   };
 
   return (
@@ -124,10 +143,13 @@ export const ForefrontSummitTeaser: React.FC = () => {
         `}
       </style>
 
-      {/* Audio Track */}
+      {/* Original High-Energy Royalty-Free Trailer Audio */}
       <Audio src={staticFile('forefront_hype_music.mp3')} volume={1.0} />
 
-      {/* SCENE 1: EVENT TITLE (0 - 150 frames / 0.0s - 5.0s) */}
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 1: EVENT IDENTITY & VENUE (0 - 150 frames / 0.0s - 5.0s)
+          Footage: Authentic Sydney Harbour & Skyline
+         ══════════════════════════════════════════════════════════════ */}
       <Sequence from={0} durationInFrames={150}>
         <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.8) 100%)' }} />
@@ -136,63 +158,93 @@ export const ForefrontSummitTeaser: React.FC = () => {
           title={
             <>
               Finance Transformation <br />
-              <span style={{ color: '#4daeeb' }}>Summit NSW</span>
+              <span style={{ color: '#4daeeb' }}>Summit NSW 2026</span>
             </>
           }
+          subtitle="02 SEP 2026 • ICC SYDNEY"
           durationInFrames={150}
         />
       </Sequence>
 
-      {/* SCENE 2: 200+ ATTENDEES (150 - 300 frames / 5.0s - 10.0s) */}
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 2: SHARING THE STAGE WITH ENTERPRISE CFOS (150 - 300 frames / 5.0s - 10.0s)
+          Footage: Executive Boardroom
+         ══════════════════════════════════════════════════════════════ */}
       <Sequence from={150} durationInFrames={150}>
         <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
         <KineticScene
-          title="200+ attendees"
-          subtitle="Finance Leaders & CFOs"
+          eyebrow="SHARING THE STAGE WITH CFOS FROM"
+          title={
+            <>
+              UNILEVER • LION • HSBC <br />
+              <span style={{ color: '#4daeeb' }}>COCA-COLA • OPTUS</span>
+            </>
+          }
+          subtitle="CFO Leadership Priorities for 2026"
           durationInFrames={150}
         />
       </Sequence>
 
-      {/* SCENE 3: INDUSTRY KEYNOTES (300 - 465 frames / 10.0s - 15.5s) */}
-      <Sequence from={300} durationInFrames={165}>
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 3: OCTANE FEATURED KEYNOTE CASE STUDY (300 - 480 frames / 10.0s - 16.0s)
+          Footage: Modern Technology Workspace
+         ══════════════════════════════════════════════════════════════ */}
+      <Sequence from={300} durationInFrames={180}>
         <Video src={staticFile('vid_office.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
         <KineticScene
-          title="Industry Keynotes"
-          subtitle="Enterprise Transformation & Planning Strategy"
-          durationInFrames={165}
+          eyebrow="STREAM B: FP&A TRANSFORMATION • 12:10 PM"
+          title={
+            <>
+              THE AGENTIC FINANCE <br />
+              <span style={{ color: '#4daeeb' }}>DEPARTMENT</span>
+            </>
+          }
+          subtitle="Finance Teams Firmly in the Loop"
+          badge="FEATURED CASE STUDY BY STENY SEBASTIAN • OCTANE SOLUTIONS"
+          durationInFrames={180}
         />
       </Sequence>
 
-      {/* SCENE 4: IBM PLANNING ANALYTICS (465 - 630 frames / 15.5s - 21.0s) */}
-      <Sequence from={465} durationInFrames={165}>
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 4: IBM PLANNING ANALYTICS + AGENTIC AI (480 - 645 frames / 16.0s - 21.5s)
+          Footage: Financial Planning & Analytics Discussion
+         ══════════════════════════════════════════════════════════════ */}
+      <Sequence from={480} durationInFrames={165}>
         <Video src={staticFile('vid_boardroom.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(9,10,12,0.8) 100%)' }} />
         <KineticScene
+          eyebrow="AUTONOMOUS FP&A ARCHITECTURE"
           title={
             <>
               IBM Planning Analytics <br />
               <span style={{ color: '#4daeeb' }}>+ Agentic AI</span>
             </>
           }
-          subtitle="Autonomous FP&A • Sub-Second Models"
+          subtitle="Sub-Second Multi-Dimensional Models • Zero Spreadsheets"
           durationInFrames={165}
         />
       </Sequence>
 
-      {/* SCENE 5: DATE & LOCATION (630 - 780 frames / 21.0s - 26.0s) */}
-      <Sequence from={630} durationInFrames={150}>
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 5: DATE & VENUE (645 - 780 frames / 21.5s - 26.0s)
+          Footage: Sydney ICC Coordinates
+         ══════════════════════════════════════════════════════════════ */}
+      <Sequence from={645} durationInFrames={135}>
         <Video src={staticFile('vid_sydney.mp4')} style={videoStyle} />
         <AbsoluteFill style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.25) 0%, rgba(9,10,12,0.75) 100%)' }} />
         <KineticScene
           title="SEPTEMBER 2, 2026"
           subtitle="ICC Sydney • Darling Harbour"
-          durationInFrames={150}
+          badge="FSI • RETAIL • HEALTHCARE • UTILITIES LEADERS"
+          durationInFrames={135}
         />
       </Sequence>
 
-      {/* SCENE 6: SPONSOR OUTRO (780 - 930 frames / 26.0s - 31.0s) */}
+      {/* ══════════════════════════════════════════════════════════════
+          SCENE 6: OCTANE SPONSOR & SPEAKER CALLOUT (780 - 930 frames / 26.0s - 31.0s)
+         ══════════════════════════════════════════════════════════════ */}
       <Sequence from={780} durationInFrames={150}>
         <AbsoluteFill
           style={{
@@ -278,7 +330,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
-        gap: 20,
+        gap: 18,
         opacity,
         transform: `scale(${scale}) translateY(${translateY}px)`
       }}
@@ -297,12 +349,12 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
           textTransform: 'uppercase'
         }}
       >
-        OFFICIAL EVENT SPONSOR
+        OFFICIAL SPONSOR & KEYNOTE SPEAKER
       </div>
 
       <div
         style={{
-          fontSize: 64,
+          fontSize: 60,
           fontWeight: 900,
           letterSpacing: '-0.03em',
           lineHeight: 1.1,
@@ -316,7 +368,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
         style={{
           fontSize: 22,
           color: '#94A3B8',
-          maxWidth: 700,
+          maxWidth: 750,
           lineHeight: 1.5,
           fontWeight: 600
         }}
@@ -326,12 +378,12 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
 
       <div
         style={{
-          marginTop: 12,
+          marginTop: 10,
           background: '#090A0C',
           border: '2px solid #4daeeb',
-          padding: '20px 54px',
+          padding: '18px 48px',
           borderRadius: 16,
-          fontSize: 24,
+          fontSize: 22,
           fontWeight: 900,
           fontFamily: "'JetBrains Mono', monospace",
           color: '#FFFFFF',
@@ -343,7 +395,7 @@ const KineticOutro: React.FC<{ durationInFrames: number }> = ({ durationInFrames
       >
         <span style={{ color: '#4daeeb' }}>BOOTH 19</span>
         <span style={{ color: 'rgba(255,255,255,0.4)' }}>•</span>
-        <span>COME FIND US & SAY HELLO</span>
+        <span>MEET STENY SEBASTIAN & OUR ARCHITECTS</span>
       </div>
     </div>
   );
