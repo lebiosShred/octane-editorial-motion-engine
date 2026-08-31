@@ -21,7 +21,7 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
   startY = 12,
   endX = 230,
   endY = 12,
-  color = IndustrialTheme.signals.tungsten,
+  color = '#0F172A',
   pulseOffset = 0,
   labelStart,
   labelEnd
@@ -40,7 +40,7 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
           y1={startY}
           x2={endX}
           y2={endY}
-          stroke="rgba(255, 255, 255, 0.08)"
+          stroke="rgba(0, 0, 0, 0.08)"
           strokeWidth="2"
         />
         <line
@@ -54,13 +54,13 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
           strokeDashoffset={pulseOffset}
         />
         <circle cx={startX} cy={startY} r="3" fill={color} />
-        <circle cx={startX} cy={startY} r="6" stroke={color} strokeWidth="1" fill="none" opacity="0.5" />
+        <circle cx={startX} cy={startY} r="6" stroke={color} strokeWidth="1" fill="none" opacity="0.4" />
         <circle cx={endX} cy={endY} r="3" fill={color} />
-        <circle cx={endX} cy={endY} r="6" stroke={color} strokeWidth="1" fill="none" opacity="0.5" />
+        <circle cx={endX} cy={endY} r="6" stroke={color} strokeWidth="1" fill="none" opacity="0.4" />
       </svg>
 
       {labelEnd && (
-        <span style={{ fontSize: 11, color: IndustrialTheme.signals.mint, fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 11, color: IndustrialTheme.signals.mint, fontFamily: 'monospace', whiteSpace: 'nowrap', fontWeight: 700 }}>
           {labelEnd}
         </span>
       )}

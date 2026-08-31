@@ -61,33 +61,7 @@ export const TM1FeederCommercial: React.FC = () => {
       <Audio src={staticFile('voiceover.wav')} />
       <StudioBackdrop />
 
-      {/* Broadcast Header HUD */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 36,
-          left: 64,
-          right: 64,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          zIndex: 100
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: IndustrialTheme.text.hero, boxShadow: '0 0 8px rgba(255,255,255,0.6)' }} />
-          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: IndustrialTheme.text.secondary }}>
-            Octane Telemetry Labs
-          </span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <span style={{ fontSize: 11, fontFamily: 'monospace', color: IndustrialTheme.text.tertiary, letterSpacing: '0.1em' }}>
-            {currentTime < 7.5 ? '• DIAGNOSTIC: LATENCY STALL' : currentTime < 16.5 ? '• ROOT CAUSE: OVERFEEDING' : currentTime < 25.5 ? '• REMEDIATION: TARGETED CONTROL' : '• AUDIT PLAYBOOK: READY'}
-          </span>
-        </div>
-      </div>
-
-      {/* GUIDED MICRO-TARGET TOUR STAGE */}
+      {/* GUIDED MICRO-TARGET TOUR STAGE (NO EXTRANEOUS VIEWPORT HEADERS) */}
       <div
         style={{
           position: 'absolute',
@@ -112,16 +86,16 @@ export const TM1FeederCommercial: React.FC = () => {
                 {/* Target 1: Active Consolidation Latency KPI */}
                 <div
                   style={{
-                    background: currentTime < 3.5 ? IndustrialTheme.surface.recessedWell : 'rgba(13, 14, 17, 0.4)',
-                    border: currentTime < 3.5 ? `1px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(255, 255, 255, 0.04)',
+                    background: currentTime < 3.5 ? IndustrialTheme.popout.recessedWell : '#FFFFFF',
+                    border: currentTime < 3.5 ? `1px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(0, 0, 0, 0.06)',
                     borderRadius: 18,
                     padding: 24,
-                    opacity: currentTime < 3.5 ? 1.0 : 0.4,
+                    opacity: currentTime < 3.5 ? 1.0 : 0.35,
                     filter: currentTime < 3.5 ? 'none' : 'blur(1.5px)',
                     transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                   }}
                 >
-                  <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 600, marginBottom: 8 }}>
+                  <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 8 }}>
                     Active Consolidation Latency
                   </div>
                   <div style={{ fontSize: 56, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace', letterSpacing: '-0.03em', lineHeight: 1 }}>
@@ -129,9 +103,9 @@ export const TM1FeederCommercial: React.FC = () => {
                   </div>
                   <div style={{ marginTop: 14, display: 'flex', justifyContent: 'space-between', fontSize: 10, color: IndustrialTheme.text.tertiary, fontFamily: 'monospace' }}>
                     <span>Evaluating 8 Dimensions...</span>
-                    <span style={{ color: IndustrialTheme.signals.crimson }}>{Math.min(92, Math.round(latencyVal * 2.2))}% STALLED</span>
+                    <span style={{ color: IndustrialTheme.signals.crimson, fontWeight: 700 }}>{Math.min(92, Math.round(latencyVal * 2.2))}% STALLED</span>
                   </div>
-                  <div style={{ marginTop: 6, width: '100%', height: 4, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 2, overflow: 'hidden' }}>
+                  <div style={{ marginTop: 6, width: '100%', height: 6, backgroundColor: '#E2E8F0', borderRadius: 3, overflow: 'hidden' }}>
                     <div style={{ width: `${Math.min(92, latencyVal * 2.2)}%`, height: '100%', backgroundColor: IndustrialTheme.signals.crimson }} />
                   </div>
                 </div>
@@ -139,26 +113,26 @@ export const TM1FeederCommercial: React.FC = () => {
                 {/* Target 2: Infrastructure RAM Action */}
                 <div
                   style={{
-                    background: currentTime >= 3.5 ? IndustrialTheme.surface.recessedWell : 'rgba(13, 14, 17, 0.4)',
-                    border: currentTime >= 3.5 ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(255, 255, 255, 0.04)',
+                    background: currentTime >= 3.5 ? IndustrialTheme.popout.recessedWell : '#FFFFFF',
+                    border: currentTime >= 3.5 ? '1px solid rgba(0, 0, 0, 0.12)' : '1px solid rgba(0, 0, 0, 0.06)',
                     borderRadius: 18,
                     padding: 24,
-                    opacity: currentTime >= 3.5 ? 1.0 : 0.4,
+                    opacity: currentTime >= 3.5 ? 1.0 : 0.35,
                     filter: currentTime >= 3.5 ? 'none' : 'blur(1.5px)',
                     transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                   }}
                 >
-                  <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 600, marginBottom: 8 }}>
+                  <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 8 }}>
                     Infrastructure Action
                   </div>
-                  <div style={{ fontSize: 24, fontWeight: 700, color: IndustrialTheme.text.hero, marginBottom: 12 }}>
+                  <div style={{ fontSize: 24, fontWeight: 800, color: IndustrialTheme.text.hero, marginBottom: 12 }}>
                     Scaled VM Memory: <span style={{ color: IndustrialTheme.text.primary, fontFamily: 'monospace' }}>{Math.round(ramVal)} GB RAM</span>
                   </div>
                   <div style={{ background: IndustrialTheme.signals.crimsonBg, border: `1px solid ${IndustrialTheme.signals.crimsonBorder}`, borderRadius: 10, padding: '10px 14px' }}>
                     <div style={{ fontSize: 10, fontWeight: 700, color: IndustrialTheme.signals.crimson, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 2 }}>
-                      ✕ Hardware Myth Confirmed
+                      Hardware Myth Confirmed
                     </div>
-                    <div style={{ fontSize: 11, color: IndustrialTheme.text.secondary, lineHeight: 1.4 }}>
+                    <div style={{ fontSize: 11, color: IndustrialTheme.text.secondary, lineHeight: 1.4, fontWeight: 500 }}>
                       RAM does not eliminate exponential zero-cell traversal.
                     </div>
                   </div>
@@ -178,7 +152,7 @@ export const TM1FeederCommercial: React.FC = () => {
               statusLed="error"
             >
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 24, alignItems: 'center' }}>
-                <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: IndustrialTheme.surface.recessedBorder }}>
+                <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: IndustrialTheme.popout.recessedBorder, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
                   <Img src={staticFile('tm1_lag_video_hero.jpg')} style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </div>
 
@@ -186,16 +160,16 @@ export const TM1FeederCommercial: React.FC = () => {
                   {/* Target 3: 108M Fed Cells Ticker & Bit-Lattice */}
                   <div
                     style={{
-                      background: currentTime < 12.0 ? IndustrialTheme.surface.recessedWell : 'rgba(13, 14, 17, 0.4)',
-                      border: currentTime < 12.0 ? `1px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(255, 255, 255, 0.04)',
+                      background: currentTime < 12.0 ? IndustrialTheme.popout.recessedWell : '#FFFFFF',
+                      border: currentTime < 12.0 ? `1px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(0, 0, 0, 0.06)',
                       borderRadius: 18,
                       padding: 20,
-                      opacity: currentTime < 12.0 ? 1.0 : 0.4,
+                      opacity: currentTime < 12.0 ? 1.0 : 0.35,
                       filter: currentTime < 12.0 ? 'none' : 'blur(1.5px)',
                       transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                     }}
                   >
-                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 600, marginBottom: 4 }}>
+                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 4 }}>
                       Rule-Derived Fed Cells
                     </div>
                     <div style={{ fontSize: 44, fontWeight: 900, color: IndustrialTheme.signals.crimson, fontFamily: 'monospace', letterSpacing: '-0.02em' }}>
@@ -210,11 +184,11 @@ export const TM1FeederCommercial: React.FC = () => {
                   {/* Target 4: 250:1 Ratio Gauge */}
                   <div
                     style={{
-                      background: currentTime >= 12.0 ? IndustrialTheme.surface.recessedWell : 'rgba(13, 14, 17, 0.4)',
-                      border: currentTime >= 12.0 ? `1px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(255, 255, 255, 0.04)',
+                      background: currentTime >= 12.0 ? IndustrialTheme.popout.recessedWell : '#FFFFFF',
+                      border: currentTime >= 12.0 ? `1px solid ${IndustrialTheme.signals.crimsonBorder}` : '1px solid rgba(0, 0, 0, 0.06)',
                       borderRadius: 18,
                       padding: 20,
-                      opacity: currentTime >= 12.0 ? 1.0 : 0.4,
+                      opacity: currentTime >= 12.0 ? 1.0 : 0.35,
                       filter: currentTime >= 12.0 ? 'none' : 'blur(1.5px)',
                       transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                     }}
@@ -245,22 +219,22 @@ export const TM1FeederCommercial: React.FC = () => {
                 {/* Target 5: Scoped Feeder Rule Syntax */}
                 <div
                   style={{
-                    background: currentTime < 20.5 ? IndustrialTheme.surface.recessedWell : 'rgba(13, 14, 17, 0.4)',
-                    border: currentTime < 20.5 ? `1px solid ${IndustrialTheme.signals.mintBorder}` : '1px solid rgba(255, 255, 255, 0.04)',
+                    background: currentTime < 20.5 ? IndustrialTheme.popout.recessedWell : '#FFFFFF',
+                    border: currentTime < 20.5 ? `1px solid ${IndustrialTheme.signals.mintBorder}` : '1px solid rgba(0, 0, 0, 0.06)',
                     borderRadius: 18,
                     padding: 22,
-                    opacity: currentTime < 20.5 ? 1.0 : 0.4,
+                    opacity: currentTime < 20.5 ? 1.0 : 0.35,
                     filter: currentTime < 20.5 ? 'none' : 'blur(1.5px)',
                     transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                   }}
                 >
-                  <div style={{ fontSize: 10, color: IndustrialTheme.text.secondary, fontFamily: 'monospace', marginBottom: 8 }}>
+                  <div style={{ fontSize: 10, color: IndustrialTheme.text.secondary, fontFamily: 'monospace', fontWeight: 700, marginBottom: 8 }}>
                     # SCOPED CONDITIONAL FEEDER
                   </div>
-                  <div style={{ fontSize: 12, fontFamily: 'monospace', color: IndustrialTheme.text.secondary, lineHeight: 1.6, background: '#08090B', padding: 14, borderRadius: 10, border: IndustrialTheme.surface.recessedBorder }}>
-                    <div><span style={{ color: IndustrialTheme.text.hero }}>['Units']</span> =&gt; DB(</div>
-                    <div style={{ paddingLeft: 16 }}><span style={{ color: IndustrialTheme.signals.amber }}>IF</span>(DB('Control_Feeder_Flags', !Year, !Period, 'Active') == 1,</div>
-                    <div style={{ paddingLeft: 32 }}><span style={{ color: IndustrialTheme.signals.mint }}>'Revenue_Cube'</span>, ''</div>
+                  <div style={{ fontSize: 12, fontFamily: 'monospace', color: IndustrialTheme.text.primary, lineHeight: 1.6, background: '#FFFFFF', padding: 14, borderRadius: 10, border: '1px solid rgba(0,0,0,0.08)' }}>
+                    <div><span style={{ color: IndustrialTheme.text.hero, fontWeight: 700 }}>['Units']</span> =&gt; DB(</div>
+                    <div style={{ paddingLeft: 16 }}><span style={{ color: IndustrialTheme.signals.amber, fontWeight: 700 }}>IF</span>(DB('Control_Feeder_Flags', !Year, !Period, 'Active') == 1,</div>
+                    <div style={{ paddingLeft: 32 }}><span style={{ color: IndustrialTheme.signals.mint, fontWeight: 700 }}>'Revenue_Cube'</span>, ''</div>
                     <div style={{ paddingLeft: 16 }}>), !Version, !Year, !Period, 'Revenue');</div>
                   </div>
 
@@ -269,7 +243,7 @@ export const TM1FeederCommercial: React.FC = () => {
                       labelStart="[ Leaf Input ]"
                       labelEnd="[ Target Cell ]"
                       pulseOffset={pulseOffset}
-                      color={IndustrialTheme.signals.tungsten}
+                      color="#0F172A"
                     />
                   </div>
                 </div>
@@ -277,16 +251,16 @@ export const TM1FeederCommercial: React.FC = () => {
                 {/* Target 6: Memory Collapse & Sub-Second Latency */}
                 <div
                   style={{
-                    background: currentTime >= 20.5 ? IndustrialTheme.surface.recessedWell : 'rgba(13, 14, 17, 0.4)',
-                    border: currentTime >= 20.5 ? `1px solid ${IndustrialTheme.signals.mintBorder}` : '1px solid rgba(255, 255, 255, 0.04)',
+                    background: currentTime >= 20.5 ? IndustrialTheme.popout.recessedWell : '#FFFFFF',
+                    border: currentTime >= 20.5 ? `1px solid ${IndustrialTheme.signals.mintBorder}` : '1px solid rgba(0, 0, 0, 0.06)',
                     borderRadius: 18,
                     padding: 22,
-                    opacity: currentTime >= 20.5 ? 1.0 : 0.4,
+                    opacity: currentTime >= 20.5 ? 1.0 : 0.35,
                     filter: currentTime >= 20.5 ? 'none' : 'blur(1.5px)',
                     transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                   }}
                 >
-                  <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 600, marginBottom: 8 }}>
+                  <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: IndustrialTheme.text.secondary, fontWeight: 700, marginBottom: 8 }}>
                     Server Memory Bloat (-87%)
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
@@ -295,18 +269,18 @@ export const TM1FeederCommercial: React.FC = () => {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, fontFamily: 'monospace', color: IndustrialTheme.text.secondary, marginBottom: 16 }}>
                     <span>48 GB</span>
-                    <span style={{ color: IndustrialTheme.signals.mint, fontWeight: 700 }}>{bloatReduction.toFixed(1)} GB</span>
+                    <span style={{ color: IndustrialTheme.signals.mint, fontWeight: 800 }}>{bloatReduction.toFixed(1)} GB</span>
                   </div>
 
-                  <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
-                      <div style={{ fontSize: 10, color: IndustrialTheme.text.tertiary, textTransform: 'uppercase' }}>Consolidated Latency</div>
+                      <div style={{ fontSize: 10, color: IndustrialTheme.text.tertiary, textTransform: 'uppercase', fontWeight: 700 }}>Consolidated Latency</div>
                       <div style={{ fontSize: 26, fontWeight: 900, color: IndustrialTheme.signals.mint, fontFamily: 'monospace' }}>
                         {subSecLatency.toFixed(1)}s
                       </div>
                     </div>
-                    <span style={{ background: IndustrialTheme.signals.mintBg, color: IndustrialTheme.signals.mint, border: `1px solid ${IndustrialTheme.signals.mintBorder}`, padding: '6px 12px', borderRadius: 8, fontSize: 11, fontWeight: 700 }}>
-                      SUB-SECOND ⚡
+                    <span style={{ background: IndustrialTheme.signals.mintBg, color: IndustrialTheme.signals.mint, border: `1px solid ${IndustrialTheme.signals.mintBorder}`, padding: '6px 12px', borderRadius: 8, fontSize: 11, fontWeight: 800 }}>
+                      SUB-SECOND
                     </span>
                   </div>
                 </div>
@@ -315,7 +289,7 @@ export const TM1FeederCommercial: React.FC = () => {
           </div>
         )}
 
-        {/* SCENE 4: CTA & ACTION (25.5s - 34.3s) */}
+        {/* SCENE 4: CTA & ACTION (25.5s - 34.3s) - ZERO SLOP ICONS */}
         {currentTime >= 25.5 && (
           <div style={{ opacity: scene4Opacity, width: 1000 }}>
             <ChassisFrame
@@ -329,10 +303,10 @@ export const TM1FeederCommercial: React.FC = () => {
 
                 <div
                   style={{
-                    background: IndustrialTheme.surface.recessedWell,
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    background: IndustrialTheme.popout.recessedWell,
+                    border: '1px solid rgba(0, 0, 0, 0.08)',
                     borderRadius: 18,
-                    padding: 24,
+                    padding: 28,
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -340,24 +314,22 @@ export const TM1FeederCommercial: React.FC = () => {
                     textAlign: 'center'
                   }}
                 >
-                  <div style={{ width: 44, height: 44, borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 20, marginBottom: 12 }}>
-                    ⚡
-                  </div>
-                  <div style={{ fontSize: 18, fontWeight: 800, color: IndustrialTheme.text.hero, letterSpacing: '-0.02em', marginBottom: 6 }}>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: IndustrialTheme.text.hero, letterSpacing: '-0.02em', marginBottom: 8 }}>
                     Audit Your Feeder Ratio
                   </div>
-                  <div style={{ fontSize: 12, color: IndustrialTheme.text.secondary, lineHeight: 1.4, marginBottom: 16 }}>
-                    Run the 10-minute diagnostic playbook to pinpoint overfed cubes and restore sub-second speed.
+                  <div style={{ fontSize: 12, color: IndustrialTheme.text.secondary, lineHeight: 1.5, marginBottom: 20 }}>
+                    Run the 10-minute diagnostic playbook to pinpoint overfed cubes and restore sub-second calculation speed.
                   </div>
                   <div
                     style={{
-                      background: IndustrialTheme.text.hero,
-                      color: '#0B0C0E',
+                      background: '#0F172A',
+                      color: '#FFFFFF',
                       fontSize: 12,
                       fontWeight: 700,
-                      padding: '10px 24px',
+                      letterSpacing: '0.02em',
+                      padding: '12px 28px',
                       borderRadius: 10,
-                      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.5)'
+                      boxShadow: '0 8px 20px rgba(15, 23, 42, 0.25)'
                     }}
                   >
                     octanesolutions.com.au/playbook

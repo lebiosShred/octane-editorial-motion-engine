@@ -27,8 +27,8 @@ export const TelemetryGauge: React.FC<TelemetryGaugeProps> = ({
   return (
     <div
       style={{
-        background: IndustrialTheme.surface.recessedWell,
-        border: IndustrialTheme.surface.recessedBorder,
+        background: IndustrialTheme.popout.recessedWell,
+        border: IndustrialTheme.popout.recessedBorder,
         borderRadius: 16,
         padding: 20,
         display: 'flex',
@@ -37,15 +37,15 @@ export const TelemetryGauge: React.FC<TelemetryGaugeProps> = ({
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 600 }}>
+        <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700 }}>
           {label}
         </span>
-        <span style={{ fontSize: 24, fontWeight: 800, color: currentColor, fontFamily: 'monospace', fontVariantNumeric: 'tabular-nums' }}>
+        <span style={{ fontSize: 24, fontWeight: 900, color: currentColor, fontFamily: 'monospace', fontVariantNumeric: 'tabular-nums' }}>
           {value}{ratioUnit}
         </span>
       </div>
 
-      <div style={{ position: 'relative', width: '100%', height: 6, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 3, overflow: 'hidden', display: 'flex' }}>
+      <div style={{ position: 'relative', width: '100%', height: 6, backgroundColor: 'rgba(0,0,0,0.06)', borderRadius: 3, overflow: 'hidden', display: 'flex' }}>
         <div style={{ width: '15%', backgroundColor: IndustrialTheme.signals.mint }} />
         <div style={{ width: '25%', backgroundColor: IndustrialTheme.signals.amber }} />
         <div style={{ width: '60%', backgroundColor: IndustrialTheme.signals.crimson }} />

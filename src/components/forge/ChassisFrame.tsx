@@ -26,15 +26,15 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
   style = {},
   showTicks = true
 }) => {
-  const ledColors: Record<StatusLedState, { bg: string; border: string; glow: string }> = {
-    active: { bg: IndustrialTheme.signals.tungsten, border: 'rgba(255, 255, 255, 0.4)', glow: 'rgba(255, 255, 255, 0.6)' },
-    success: { bg: IndustrialTheme.signals.mint, border: IndustrialTheme.signals.mintBorder, glow: IndustrialTheme.signals.mint },
-    warning: { bg: IndustrialTheme.signals.amber, border: IndustrialTheme.signals.amberBorder, glow: IndustrialTheme.signals.amber },
-    error: { bg: IndustrialTheme.signals.crimson, border: IndustrialTheme.signals.crimsonBorder, glow: IndustrialTheme.signals.crimson },
-    idle: { bg: IndustrialTheme.text.tertiary, border: 'rgba(255,255,255,0.1)', glow: 'transparent' }
+  const badgeStyles: Record<StatusLedState, { color: string; bg: string; border: string; led: string }> = {
+    active: { color: IndustrialTheme.text.hero, bg: '#F1F5F9', border: '#E2E8F0', led: '#0F172A' },
+    success: { color: IndustrialTheme.signals.mint, bg: IndustrialTheme.signals.mintBg, border: IndustrialTheme.signals.mintBorder, led: IndustrialTheme.signals.mint },
+    warning: { color: IndustrialTheme.signals.amber, bg: IndustrialTheme.signals.amberBg, border: IndustrialTheme.signals.amberBorder, led: IndustrialTheme.signals.amber },
+    error: { color: IndustrialTheme.signals.crimson, bg: IndustrialTheme.signals.crimsonBg, border: IndustrialTheme.signals.crimsonBorder, led: IndustrialTheme.signals.crimson },
+    idle: { color: IndustrialTheme.text.tertiary, bg: '#F8FAFC', border: '#E2E8F0', led: IndustrialTheme.text.tertiary }
   };
 
-  const led = ledColors[statusLed];
+  const badge = badgeStyles[statusLed];
 
   return (
     <div
@@ -42,50 +42,51 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
         position: 'relative',
         width,
         height,
-        background: IndustrialTheme.surface.chassis,
-        backdropFilter: 'blur(40px) saturate(180%)',
-        border: IndustrialTheme.surface.chassisBorder,
-        borderTop: IndustrialTheme.surface.chassisTopBevel,
+        background: IndustrialTheme.popout.chassisBg,
+        border: IndustrialTheme.popout.chassisBorder,
         borderRadius: 24,
-        boxShadow: IndustrialTheme.surface.chassisShadow,
-        padding: '28px 34px',
+        boxShadow: IndustrialTheme.popout.chassisShadow,
+        padding: '30px 36px',
         overflow: 'hidden',
+        color: IndustrialTheme.text.hero,
         ...style
       }}
     >
+      {/* Precision Corner Registration Tick Marks */}
       {showTicks && (
         <>
-          <div style={{ position: 'absolute', top: 8, left: 10, fontSize: 10, color: 'rgba(255,255,255,0.2)', fontFamily: 'monospace' }}>┌</div>
-          <div style={{ position: 'absolute', top: 8, right: 10, fontSize: 10, color: 'rgba(255,255,255,0.2)', fontFamily: 'monospace' }}>┐</div>
-          <div style={{ position: 'absolute', bottom: 8, left: 10, fontSize: 10, color: 'rgba(255,255,255,0.2)', fontFamily: 'monospace' }}>└</div>
-          <div style={{ position: 'absolute', bottom: 8, right: 10, fontSize: 10, color: 'rgba(255,255,255,0.2)', fontFamily: 'monospace' }}>┘</div>
+          <div style={{ position: 'absolute', top: 8, left: 10, fontSize: 10, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┌</div>
+          <div style={{ position: 'absolute', top: 8, right: 10, fontSize: 10, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┐</div>
+          <div style={{ position: 'absolute', bottom: 8, left: 10, fontSize: 10, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>└</div>
+          <div style={{ position: 'absolute', bottom: 8, right: 10, fontSize: 10, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┘</div>
         </>
       )}
 
+      {/* Pristine Header */}
       {(title || statusBadge) && (
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
             paddingBottom: 14,
-            marginBottom: 22
+            marginBottom: 24
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            {/* Status LED */}
             <div
               style={{
-                width: 7,
-                height: 7,
+                width: 8,
+                height: 8,
                 borderRadius: '50%',
-                backgroundColor: led.bg,
-                boxShadow: `0 0 8px ${led.glow}`,
-                border: `1px solid ${led.border}`
+                backgroundColor: badge.led,
+                boxShadow: `0 0 6px ${badge.led}66`
               }}
             />
             {title && (
-              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '-0.01em', color: IndustrialTheme.text.hero }}>
+              <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '-0.02em', color: IndustrialTheme.text.hero }}>
                 {title}
               </span>
             )}
@@ -103,11 +104,11 @@ export const ChassisFrame: React.FC<ChassisFrameProps> = ({
                 fontWeight: 700,
                 letterSpacing: '0.08em',
                 fontFamily: 'monospace',
-                color: led.bg,
-                background: led.border,
-                border: `1px solid ${led.border}`,
-                padding: '3px 10px',
-                borderRadius: 8,
+                color: badge.color,
+                background: badge.bg,
+                border: `1px solid ${badge.border}`,
+                padding: '4px 10px',
+                borderRadius: 6,
                 textTransform: 'uppercase'
               }}
             >

@@ -21,8 +21,8 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
   return (
     <div
       style={{
-        background: IndustrialTheme.surface.recessedWell,
-        border: IndustrialTheme.surface.recessedBorder,
+        background: IndustrialTheme.popout.recessedWell,
+        border: IndustrialTheme.popout.recessedBorder,
         borderRadius: 14,
         padding: 14,
         display: 'flex',
@@ -51,14 +51,14 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
           const bg = isPopulated
             ? IndustrialTheme.signals.mint
             : isWasted
-            ? 'rgba(244, 63, 94, 0.25)'
-            : 'rgba(255, 255, 255, 0.03)';
+            ? IndustrialTheme.signals.crimsonBg
+            : '#FFFFFF';
 
           const border = isPopulated
             ? `1px solid ${IndustrialTheme.signals.mint}`
             : isWasted
             ? `1px solid ${IndustrialTheme.signals.crimsonBorder}`
-            : '1px solid transparent';
+            : '1px solid rgba(0,0,0,0.06)';
 
           return (
             <div
@@ -74,7 +74,7 @@ export const BitLatticeGrid: React.FC<BitLatticeGridProps> = ({
                 alignItems: 'center',
                 fontSize: 8,
                 fontFamily: 'monospace',
-                color: isPopulated ? '#0B0C0E' : isWasted ? IndustrialTheme.signals.crimson : 'transparent',
+                color: isPopulated ? '#FFFFFF' : isWasted ? IndustrialTheme.signals.crimson : 'transparent',
                 fontWeight: 700
               }}
             >
