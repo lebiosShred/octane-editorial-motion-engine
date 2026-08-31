@@ -2,7 +2,6 @@ import React from 'react';
 import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import timingData from '../../public/voiceover.json';
 import { IndustrialTheme } from '../types/theme';
-import { SubtitleKaraoke } from '../components/SubtitleKaraoke';
 import { SpatialBoard } from '../components/spatial/SpatialBoard';
 import { KineticNode } from '../components/spatial/KineticNode';
 import { KineticLaserConduit } from '../components/spatial/KineticLaserConduit';
@@ -11,13 +10,16 @@ import { DimensionTopologyTree } from '../components/forge/DimensionTopologyTree
 import { CircuitConduit } from '../components/forge/CircuitConduit';
 import { InfraTeamHumorCard } from '../components/forge/InfraTeamHumorCard';
 import { CtaOutroStage } from '../components/forge/CtaOutroStage';
+import { EditorialNarrativePillar } from '../components/forge/EditorialNarrativePillar';
 
 export const TM1FeederCommercial: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const currentTime = frame / fps;
 
-  // ── INERTIAL DAMPED CAMERA PATH (Native 1:1 Pixel Mapping with Cinema Pan) ──
+  // ── INERTIAL DAMPED CAMERA PATH (Framed in the Right 1400px Stage with +250px Center Offset & 2000px Cluster Spacing) ──
+  const STAGE_OFFSET_X = 250;
+
   const cameraScale = interpolate(
     currentTime,
     [0, 1.5, 9.0, 11.5, 18.5, 20.5, 27.5, 28.5],
@@ -28,7 +30,7 @@ export const TM1FeederCommercial: React.FC = () => {
   const cameraPanX = interpolate(
     currentTime,
     [0, 1.5, 9.0, 11.5, 18.5, 20.5, 27.5, 28.5],
-    [1550, 1550, 1550, 0, 0, -1550, -1550, -1550],
+    [2000 + STAGE_OFFSET_X, 2000 + STAGE_OFFSET_X, 2000 + STAGE_OFFSET_X, 0 + STAGE_OFFSET_X, 0 + STAGE_OFFSET_X, -2000 + STAGE_OFFSET_X, -2000 + STAGE_OFFSET_X, -2000 + STAGE_OFFSET_X],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.22, 1, 0.36, 1) }
   );
 
@@ -47,10 +49,10 @@ export const TM1FeederCommercial: React.FC = () => {
 
   // Self-drawing kinetic laser conduits with STRICT TRANSITION-ONLY OPACITY (Zero Bleed!)
   const drawLine1 = interpolate(currentTime, [8.8, 11.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const conduit1Opacity = interpolate(currentTime, [8.8, 9.2, 10.8, 11.4], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const conduit1Opacity = interpolate(currentTime, [8.8, 9.2, 10.6, 11.2], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   const drawLine2 = interpolate(currentTime, [18.2, 20.2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const conduit2Opacity = interpolate(currentTime, [18.2, 18.6, 20.0, 20.6], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const conduit2Opacity = interpolate(currentTime, [18.2, 18.6, 19.8, 20.4], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   
   // Downward laser bridge connecting Step 01 to Step 02 in Cluster 2 (Through open vertical gutter: Y=-65 to Y=65)
   const drawVerticalBridge = interpolate(currentTime, [14.0, 15.0], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
@@ -87,13 +89,16 @@ export const TM1FeederCommercial: React.FC = () => {
 
       <Audio src={staticFile('voiceover.wav')} />
 
-      {/* INFINITE BLACKBOARD DRAFTING CANVAS */}
+      {/* ── LEFT HEMISPHERE: BESPOKE LATERAL EDITORIAL NARRATIVE PILLAR ── */}
+      <EditorialNarrativePillar words={timingData.words} currentTime={currentTime} />
+
+      {/* ── RIGHT HEMISPHERE: INFINITE BLACKBOARD DRAFTING CANVAS ── */}
       <div style={{ position: 'absolute', inset: 0, opacity: blackboardOpacity, transition: 'opacity 0.4s ease-out' }}>
         <SpatialBoard cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY}>
 
           {/* ── HORIZONTAL INTER-CLUSTER LASER CONDUITS (TRANSITION ONLY: Zero Bleed) ── */}
           <KineticLaserConduit
-            x1={-1100}
+            x1={-1550}
             y1={-245}
             x2={-450}
             y2={-245}
@@ -105,7 +110,7 @@ export const TM1FeederCommercial: React.FC = () => {
           <KineticLaserConduit
             x1={450}
             y1={-245}
-            x2={1100}
+            x2={1550}
             y2={-245}
             color={IndustrialTheme.signals.mint}
             drawProgress={drawLine2}
@@ -124,12 +129,12 @@ export const TM1FeederCommercial: React.FC = () => {
           />
 
           {/* ═══════════════════════════════════════════════════════════
-              CLUSTER 1: THE STALL & 3D EDITORIAL HUMOR (X: -1550)
+              CLUSTER 1: THE STALL & 3D EDITORIAL HUMOR (X: -2000)
              ═══════════════════════════════════════════════════════════ */}
           <KineticNode
-            x={-1550}
+            x={-2000}
             y={-245}
-            width={840}
+            width={860}
             title="Planning Analytics Workspace"
             badge="THREAD LOCK DETECTED"
             badgeType="crimson"
@@ -154,9 +159,9 @@ export const TM1FeederCommercial: React.FC = () => {
           </KineticNode>
 
           <KineticNode
-            x={-1550}
+            x={-2000}
             y={245}
-            width={840}
+            width={860}
             title="Infrastructure Advisory"
             badge="HARDWARE MYTH"
             badgeType="amber"
@@ -174,7 +179,7 @@ export const TM1FeederCommercial: React.FC = () => {
           <KineticNode
             x={0}
             y={-245}
-            width={880}
+            width={860}
             title="Root Bottleneck: Overfeeding Architecture"
             badge="108M DERIVED CELLS"
             badgeType="crimson"
@@ -189,7 +194,7 @@ export const TM1FeederCommercial: React.FC = () => {
           <KineticNode
             x={0}
             y={245}
-            width={880}
+            width={860}
             title="Memory Register Layout"
             badge="EXPONENTIAL BLOAT"
             badgeType="crimson"
@@ -202,12 +207,12 @@ export const TM1FeederCommercial: React.FC = () => {
           </KineticNode>
 
           {/* ═══════════════════════════════════════════════════════════
-              CLUSTER 3: TARGETED CONDITIONAL FEEDER & REMEDIATION (X: +1550)
+              CLUSTER 3: TARGETED CONDITIONAL FEEDER & REMEDIATION (X: +2000)
              ═══════════════════════════════════════════════════════════ */}
           <KineticNode
-            x={1550}
+            x={2000}
             y={-245}
-            width={880}
+            width={860}
             title="Targeted Conditional Feeder Engine"
             badge="CONDITIONAL ACTIVE"
             badgeType="mint"
@@ -233,9 +238,9 @@ export const TM1FeederCommercial: React.FC = () => {
           </KineticNode>
 
           <KineticNode
-            x={1550}
+            x={2000}
             y={245}
-            width={880}
+            width={860}
             title="Diagnostic Remediation Result"
             badge="SUB-SECOND SPEED"
             badgeType="mint"
@@ -268,9 +273,6 @@ export const TM1FeederCommercial: React.FC = () => {
 
       {/* DEDICATED CINEMATIC OUTRO STAGE (t >= 28.2s) */}
       {currentTime >= 28.0 && <CtaOutroStage />}
-
-      {/* TOP-ANCHORED 1:1 CONTEXTUAL KINETIC NARRATIVE HUD */}
-      <SubtitleKaraoke words={timingData.words} currentTime={currentTime} />
     </AbsoluteFill>
   );
 };

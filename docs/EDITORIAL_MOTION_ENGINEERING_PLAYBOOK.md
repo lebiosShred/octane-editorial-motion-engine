@@ -407,9 +407,40 @@ flowchart TD
 - Never leave spatial conduits rendered with `drawProgress = 1` in the camera background when they cross between clusters.
 - All inter-cluster conduits must enforce transition-only opacity windows (`opacity: interpolate(...)`) so that static cluster frames remain pristine and free of edge artifacts.
 
+## 🏛️ Part XIII: Side-by-Side Spatial Architecture & Lateral Editorial Narrative Pillar
+
+```mermaid
+flowchart LR
+    subgraph Viewport [1920x1080 Viewport]
+        subgraph LeftPillar [Left Column: Lateral Editorial Narrative Pillar (Width: 440px)]
+            L1["Brand & Telemetry: TM1 ENGINE TELEMETRY // LIVE STREAM"]
+            L2["Real-Time Chapter Pipeline: 01 Bottleneck -> 02 Multiplier -> 03 Remediation -> 04 Architecture"]
+            L3["Hero Kinetic Sentence Stream: 26px Inter 800-900 with Active Word Glow & Past/Future Fade"]
+            L4["Acoustic Voice Equalizer: 18-band live voice spectrum reacting to narration cadence"]
+        end
+
+        subgraph RightStage [Right Column: Spatial 3D Interactive Stage (Width: 1400px)]
+            R1["Top Card Chassis (860px width, Y: -245)"]
+            R2["Vertical Causal Laser Conduits (Y: -65 to +65)"]
+            R3["Bottom Card Chassis (860px width, Y: +245)"]
+        end
+    end
+
+    LeftPillar <--> RightStage
+```
+
+### 1. The Side-by-Side Layout Rule
+- Rather than rendering subtitles as generic captions at the top or bottom of the screen, transform the canvas into an **Executive Command Center**.
+- The **Left Hemisphere (`440px`)** acts as the narrative driver, housing the chapter pipeline, hero kinetic typography, and acoustic spectrum.
+- The **Right Hemisphere (`1400px`)** acts as the interactive 3D drafting stage, housing the cards, code engines, and 3D claymorphic figures.
+
+### 2. 2000px Inter-Cluster Isolation Rule
+- In a side-by-side layout, set cluster separation to **`2000px`** ($X = -2000, 0, +2000$) with `cameraPanX` shifted by $+250\text{px}$ to ensure adjacent cluster chassis never bleed into the viewport during camera holds.
+
 ---
 
-*Authored by the Octane Editorial Motion Team. Version 3.1.0 (Production Verified).*
+*Authored by the Octane Editorial Motion Team. Version 3.2.0 (Production Verified).*
+
 
 
 
