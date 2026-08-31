@@ -114,7 +114,7 @@ const KineticScene: React.FC<{
   );
 };
 
-// High-Velocity Logo Marquee Component
+// High-Velocity Logo Marquee Component with Official Verified Brand Assets
 const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ durationInFrames }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -135,31 +135,31 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
   const scale = interpolate(sp, [0, 1], [0.88, 1]);
   const translateY = interpolate(sp, [0, 1], [20, 0]);
 
-  // Brand logo sets
+  // Official verified brand assets
   const row1Logos = [
     'logos/unilever.svg',
     'logos/hsbc.svg',
     'logos/coca_cola.svg',
     'logos/optus.svg',
-    'logos/lion.svg',
+    'logos/lion.png',
     'logos/unilever.svg',
     'logos/hsbc.svg',
     'logos/coca_cola.svg',
     'logos/optus.svg',
-    'logos/lion.svg'
+    'logos/lion.png'
   ];
 
   const row2Logos = [
     'logos/adobe.svg',
     'logos/sanofi.svg',
     'logos/domain.svg',
-    'logos/qbe.svg',
-    'logos/boral.svg',
+    'logos/qbe.png',
+    'logos/boral.png',
     'logos/adobe.svg',
     'logos/sanofi.svg',
     'logos/domain.svg',
-    'logos/qbe.svg',
-    'logos/boral.svg'
+    'logos/qbe.png',
+    'logos/boral.png'
   ];
 
   // High velocity shift: 12px per frame
@@ -234,7 +234,7 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         >
           {row1Logos.map((logo, idx) => (
             <div key={`r1-${idx}`} style={cardStyle}>
-              <Img src={staticFile(logo)} style={{ height: 42, objectFit: 'contain' }} />
+              <Img src={staticFile(logo)} style={{ height: 42, maxWidth: 160, objectFit: 'contain' }} />
             </div>
           ))}
         </div>
@@ -250,7 +250,7 @@ const FastLogoMarqueeScene: React.FC<{ durationInFrames: number }> = ({ duration
         >
           {row2Logos.map((logo, idx) => (
             <div key={`r2-${idx}`} style={cardStyle}>
-              <Img src={staticFile(logo)} style={{ height: 42, objectFit: 'contain' }} />
+              <Img src={staticFile(logo)} style={{ height: 42, maxWidth: 160, objectFit: 'contain' }} />
             </div>
           ))}
         </div>
