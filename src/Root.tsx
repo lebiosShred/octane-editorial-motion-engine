@@ -3,11 +3,9 @@ import { Composition, registerRoot } from 'remotion';
 import { TM1FeederCommercial } from './compositions/TM1FeederCommercial';
 import { ForefrontSummitTeaser } from './compositions/ForefrontSummitTeaser';
 import timingData from '../public/voiceover.json';
-import forefrontTiming from '../public/forefront_voiceover.json';
 
 export const Root: React.FC = () => {
   const feederDurationFrames = Math.ceil((timingData.duration_seconds + 1.2) * 30);
-  const forefrontDurationFrames = Math.ceil((forefrontTiming.duration_seconds + 1.2) * 30);
 
   return (
     <>
@@ -22,7 +20,7 @@ export const Root: React.FC = () => {
       <Composition
         id="ForefrontSummitTeaser"
         component={ForefrontSummitTeaser}
-        durationInFrames={forefrontDurationFrames}
+        durationInFrames={990}
         fps={30}
         width={1920}
         height={1080}
