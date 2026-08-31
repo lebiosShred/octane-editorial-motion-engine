@@ -1,11 +1,14 @@
 {
   "name": "octane-editorial-motion-engine",
-  "version": "1.0.0",
-  "description": "Production-grade Remotion motion graphics & guided micro-target storytelling engine for high-retention B2B video commercials.",
+  "version": "1.1.0",
+  "description": "Production-grade Remotion motion graphics & guided micro-target storytelling engine for high-retention B2B video commercials and event teasers.",
   "scripts": {
     "start": "remotion studio src/Root.tsx",
-    "render": "remotion render src/Root.tsx TM1FeederCommercial out/linkedin_tm1_feeder_commercial.mp4",
     "build": "tsc --noEmit",
+    "render:feeder": "remotion render src/Root.tsx TM1FeederCommercial out/linkedin_tm1_feeder_commercial.mp4 --crf=14 --pixel-format=yuv420p",
+    "render:forefront": "remotion render src/Root.tsx ForefrontSummitTeaser out/forefront_finance_summit_teaser.mp4 --crf=14 --pixel-format=yuv420p",
+    "render:all": "npm run render:feeder && npm run render:forefront",
+    "optimize:videos": "python scripts/optimize_video_assets.py",
     "audio": "python scripts/generate_audio_pipeline.py"
   },
   "dependencies": {

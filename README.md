@@ -1,38 +1,74 @@
-# 🎬 Octane Editorial Motion Engine
-> High-performance programmatic motion design engine built in Remotion, React, TypeScript, and WhisperX alignment.
+# Octane Editorial Motion Graphics & Commercial Engine
+
+Production-grade Remotion motion graphics suite engineered for high-retention B2B SaaS product commercials, technical architectural explainers, and high-impact event teasers.
 
 ---
 
-## 📖 Master Engineering Playbook
-For the complete, codified architectural invariants, motion sequencing standards, spatial de-containment guidelines, and pure brand rules, read the official:
-👉 **[`docs/EDITORIAL_MOTION_ENGINEERING_PLAYBOOK.md`](./docs/EDITORIAL_MOTION_ENGINEERING_PLAYBOOK.md)**
+## 🎬 Composition Gallery
+
+| Composition | Duration | Resolution | Description |
+| :--- | :--- | :--- | :--- |
+| **`TM1FeederCommercial`** | 35.8s (1074 f) | 1920x1080 @ 30fps | Mathematical B2B product commercial for the **TM1 Feeder Diagnostic Playbook**. Features Kokoro voiceover, 3D dolly zoom, kinetic topology, and high-contrast leaf/target cell telemetry. |
+| **`ForefrontSummitTeaser`** | 31.0s (930 f) | 1920x1080 @ 30fps | High-energy event teaser for the **Finance Transformation Summit NSW 2026**. Features real live-action B-roll, All-Intra 30fps keyframes, Inter 900 kinetic typography, and Booth 19 sponsor callout. |
 
 ---
 
-## 💎 V5.0.0 Master Architecture Invariants
+## 🚀 Quickstart
 
-1. **🌌 Spatial De-Containment (Box Liberation)**: 3D claymorphic character figures and hardware float freely in 3D space with neural alpha cutouts, volumetric backlighting, and zero rectangular bounding box clutter.
-2. **🎬 Scene-by-Scene Storytelling Rhythm**: Strict alternating layouts (Side-by-Side analytical beats vs Stacked narrative/humor beats) focusing on one dominant visual thesis at a time.
-3. **🎨 Strict `#4daeeb` Brand Accent Rule**: Zero multi-colored rainbow confusion. Canvas is pure solid black (`#000000`), foreground chassis is pure ceramic white (`#FFFFFF`), and all accents, counters, radar beams, and highlights are locked to **Octane Sky Blue (`#4daeeb`)**.
-4. **🎯 100% Audio/Visual CTA Synchronization**: Perfect directional alignment between spoken narration (*"in the link below"*) and on-screen interactive buttons (**`Click the link below to read the whole blog ↓`**).
-5. **🎙️ Authentic Human Voiceover Priority**: Lossless master audio ingestion mapped with Faster-Whisper millisecond timestamp arrays.
-6. **🧹 Extreme Visual Reductionism (Tufte's Data-to-Ink)**: Zero debug metadata tags (`[ SCENE 01 ]`), zero chartjunk labels, and pure high-contrast Swiss typography (Inter 800/900 + JetBrains Mono).
+### Prerequisites
+- Node.js 18+
+- Python 3.10+
+- FFmpeg & FFprobe (installed and accessible in system PATH)
 
----
-
-## 🛠️ Quickstart
-
+### Installation
 ```bash
-# Install dependencies
 npm install
+```
 
-# Start Remotion interactive preview studio
+### Preview Compositions in Remotion Studio
+```bash
 npm start
+```
 
-# Render 1080p Master Commercial MP4 (30 FPS, CRF 12)
-npx remotion render src/Root.tsx TM1FeederCommercial out/linkedin_tm1_feeder_commercial.mp4 --crf=12 --pixel-format=yuv420p
+### Render Master MP4s
+```bash
+# Render B2B TM1 Feeder Commercial
+npm run render:feeder
+
+# Render Forefront Summit Teaser
+npm run render:forefront
+
+# Batch Render All Compositions
+npm run render:all
 ```
 
 ---
 
-*Authored with ❤️ for Octane Software Solutions. Version 5.0.0.*
+## 🛠️ Video Asset Optimization Tooling
+
+To ensure zero dropped frames and fluid playback inside Remotion, all video clips must be converted to **Constant 30 FPS All-Intra (I-frame only)**:
+
+```bash
+npm run optimize:videos
+```
+
+This CLI script scans `public/vid_*.mp4`, probes stream metadata, and re-encodes any non-compliant video to:
+- Codec: H.264 Baseline Profile (Level 3.0)
+- Pixel Format: `yuv420p`
+- Framerate: Constant 30.000 FPS
+- Keyframe Interval: `-g 1` (All-Intra)
+- Container: MP4 FastStart (`+faststart`)
+
+---
+
+## 📐 Design System & Standards
+
+- **Brand Palette**: Octane Sky Blue (`#4daeeb`), Obsidian (`#000000` / `#090A0C`), White (`#FFFFFF`).
+- **Typography**: Inter (Kinetic Headers) + JetBrains Mono (Telemetry & Badges).
+- **Physics**: Configured spring dynamics (`mass: 0.5, damping: 12, stiffness: 140`).
+- For complete motion guidelines, see [`PLAYBOOK.md`](./PLAYBOOK.md).
+
+---
+
+## 📜 License & Ownership
+Copyright © 2026 Octane Software Solutions. All rights reserved.
