@@ -92,22 +92,22 @@ export const TM1FeederCommercial: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <span style={{ fontSize: 20, fontWeight: 800, color: '#090A0C' }}>Planning Analytics Workspace</span>
-              <span style={{ fontSize: 11, fontWeight: 800, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '3px 8px', borderRadius: 4 }}>
+              <span style={{ fontSize: 20, fontWeight: 900, color: '#090A0C' }}>Planning Analytics Workspace</span>
+              <span style={{ fontSize: 12, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.15)', border: '1.5px solid #4daeeb', padding: '4px 10px', borderRadius: 6 }}>
                 THREAD LOCK DETECTED
               </span>
             </div>
-            <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#64748B', fontWeight: 700, marginBottom: 8 }}>
+            <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#64748B', fontWeight: 800, marginBottom: 8 }}>
               Active Consolidation Latency
             </div>
             <div style={{ fontSize: 76, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono, letterSpacing: '-0.03em', lineHeight: 1 }}>
               {latencyVal.toFixed(1)}s
             </div>
-            <div style={{ marginTop: 18, display: 'flex', justifyContent: 'space-between', fontSize: 14, color: '#94A3B8', fontFamily: IndustrialTheme.fonts.mono }}>
+            <div style={{ marginTop: 18, display: 'flex', justifyContent: 'space-between', fontSize: 15, color: '#475569', fontFamily: IndustrialTheme.fonts.mono, fontWeight: 700 }}>
               <span>Evaluating 8 Dimensions...</span>
-              <span style={{ color: '#4daeeb', fontWeight: 700 }}>{Math.min(92, Math.round(latencyVal * 2.2))}% STALLED</span>
+              <span style={{ color: '#4daeeb', fontWeight: 900 }}>{Math.min(92, Math.round(latencyVal * 2.2))}% STALLED</span>
             </div>
-            <div style={{ marginTop: 10, width: '100%', height: 8, backgroundColor: '#E2E8F0', borderRadius: 4, overflow: 'hidden' }}>
+            <div style={{ marginTop: 10, width: '100%', height: 10, backgroundColor: '#E2E8F0', borderRadius: 5, overflow: 'hidden' }}>
               <div style={{ width: `${Math.min(92, latencyVal * 2.2)}%`, height: '100%', backgroundColor: '#4daeeb' }} />
             </div>
           </div>
@@ -180,8 +180,8 @@ export const TM1FeederCommercial: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-              <span style={{ fontSize: 18, fontWeight: 800, color: '#090A0C' }}>Root Bottleneck: Overfeeding Architecture</span>
-              <span style={{ fontSize: 11, fontWeight: 800, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '3px 8px', borderRadius: 4 }}>
+              <span style={{ fontSize: 18, fontWeight: 900, color: '#090A0C' }}>Root Bottleneck: Overfeeding Architecture</span>
+              <span style={{ fontSize: 12, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.15)', border: '1.5px solid #4daeeb', padding: '4px 10px', borderRadius: 6 }}>
                 108M DERIVED CELLS
               </span>
             </div>
@@ -219,8 +219,8 @@ export const TM1FeederCommercial: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-              <span style={{ fontSize: 18, fontWeight: 800, color: '#090A0C' }}>Memory Register Layout</span>
-              <span style={{ fontSize: 11, fontWeight: 800, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '3px 8px', borderRadius: 4 }}>
+              <span style={{ fontSize: 18, fontWeight: 900, color: '#090A0C' }}>Memory Register Layout</span>
+              <span style={{ fontSize: 12, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.15)', border: '1.5px solid #4daeeb', padding: '4px 10px', borderRadius: 6 }}>
                 EXPONENTIAL BLOAT
               </span>
             </div>
@@ -259,26 +259,29 @@ export const TM1FeederCommercial: React.FC = () => {
             {/* Feeder Code Card */}
             <div
               style={{
-                flex: 1,
+                flex: 1.1,
                 backgroundColor: '#FFFFFF',
                 borderRadius: 24,
                 boxShadow: '0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(77, 174, 235, 0.15)',
-                padding: '26px 30px'
+                padding: '28px 32px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 14
               }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                <span style={{ fontSize: 16, fontWeight: 800, color: '#090A0C' }}>Targeted Conditional Feeder Engine</span>
-                <span style={{ fontSize: 11, fontWeight: 800, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '3px 8px', borderRadius: 4 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: 18, fontWeight: 900, color: '#090A0C' }}>Targeted Conditional Feeder Engine</span>
+                <span style={{ fontSize: 12, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.15)', border: '1.5px solid #4daeeb', padding: '4px 10px', borderRadius: 6 }}>
                   CONDITIONAL ACTIVE
                 </span>
               </div>
-              <div style={{ fontSize: 14, fontFamily: IndustrialTheme.fonts.mono, color: '#1E293B', lineHeight: 1.5, background: '#F8FAFC', padding: 16, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
-                <div><span style={{ color: '#090A0C', fontWeight: 700 }}>['Units']</span> =&gt; DB(</div>
-                <div style={{ paddingLeft: 16 }}><span style={{ color: '#4daeeb', fontWeight: 700 }}>IF</span>(DB('Control_Feeder_Flags', !Year, !Period, 'Active') == 1,</div>
-                <div style={{ paddingLeft: 32 }}><span style={{ color: '#4daeeb', fontWeight: 700 }}>'Revenue_Cube'</span>, ''</div>
-                <div style={{ paddingLeft: 16 }}>), !Version, !Year, !Period, 'Revenue');</div>
+              <div style={{ fontSize: 15, fontFamily: IndustrialTheme.fonts.mono, color: '#090A0C', lineHeight: 1.55, background: '#F8FAFC', padding: '18px 22px', borderRadius: 14, border: '1.5px solid rgba(0,0,0,0.08)', fontWeight: 600 }}>
+                <div><span style={{ color: '#090A0C', fontWeight: 900 }}>['Units']</span> =&gt; DB(</div>
+                <div style={{ paddingLeft: 18 }}><span style={{ color: '#4daeeb', fontWeight: 900 }}>IF</span>(DB('Control_Feeder_Flags', !Year, !Period, 'Active') == 1,</div>
+                <div style={{ paddingLeft: 36 }}><span style={{ color: '#4daeeb', fontWeight: 900 }}>'Revenue_Cube'</span>, ''</div>
+                <div style={{ paddingLeft: 18 }}>), !Version, !Year, !Period, 'Revenue');</div>
               </div>
-              <div style={{ marginTop: 10 }}>
+              <div style={{ marginTop: 4 }}>
                 <CircuitConduit
                   labelStart="[ Leaf Input ]"
                   labelEnd="[ Target Cell ]"
@@ -291,37 +294,37 @@ export const TM1FeederCommercial: React.FC = () => {
             {/* Diagnostic Results Card */}
             <div
               style={{
-                flex: 1,
+                flex: 0.9,
                 backgroundColor: '#FFFFFF',
                 borderRadius: 24,
                 boxShadow: '0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(77, 174, 235, 0.15)',
-                padding: '26px 30px',
+                padding: '28px 32px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between'
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                <span style={{ fontSize: 16, fontWeight: 800, color: '#090A0C' }}>Diagnostic Remediation Result</span>
-                <span style={{ fontSize: 11, fontWeight: 800, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.12)', border: '1px solid rgba(77, 174, 235, 0.35)', padding: '3px 8px', borderRadius: 4 }}>
+                <span style={{ fontSize: 18, fontWeight: 900, color: '#090A0C' }}>Diagnostic Remediation Result</span>
+                <span style={{ fontSize: 12, fontWeight: 900, fontFamily: IndustrialTheme.fonts.mono, color: '#4daeeb', background: 'rgba(77, 174, 235, 0.15)', border: '1.5px solid #4daeeb', padding: '4px 10px', borderRadius: 6 }}>
                   SUB-SECOND SPEED
                 </span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-                <div style={{ background: '#F8FAFC', padding: 16, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
-                  <div style={{ fontSize: 12, color: '#64748B', textTransform: 'uppercase', fontWeight: 700 }}>Server Memory</div>
-                  <div style={{ fontSize: 34, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono }}>
+                <div style={{ background: '#F8FAFC', padding: 18, borderRadius: 14, border: '1.5px solid rgba(0,0,0,0.08)' }}>
+                  <div style={{ fontSize: 13, color: '#475569', textTransform: 'uppercase', fontWeight: 800 }}>Server Memory</div>
+                  <div style={{ fontSize: 36, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono, marginTop: 4 }}>
                     {bloatReduction.toFixed(1)} GB
                   </div>
-                  <div style={{ fontSize: 12, color: '#4daeeb', fontWeight: 700 }}>-87% Bloat Collapse</div>
+                  <div style={{ fontSize: 13, color: '#4daeeb', fontWeight: 800, marginTop: 2 }}>-87% Bloat Collapse</div>
                 </div>
 
-                <div style={{ background: '#F8FAFC', padding: 16, borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
-                  <div style={{ fontSize: 12, color: '#64748B', textTransform: 'uppercase', fontWeight: 700 }}>Consolidated View</div>
-                  <div style={{ fontSize: 34, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono }}>
+                <div style={{ background: '#F8FAFC', padding: 18, borderRadius: 14, border: '1.5px solid rgba(0,0,0,0.08)' }}>
+                  <div style={{ fontSize: 13, color: '#475569', textTransform: 'uppercase', fontWeight: 800 }}>Consolidated View</div>
+                  <div style={{ fontSize: 36, fontWeight: 900, color: '#4daeeb', fontFamily: IndustrialTheme.fonts.mono, marginTop: 4 }}>
                     {subSecLatency.toFixed(1)}s
                   </div>
-                  <div style={{ fontSize: 12, color: '#4daeeb', fontWeight: 700 }}>Sub-Second Speed</div>
+                  <div style={{ fontSize: 13, color: '#4daeeb', fontWeight: 800, marginTop: 2 }}>Sub-Second Speed</div>
                 </div>
               </div>
             </div>

@@ -9,14 +9,14 @@ interface CircuitConduitProps {
 }
 
 export const CircuitConduit: React.FC<CircuitConduitProps> = ({
-  labelStart = 'Source',
-  labelEnd = 'Target',
+  labelStart = '[ Leaf Input ]',
+  labelEnd = '[ Target Cell ]',
   pulseOffset = 0,
-  color = '#0F172A'
+  color = '#4daeeb'
 }) => {
-  const height = 24;
-  const startY = 12;
-  const endY = 12;
+  const height = 36;
+  const startY = 18;
+  const endY = 18;
 
   return (
     <div
@@ -25,31 +25,79 @@ export const CircuitConduit: React.FC<CircuitConduitProps> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        padding: '0 4px',
-        fontSize: 10,
-        fontFamily: 'monospace',
-        color: IndustrialTheme.text.secondary
+        padding: '6px 4px',
+        gap: 14
       }}
     >
-      <span>{labelStart}</span>
-      <div style={{ flex: 1, height, position: 'relative', margin: '0 8px' }}>
+      {/* High-Contrast Start Badge */}
+      <div
+        style={{
+          background: '#090A0C',
+          color: '#FFFFFF',
+          fontSize: 14,
+          fontWeight: 900,
+          fontFamily: IndustrialTheme.fonts.mono,
+          letterSpacing: '0.04em',
+          padding: '7px 16px',
+          borderRadius: 8,
+          border: `1.5px solid ${color}`,
+          boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+          whiteSpace: 'nowrap'
+        }}
+      >
+        {labelStart}
+      </div>
+
+      {/* High-Visibility Laser Conduit */}
+      <div style={{ flex: 1, height, position: 'relative' }}>
         <svg width="100%" height={height} style={{ overflow: 'visible' }}>
+          {/* Background Track */}
+          <line
+            x1="0%"
+            y1={startY}
+            x2="100%"
+            y2={endY}
+            stroke="#94A3B8"
+            strokeWidth="3"
+            strokeDasharray="6 4"
+            opacity={0.6}
+          />
+          {/* Active Glowing Laser Conduit */}
           <line
             x1="0%"
             y1={startY}
             x2="100%"
             y2={endY}
             stroke={color}
-            strokeWidth="1.5"
-            strokeDasharray="6 4"
+            strokeWidth="3.5"
+            strokeDasharray="12 6"
             strokeDashoffset={-pulseOffset}
-            opacity={0.7}
+            style={{ filter: `drop-shadow(0 0 8px ${color})` }}
           />
-          <circle cx="0%" cy={startY} r="2.5" fill={color} />
-          <circle cx="100%" cy={endY} r="2.5" fill={color} />
+          {/* Endpoint Terminals */}
+          <circle cx="0%" cy={startY} r="6" fill={color} stroke="#FFFFFF" strokeWidth="2.5" />
+          <circle cx="100%" cy={endY} r="6" fill={color} stroke="#FFFFFF" strokeWidth="2.5" />
         </svg>
       </div>
-      <span>{labelEnd}</span>
+
+      {/* High-Contrast End Badge */}
+      <div
+        style={{
+          background: '#090A0C',
+          color: '#FFFFFF',
+          fontSize: 14,
+          fontWeight: 900,
+          fontFamily: IndustrialTheme.fonts.mono,
+          letterSpacing: '0.04em',
+          padding: '7px 16px',
+          borderRadius: 8,
+          border: `1.5px solid ${color}`,
+          boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+          whiteSpace: 'nowrap'
+        }}
+      >
+        {labelEnd}
+      </div>
     </div>
   );
 };
