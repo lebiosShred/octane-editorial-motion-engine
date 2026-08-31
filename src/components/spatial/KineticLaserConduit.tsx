@@ -20,6 +20,10 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
+  if (drawProgress <= 0.01) {
+    return null;
+  }
+
   const minX = Math.min(x1, x2) - 80;
   const minY = Math.min(y1, y2) - 80;
   const width = Math.abs(x2 - x1) + 160;
@@ -35,15 +39,11 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
   const pathD = `M ${startX} ${startY} C ${startX + dx * 0.45} ${startY}, ${startX + dx * 0.55} ${endY}, ${endX} ${endY}`;
   const totalLength = Math.sqrt(dx * dx + dy * dy) * 1.15;
 
-  // Active Photon Pulse Packet
+  // Active Photon Pulse Packet (Only active when line is substantially drawn)
   const photonProgress = (frame * 5) % totalLength;
   const photonFraction = drawProgress > 0.8 ? (photonProgress / totalLength) : 0;
   const photonX = startX + dx * photonFraction;
   const photonY = startY + dy * photonFraction;
-
-  // Port Arrival Shockwave Ripple Ring
-  const rippleScale = interpolate((frame * 2.5) % 50, [0, 50], [1, 3.5]);
-  const rippleOpacity = interpolate((frame * 2.5) % 50, [0, 50], [0.8, 0]);
 
   const markerId = `laser-arrow-${color.replace('#', '')}`;
 
@@ -109,24 +109,11 @@ export const KineticLaserConduit: React.FC<KineticLaserConduitProps> = ({
           opacity={0.9}
         />
 
-        {/* High-Velocity Photon Energy Pulse */}
+        {/* High-Velocity Photon Energy Pulse (Single clean traveling pulse) */}
         {drawProgress > 0.6 && (
           <g transform={`translate(${photonX}, ${photonY})`}>
-            <circle r="6" fill={color} opacity={0.6} filter="url(#laserGlow)" />
-            <circle r="3" fill="#FFFFFF" />
-          </g>
-        )}
-
-        {/* Source Port Terminal */}
-        <circle cx={startX} cy={startY} r="4" fill={color} />
-        <circle cx={startX} cy={startY} r="2" fill="#FFFFFF" />
-
-        {/* Destination Port Ripple Shockwave */}
-        {drawProgress >= 0.95 && (
-          <g transform={`translate(${endX}, ${endY})`}>
-            <circle r={rippleScale * 4} fill="none" stroke={color} strokeWidth="1.5" opacity={rippleOpacity} />
-            <circle r="4.5" fill={color} />
-            <circle r="2" fill="#FFFFFF" />
+            <circle r="5" fill={color} opacity={0.7} filter="url(#laserGlow)" />
+            <circle r="2.5" fill="#FFFFFF" />
           </g>
         )}
       </svg>

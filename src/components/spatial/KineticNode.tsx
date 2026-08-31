@@ -86,7 +86,7 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
   // Organic micro-harmonic float
   const harmonicFloat = Math.sin((frame + (x * 0.05)) * 0.04) * 3;
 
-  // ── SPECULAR LIGHT GLINT SWEEP (Runs during entrance) ──
+  // ── SPECULAR LIGHT GLINT SWEEP ──
   const glintProgress = interpolate(relFrame, [6, 26], [-100, 220], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp'
@@ -152,10 +152,6 @@ export const KineticNode: React.FC<KineticNodeProps> = ({
         <div style={{ position: 'absolute', top: 6, right: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┐</div>
         <div style={{ position: 'absolute', bottom: 6, left: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>└</div>
         <div style={{ position: 'absolute', bottom: 6, right: 8, fontSize: 11, color: 'rgba(0,0,0,0.18)', fontFamily: 'monospace' }}>┘</div>
-
-        {/* Connection Port Indicators */}
-        <div style={{ position: 'absolute', left: -4, top: '50%', transform: 'translateY(-50%)', width: 7, height: 7, borderRadius: '50%', backgroundColor: isActive ? IndustrialTheme.signals.crimson : '#94A3B8', border: '1.5px solid #FFFFFF' }} />
-        <div style={{ position: 'absolute', right: -4, top: '50%', transform: 'translateY(-50%)', width: 7, height: 7, borderRadius: '50%', backgroundColor: isActive ? IndustrialTheme.signals.mint : '#94A3B8', border: '1.5px solid #FFFFFF' }} />
 
         {/* ── PHASE 2: HEADER & BADGE ── */}
         <div

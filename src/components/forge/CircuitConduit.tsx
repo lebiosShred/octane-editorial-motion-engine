@@ -2,68 +2,54 @@ import React from 'react';
 import { IndustrialTheme } from '../../types/theme';
 
 interface CircuitConduitProps {
-  width?: number;
-  height?: number;
-  startX?: number;
-  startY?: number;
-  endX?: number;
-  endY?: number;
-  color?: string;
-  pulseOffset?: number;
   labelStart?: string;
   labelEnd?: string;
+  pulseOffset?: number;
+  color?: string;
 }
 
 export const CircuitConduit: React.FC<CircuitConduitProps> = ({
-  width = 240,
-  height = 24,
-  startX = 10,
-  startY = 12,
-  endX = 230,
-  endY = 12,
-  color = '#0F172A',
+  labelStart = 'Source',
+  labelEnd = 'Target',
   pulseOffset = 0,
-  labelStart,
-  labelEnd
+  color = '#0F172A'
 }) => {
+  const height = 24;
+  const startY = 12;
+  const endY = 12;
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      {labelStart && (
-        <span style={{ fontSize: 11, color: IndustrialTheme.text.secondary, fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
-          {labelStart}
-        </span>
-      )}
-
-      <svg width={width} height={height} style={{ overflow: 'visible' }}>
-        <line
-          x1={startX}
-          y1={startY}
-          x2={endX}
-          y2={endY}
-          stroke="rgba(0, 0, 0, 0.08)"
-          strokeWidth="2"
-        />
-        <line
-          x1={startX}
-          y1={startY}
-          x2={endX}
-          y2={endY}
-          stroke={color}
-          strokeWidth="2"
-          strokeDasharray="12 6"
-          strokeDashoffset={pulseOffset}
-        />
-        <circle cx={startX} cy={startY} r="3" fill={color} />
-        <circle cx={startX} cy={startY} r="6" stroke={color} strokeWidth="1" fill="none" opacity="0.4" />
-        <circle cx={endX} cy={endY} r="3" fill={color} />
-        <circle cx={endX} cy={endY} r="6" stroke={color} strokeWidth="1" fill="none" opacity="0.4" />
-      </svg>
-
-      {labelEnd && (
-        <span style={{ fontSize: 11, color: IndustrialTheme.signals.mint, fontFamily: 'monospace', whiteSpace: 'nowrap', fontWeight: 700 }}>
-          {labelEnd}
-        </span>
-      )}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        padding: '0 4px',
+        fontSize: 10,
+        fontFamily: 'monospace',
+        color: IndustrialTheme.text.secondary
+      }}
+    >
+      <span>{labelStart}</span>
+      <div style={{ flex: 1, height, position: 'relative', margin: '0 8px' }}>
+        <svg width="100%" height={height} style={{ overflow: 'visible' }}>
+          <line
+            x1="0%"
+            y1={startY}
+            x2="100%"
+            y2={endY}
+            stroke={color}
+            strokeWidth="1.5"
+            strokeDasharray="6 4"
+            strokeDashoffset={-pulseOffset}
+            opacity={0.7}
+          />
+          <circle cx="0%" cy={startY} r="2.5" fill={color} />
+          <circle cx="100%" cy={endY} r="2.5" fill={color} />
+        </svg>
+      </div>
+      <span>{labelEnd}</span>
     </div>
   );
 };
