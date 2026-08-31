@@ -1,6 +1,11 @@
 import React from 'react';
 import { AbsoluteFill, Audio, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import timingData from '../../public/voiceover.json';
+import { ChassisFrame } from '../components/forge/ChassisFrame';
+import { CircuitConduit } from '../components/forge/CircuitConduit';
+import { BitLatticeGrid } from '../components/forge/BitLatticeGrid';
+import { TelemetryGauge } from '../components/forge/TelemetryGauge';
+import { HexRegisterDump } from '../components/forge/HexRegisterDump';
 
 export const TM1FeederCommercial: React.FC = () => {
   const frame = useCurrentFrame();
@@ -311,9 +316,10 @@ export const TM1FeederCommercial: React.FC = () => {
                   <div style={{ fontSize: 38, fontWeight: 800, fontFamily: 'monospace', color: '#F87171', fontVariantNumeric: 'tabular-nums' }}>
                     {s2CellCount.toLocaleString()}
                   </div>
-                  <div style={{ fontSize: 12, color: '#64748B', marginTop: 4 }}>
+                  <div style={{ fontSize: 12, color: '#64748B', marginTop: 4, marginBottom: 12 }}>
                     15,000 SKUs &times; 200 Stores &times; 36 Periods fed at Consolidated Level
                   </div>
+                  <BitLatticeGrid populatedCount={8} totalCount={128} isOverfed={true} />
                 </div>
 
                 {/* TARGET 4: 250:1 Ratio Gauge (Spotlighted 12.0s - 16.5s) */}
@@ -492,9 +498,10 @@ export const TM1FeederCommercial: React.FC = () => {
                   <div style={{ margin: '14px 0', color: '#F8FAFC' }}>
                     &gt; LogOutput(&apos;INFO&apos;, &apos;CUBE: Revenue | RATIO: 4.8:1 | STATUS: HEALTHY&apos;);
                   </div>
-                  <div style={{ color: '#10B981', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', padding: '6px 12px', borderRadius: 6, display: 'inline-block' }}>
+                  <div style={{ color: '#10B981', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', padding: '6px 12px', borderRadius: 6, display: 'inline-block', marginBottom: 14 }}>
                     DIAGNOSTIC PASSED: Fed Ratio strictly below 5:1 threshold.
                   </div>
+                  <HexRegisterDump />
                 </div>
               </div>
             ) : (

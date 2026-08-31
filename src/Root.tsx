@@ -1,5 +1,5 @@
 import React from 'react';
-import { Composition } from 'remotion';
+import { Composition, registerRoot } from 'remotion';
 import { TM1FeederCommercial } from './compositions/TM1FeederCommercial';
 import { KineticSpreadsheetsMontage } from './compositions/KineticSpreadsheetsMontage';
 
@@ -28,3 +28,5 @@ export const Root: React.FC = () => {
     </>
   );
 };
+
+registerRoot(Root);
