@@ -39,21 +39,33 @@ export const Act2_Catalog3D: React.FC = () => {
 
         {/* Watsonx Core Glowing Orb */}
         <mesh position={[0, 1.2, 0]}>
-          <octahedronGeometry args={[0.5, 2]} />
+          <octahedronGeometry args={[0.55, 2]} />
           <meshStandardMaterial
             color="#4daeeb"
             emissive="#4daeeb"
-            emissiveIntensity={2.5}
+            emissiveIntensity={3.2}
             wireframe
           />
         </mesh>
 
+        {/* Orbit Ring */}
+        <mesh position={[0, 1.2, 0]} rotation={[Math.PI / 3, 0, 0]}>
+          <torusGeometry args={[1.2, 0.02, 16, 64]} />
+          <meshStandardMaterial
+            color="#4daeeb"
+            emissive="#4daeeb"
+            emissiveIntensity={2.0}
+          />
+        </mesh>
+
         <CanvasText
-          position={[0, 0, 2.1]}
+          position={[0, 0.1, 2.1]}
           text="IBM watsonx Orchestrate"
           subtext="[ CENTRAL GOVERNED AGENT REGISTRY: 150+ CONNECTORS ]"
           color="#FFFFFF"
           subColor="#4daeeb"
+          bgColor="rgba(11, 15, 25, 0.92)"
+          borderColor="#4daeeb"
           fontSize={24}
           subFontSize={12}
           width={480}
