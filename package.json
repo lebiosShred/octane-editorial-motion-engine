@@ -1,7 +1,7 @@
 {
   "name": "watsonx-motion-graphics",
   "version": "1.0.0",
-  "description": "Remotion 60 FPS 1:1 Word-and-Visual Motion Graphics Engine for IBM watsonx Orchestrate",
+  "description": "Production-grade Remotion 60 FPS WebGL 3D Motion Graphics Engine with Dynamic Layout Archetypes and Authentic UI Textures",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^10.7.8",
@@ -25,7 +25,10 @@
   },
   "scripts": {
     "dev": "remotion studio",
-    "render": "remotion render WatsonxVideo out/watsonx_orchestrate.mp4",
+    "render": "remotion render WatsonxVideo out/watsonx_orchestrate_master.mp4 --concurrency=4 --gl=angle",
+    "render:vertical": "remotion render WatsonxVideoVertical out/watsonx_orchestrate_vertical.mp4 --concurrency=4 --gl=angle",
+    "render:stills": "remotion still WatsonxVideo out/stills/beat_02_vscode.png --frame=300 && remotion still WatsonxVideo out/stills/beat_05_error.png --frame=850 && remotion still WatsonxVideo out/stills/beat_13_servicenow.png --frame=2580 && remotion still WatsonxVideo out/stills/beat_14_approved.png --frame=2650 && remotion still WatsonxVideo out/stills/beat_15_opentelemetry.png --frame=2850 && remotion still WatsonxVideo out/stills/beat_16_hero.png --frame=3150",
+    "sfx:synth": "python scripts/synthesize_audio_foley.py",
     "build": "remotion bundle"
   }
 }
