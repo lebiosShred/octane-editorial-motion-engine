@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
 import { OPENING_SCENE_GEOMETRY, SPATIAL_TOKENS } from '../../utils/SpatialLayoutMatrix';
+import { OPTICAL_MATERIALS, SpecularTopRim } from '../../utils/OpticalMateriality';
 
 export const StoryOpeningSequence: React.FC = () => {
   const frame = useCurrentFrame();
@@ -9,14 +10,14 @@ export const StoryOpeningSequence: React.FC = () => {
   const geom = OPENING_SCENE_GEOMETRY;
 
   // ==========================================
-  // STEP 1: Isolated "6" drops in (Frames 0 - 75)
+  // STEP 1: Isolated Titanium "6" drops in (Frames 0 - 75)
   // ==========================================
   const sixEntranceSpring = spring({
     frame,
     fps,
     config: { mass: 0.6, damping: 12, stiffness: 140 },
   });
-  const sixInitialScale = interpolate(sixEntranceSpring, [0, 1], [0.7, 1.0]);
+  const sixInitialScale = interpolate(sixEntranceSpring, [0, 1], [0.75, 1.0]);
   const sixInitialOpacity = interpolate(sixEntranceSpring, [0, 1], [0, 1]);
 
   // ==========================================
@@ -33,7 +34,7 @@ export const StoryOpeningSequence: React.FC = () => {
   const subtitleY = interpolate(step2Spring, [0, 1], [30, 0]);
 
   // ==========================================
-  // STEP 3: Vertical White Line draws deep down across Screen 1 & Screen 2 (Frames 150 - 240)
+  // STEP 3: Vertical Neon Laser Line draws deep down across Screen 1 & Screen 2 (Frames 150 - 240)
   // ==========================================
   const lineSpring = spring({
     frame: Math.max(0, frame - 150),
@@ -44,7 +45,7 @@ export const StoryOpeningSequence: React.FC = () => {
   const lineOpacity = interpolate(lineSpring, [0, 1], [0, 1]);
 
   // ==========================================
-  // STEP 4: "DAY 1" pin pops in at top of timeline corridor (Frames 230 - 280)
+  // STEP 4: "DAY 1" Git Commit Tag pops in at top of timeline corridor (Frames 230 - 280)
   // ==========================================
   const pinPopSpring = spring({
     frame: Math.max(0, frame - 230),
@@ -55,7 +56,7 @@ export const StoryOpeningSequence: React.FC = () => {
   const pinOpacity = interpolate(pinPopSpring, [0, 1], [0, 1]);
 
   // ==========================================
-  // STEP 5: "DAY 1" slides down the long line (Frames 280 - 430)
+  // STEP 5: "DAY 1" travels down the 2400px timeline (Frames 280 - 430)
   // ==========================================
   const slideSpring = spring({
     frame: Math.max(0, frame - 280),
@@ -72,7 +73,7 @@ export const StoryOpeningSequence: React.FC = () => {
   );
 
   // ==========================================
-  // CAMERA TRACKING (CameraY)
+  // DYNAMIC CAMERA TRACKING (CameraY)
   // ==========================================
   const cameraTrackingY = interpolate(
     slideSpring,
@@ -94,7 +95,7 @@ export const StoryOpeningSequence: React.FC = () => {
     fps,
     config: { mass: 0.6, damping: 12, stiffness: 140 },
   });
-  const stalledScale = interpolate(stalledSpring, [0, 1], [0.75, 1.0]);
+  const stalledScale = interpolate(stalledSpring, [0, 1], [0.8, 1.0]);
   const stalledOpacity = interpolate(stalledSpring, [0, 1], [0, 1]);
 
   const isStalled = frame >= 415;
@@ -132,6 +133,7 @@ export const StoryOpeningSequence: React.FC = () => {
             transform: `translateY(${headerY}px)`,
           }}
         >
+          {/* 3D Titanium "6" with Specular Rim */}
           <div
             style={{
               fontFamily: '"Inter", sans-serif',
@@ -142,8 +144,9 @@ export const StoryOpeningSequence: React.FC = () => {
               letterSpacing: '-0.06em',
               transform: `scale(${sixInitialScale})`,
               opacity: sixInitialOpacity,
-              textShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 0 80px rgba(77, 174, 235, 0.25)',
+              textShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 80px rgba(77, 174, 235, 0.3)',
               userSelect: 'none',
+              position: 'relative',
             }}
           >
             6
@@ -189,7 +192,7 @@ export const StoryOpeningSequence: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          {/* Vertical White Line */}
+          {/* Vertical Neon Conduit Line */}
           <div
             style={{
               width: 6,
@@ -218,7 +221,7 @@ export const StoryOpeningSequence: React.FC = () => {
             )}
           </div>
 
-          {/* DAY PIN */}
+          {/* TACTILE DAY COMMIT PIN */}
           <div
             style={{
               position: 'absolute',
@@ -239,14 +242,14 @@ export const StoryOpeningSequence: React.FC = () => {
                 color: isStalled ? '#FFFFFF' : '#000000',
                 fontSize: 34,
                 fontWeight: 900,
-                padding: '14px 40px',
+                padding: '14px 42px',
                 borderRadius: 40,
                 fontFamily: '"Inter", sans-serif',
                 letterSpacing: '0.04em',
-                border: '1px solid rgba(255, 255, 255, 0.6)',
+                border: '1.5px solid rgba(255, 255, 255, 0.7)',
                 boxShadow: isStalled
-                  ? '0 15px 40px rgba(239, 68, 68, 0.8), inset 0 2px 2px rgba(255, 255, 255, 0.8)'
-                  : '0 15px 40px rgba(77, 174, 235, 0.8), inset 0 2px 2px rgba(255, 255, 255, 0.8)',
+                  ? '0 20px 50px rgba(239, 68, 68, 0.8), inset 0 2px 3px rgba(255, 255, 255, 0.85)'
+                  : '0 20px 50px rgba(77, 174, 235, 0.8), inset 0 2px 3px rgba(255, 255, 255, 0.85)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
@@ -281,46 +284,67 @@ export const StoryOpeningSequence: React.FC = () => {
             />
           </div>
 
-          {/* SCREEN 2 DESTINATION: [ PIPELINE STALLED ] CARD */}
+          {/* SCREEN 2 DESTINATION: AUTHENTIC [ PIPELINE STALLED ] TELEMETRY CARD */}
           <div
             style={{
               position: 'absolute',
               top: geom.cardTopY,
               transform: `scale(${stalledScale})`,
               opacity: stalledOpacity,
-              width: 580,
-              background: 'linear-gradient(155deg, #1A1215 0%, #0D090B 100%)',
-              border: '2px solid rgba(239, 68, 68, 0.5)',
-              borderRadius: 24,
+              width: 640,
+              ...OPTICAL_MATERIALS.CRIMSON_OBSIDIAN,
               padding: '28px 36px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              boxShadow: '0 30px 70px rgba(0, 0, 0, 0.95), 0 0 50px rgba(239, 68, 68, 0.25)',
               zIndex: 5,
+              position: 'relative',
             }}
           >
+            <SpecularTopRim />
             <div
               style={{
-                fontSize: 34,
-                fontWeight: 900,
-                color: '#EF4444',
-                fontFamily: '"JetBrains Mono", monospace',
-                letterSpacing: '0.08em',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
               }}
             >
-              [ PIPELINE STALLED ]
+              <div
+                style={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: '50%',
+                  backgroundColor: '#EF4444',
+                  boxShadow: '0 0 14px #EF4444',
+                }}
+              />
+              <div
+                style={{
+                  fontSize: 32,
+                  fontWeight: 900,
+                  color: '#EF4444',
+                  fontFamily: '"JetBrains Mono", monospace',
+                  letterSpacing: '0.08em',
+                }}
+              >
+                [ PIPELINE STALLED ]
+              </div>
             </div>
+
             <div
               style={{
-                marginTop: 8,
-                fontSize: 22,
+                marginTop: 10,
+                fontSize: 20,
                 color: '#94A3B8',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: '"JetBrains Mono", monospace',
                 fontWeight: 600,
+                display: 'flex',
+                gap: 16,
               }}
             >
-              0 Agents In Production
+              <span>AGENTS_IN_PROD: 0</span>
+              <span>//</span>
+              <span style={{ color: '#EF4444' }}>DEPLOYMENT_TIMEOUT</span>
             </div>
           </div>
         </div>

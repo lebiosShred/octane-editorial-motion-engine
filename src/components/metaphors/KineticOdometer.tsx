@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
+import { OPTICAL_MATERIALS, SpecularTopRim } from '../../utils/OpticalMateriality';
 
 export const KineticOdometer: React.FC = () => {
   const frame = useCurrentFrame();
@@ -70,35 +71,29 @@ export const KineticOdometer: React.FC = () => {
         {/* Chronograph Dial Housing */}
         <div
           style={{
-            width: 540,
-            height: 380,
-            background: 'linear-gradient(155deg, #182333 0%, #0c121b 100%)',
-            borderRadius: 36,
-            border: '2px solid rgba(255, 255, 255, 0.2)',
+            width: 580,
+            height: 400,
+            ...OPTICAL_MATERIALS.TITANIUM_PANEL,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             padding: 32,
-            boxShadow: `
-              0 40px 90px -15px rgba(0, 0, 0, 0.95),
-              inset 0 3px 3px rgba(255, 255, 255, 0.4),
-              inset 0 -8px 20px rgba(0, 0, 0, 0.8),
-              0 0 50px rgba(77, 174, 235, 0.25)
-            `,
             transformStyle: 'preserve-3d',
             position: 'relative',
           }}
         >
+          <SpecularTopRim />
+
           {/* Rotating Precision Chronograph Ring */}
           <svg
             style={{
               position: 'absolute',
-              width: 480,
-              height: 480,
+              width: 500,
+              height: 500,
               transform: `rotate(${ringRotation}deg)`,
               pointerEvents: 'none',
-              opacity: 0.4,
+              opacity: 0.45,
             }}
             viewBox="0 0 480 480"
           >
@@ -162,71 +157,71 @@ export const KineticOdometer: React.FC = () => {
             <span
               style={{
                 fontFamily: '"Inter", sans-serif',
-                fontSize: 100,
+                fontSize: 90,
                 fontWeight: 900,
                 color: '#4daeeb',
-                marginLeft: 4,
                 lineHeight: 0.9,
+                marginLeft: 4,
               }}
             >
               x
             </span>
           </div>
 
-          {/* Bottom Sub-label */}
+          {/* Subtext Tag */}
           <div
             style={{
-              marginTop: 16,
-              fontSize: 24,
-              fontWeight: 700,
+              marginTop: 18,
+              fontSize: 22,
               color: '#94A3B8',
               fontFamily: '"Inter", sans-serif',
-              letterSpacing: '0.04em',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
               transform: 'translateZ(20px)',
             }}
           >
-            FASTER TIME-TO-VALUE
+            Faster Time-To-Value
           </div>
         </div>
 
-        {/* Big Bold "DEPLOY IN DAYS" Underneath */}
+        {/* Bottom Tactile Pill Badge with 80px clean vertical breathing room */}
         <div
           style={{
-            marginTop: 48,
+            marginTop: 80,
             transformStyle: 'preserve-3d',
             transform: `translateZ(60px) scale(${daysScale})`,
             opacity: daysOpacity,
+            background: 'linear-gradient(145deg, #1E293B 0%, #0F172A 100%)',
+            border: '2px solid rgba(77, 174, 235, 0.6)',
+            borderRadius: 40,
+            padding: '16px 44px',
+            color: '#FFFFFF',
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
+            gap: 12,
+            boxShadow: '0 20px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(77, 174, 235, 0.3)',
           }}
         >
           <div
             style={{
-              fontSize: 82,
-              fontWeight: 900,
-              color: '#FFFFFF',
-              fontFamily: '"Inter", sans-serif',
-              letterSpacing: '-0.03em',
-              textAlign: 'center',
-              lineHeight: 1.0,
-              textShadow: '0 10px 40px rgba(0, 0, 0, 0.9), 0 0 60px rgba(77, 174, 235, 0.3)',
+              width: 10,
+              height: 10,
+              borderRadius: '50%',
+              backgroundColor: '#4daeeb',
+              boxShadow: '0 0 10px #4daeeb',
             }}
-          >
-            DEPLOY IN DAYS.
-          </div>
-          <div
+          />
+          <span
             style={{
-              fontSize: 48,
-              fontWeight: 800,
-              color: '#64748B',
-              fontFamily: '"Inter", sans-serif',
-              letterSpacing: '-0.02em',
-              marginTop: 12,
+              fontFamily: '"JetBrains Mono", monospace',
+              fontSize: 24,
+              fontWeight: 900,
+              letterSpacing: '0.06em',
             }}
           >
-            NOT QUARTERS.
-          </div>
+            DEPLOY IN DAYS, NOT MONTHS
+          </span>
         </div>
       </div>
     </div>
