@@ -1,9 +1,12 @@
 import React from 'react';
 import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
+import { OPENING_SCENE_GEOMETRY, SPATIAL_TOKENS } from '../../utils/SpatialLayoutMatrix';
 
 export const StoryOpeningSequence: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+
+  const geom = OPENING_SCENE_GEOMETRY;
 
   // ==========================================
   // STEP 1: Isolated "6" drops in (Frames 0 - 75)
@@ -24,24 +27,24 @@ export const StoryOpeningSequence: React.FC = () => {
     fps,
     config: { mass: 0.8, damping: 14, stiffness: 110 },
   });
-  const sixYOffset = interpolate(step2Spring, [0, 1], [0, -180]);
-  const subtitleY = interpolate(step2Spring, [0, 1], [40, 0]);
+  const headerInitialOffset = geom.headerInitialTop - geom.headerActiveTop;
+  const headerY = interpolate(step2Spring, [0, 1], [headerInitialOffset, 0]);
   const subtitleOpacity = interpolate(step2Spring, [0, 1], [0, 1]);
+  const subtitleY = interpolate(step2Spring, [0, 1], [30, 0]);
 
   // ==========================================
   // STEP 3: Vertical White Line draws deep down across Screen 1 & Screen 2 (Frames 150 - 240)
-  // Line extends from Y = 700 all the way down to Y = 2400 (Length = 1700px)
   // ==========================================
   const lineSpring = spring({
     frame: Math.max(0, frame - 150),
     fps,
     config: { mass: 0.9, damping: 16, stiffness: 80 },
   });
-  const lineHeight = interpolate(lineSpring, [0, 1], [0, 1750]);
+  const lineHeight = interpolate(lineSpring, [0, 1], [0, geom.timelineLength]);
   const lineOpacity = interpolate(lineSpring, [0, 1], [0, 1]);
 
   // ==========================================
-  // STEP 4: "DAY 1" pin pops in at the top of the line (Frames 230 - 280)
+  // STEP 4: "DAY 1" pin pops in at top of timeline corridor (Frames 230 - 280)
   // ==========================================
   const pinPopSpring = spring({
     frame: Math.max(0, frame - 230),
@@ -53,16 +56,14 @@ export const StoryOpeningSequence: React.FC = () => {
 
   // ==========================================
   // STEP 5: "DAY 1" slides down the long line (Frames 280 - 430)
-  // Pin travels from Y = 0 to Y = 1700
   // ==========================================
   const slideSpring = spring({
     frame: Math.max(0, frame - 280),
     fps,
     config: { mass: 1.0, damping: 16, stiffness: 80 },
   });
-  const pinTravelY = interpolate(slideSpring, [0, 1], [0, 1700]);
+  const pinTravelY = interpolate(slideSpring, [0, 1], [0, geom.timelineLength]);
 
-  // Day counter ticks from 1 to 180 during travel
   const dayValue = Math.round(
     interpolate(frame, [280, 420], [1, 180], {
       extrapolateLeft: 'clamp',
@@ -71,14 +72,12 @@ export const StoryOpeningSequence: React.FC = () => {
   );
 
   // ==========================================
-  // CAMERA TRACKING (CameraY):
-  // As the pin passes the bottom half of Screen 1, the camera smoothly tracks DOWN
-  // pushing "6 MONTHS OF GLUE CODE" off-screen and centering Screen 2!
+  // CAMERA TRACKING (CameraY)
   // ==========================================
   const cameraTrackingY = interpolate(
     slideSpring,
-    [0.15, 0.85],
-    [0, 1480],
+    [0.15, 0.9],
+    [0, geom.cameraMaxTrackingY],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
@@ -98,7 +97,6 @@ export const StoryOpeningSequence: React.FC = () => {
   const stalledScale = interpolate(stalledSpring, [0, 1], [0.75, 1.0]);
   const stalledOpacity = interpolate(stalledSpring, [0, 1], [0, 1]);
 
-  // Warning state on Day 180
   const isStalled = frame >= 415;
 
   return (
@@ -112,7 +110,6 @@ export const StoryOpeningSequence: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Continuous World Stage Canvas (Moves with CameraY) */}
       <div
         style={{
           width: '100%',
@@ -122,26 +119,23 @@ export const StoryOpeningSequence: React.FC = () => {
           position: 'relative',
         }}
       >
-        {/* ========================================================= */}
-        {/* SCREEN 1 REGION (Y = 0 to Y = 960)                         */}
-        {/* ========================================================= */}
+        {/* SCREEN 1 REGION: Typography Header */}
         <div
           style={{
             position: 'absolute',
-            top: 420,
+            top: geom.headerActiveTop,
             left: 0,
             right: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            transform: `translateY(${sixYOffset}px)`,
+            transform: `translateY(${headerY}px)`,
           }}
         >
-          {/* STEP 1: Isolated "6" */}
           <div
             style={{
               fontFamily: '"Inter", sans-serif',
-              fontSize: 480,
+              fontSize: geom.sixFontSize,
               fontWeight: 900,
               color: '#FFFFFF',
               lineHeight: 0.85,
@@ -155,10 +149,9 @@ export const StoryOpeningSequence: React.FC = () => {
             6
           </div>
 
-          {/* STEP 2: "MONTHS OF GLUE CODE" */}
           <div
             style={{
-              marginTop: 12,
+              marginTop: SPATIAL_TOKENS.RHYTHM.MICRO,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -169,7 +162,7 @@ export const StoryOpeningSequence: React.FC = () => {
             <div
               style={{
                 fontFamily: '"Inter", sans-serif',
-                fontSize: 68,
+                fontSize: geom.subtitleFontSize,
                 fontWeight: 900,
                 color: '#FFFFFF',
                 textTransform: 'uppercase',
@@ -183,13 +176,11 @@ export const StoryOpeningSequence: React.FC = () => {
           </div>
         </div>
 
-        {/* ========================================================= */}
-        {/* CONTINUOUS TIMELINE CORRIDOR (Spans Screen 1 -> Screen 2) */}
-        {/* ========================================================= */}
+        {/* CONTINUOUS TIMELINE CORRIDOR */}
         <div
           style={{
             position: 'absolute',
-            top: 720,
+            top: geom.timelineStartY,
             left: '50%',
             transform: 'translateX(-50%)',
             width: 400,
@@ -198,7 +189,7 @@ export const StoryOpeningSequence: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          {/* STEP 3: Vertical White Line (1700px continuous length) */}
+          {/* Vertical White Line */}
           <div
             style={{
               width: 6,
@@ -210,7 +201,6 @@ export const StoryOpeningSequence: React.FC = () => {
               position: 'relative',
             }}
           >
-            {/* Glowing tracer tip during drawing */}
             {lineSpring < 0.98 && (
               <div
                 style={{
@@ -228,7 +218,7 @@ export const StoryOpeningSequence: React.FC = () => {
             )}
           </div>
 
-          {/* STEP 4 & 5: "DAY 1" -> "DAY 180" Sliding Motion Graphic Pin */}
+          {/* DAY PIN */}
           <div
             style={{
               position: 'absolute',
@@ -241,7 +231,6 @@ export const StoryOpeningSequence: React.FC = () => {
               zIndex: 10,
             }}
           >
-            {/* 3D Tactile Pin Badge */}
             <div
               style={{
                 background: isStalled
@@ -265,7 +254,6 @@ export const StoryOpeningSequence: React.FC = () => {
                 overflow: 'hidden',
               }}
             >
-              {/* Glass Top Rim */}
               <div
                 style={{
                   position: 'absolute',
@@ -280,7 +268,6 @@ export const StoryOpeningSequence: React.FC = () => {
               DAY {dayValue}
             </div>
 
-            {/* Downward Needle Pointer */}
             <div
               style={{
                 width: 0,
@@ -294,15 +281,11 @@ export const StoryOpeningSequence: React.FC = () => {
             />
           </div>
 
-          {/* ========================================================= */}
-          {/* SCREEN 2 DESTINATION: [ PIPELINE STALLED ] CARD           */}
-          {/* Sits at bottom of line (Y = 1750), perfectly centered in  */}
-          {/* Screen 2 once the camera tracks down!                     */}
-          {/* ========================================================= */}
+          {/* SCREEN 2 DESTINATION: [ PIPELINE STALLED ] CARD */}
           <div
             style={{
               position: 'absolute',
-              top: 1760,
+              top: geom.cardTopY,
               transform: `scale(${stalledScale})`,
               opacity: stalledOpacity,
               width: 580,

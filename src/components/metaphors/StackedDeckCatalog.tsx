@@ -1,71 +1,85 @@
 import React from 'react';
 import { useCurrentFrame, spring, useVideoConfig, interpolate, Img, staticFile } from 'remotion';
 
+interface CardData {
+  id: string;
+  name: string;
+  logo: string;
+  width: number;
+  glowColor: string;
+  finalX: number;
+  finalRotZ: number;
+  zElev: number;
+}
+
+const CARDS: CardData[] = [
+  {
+    id: 'sap',
+    name: 'SAP',
+    logo: 'assets/logos/sap_official.svg',
+    width: 170,
+    glowColor: 'rgba(0, 143, 211, 0.4)',
+    finalX: -260,
+    finalRotZ: -6,
+    zElev: 20,
+  },
+  {
+    id: 'salesforce',
+    name: 'Salesforce',
+    logo: 'assets/logos/salesforce_official.svg',
+    width: 160,
+    glowColor: 'rgba(0, 161, 224, 0.5)',
+    finalX: 0,
+    finalRotZ: 0,
+    zElev: 50,
+  },
+  {
+    id: 'servicenow',
+    name: 'ServiceNow',
+    logo: 'assets/logos/servicenow_official.svg',
+    width: 200,
+    glowColor: 'rgba(129, 181, 161, 0.4)',
+    finalX: 260,
+    finalRotZ: 6,
+    zElev: 20,
+  },
+];
+
 export const StackedDeckCatalog: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Continuous subtle 3D floating hover
-  const hoverY = Math.sin(frame * 0.04) * 8;
-  const hoverRotX = 14 + Math.sin(frame * 0.03) * 2;
-  const hoverRotY = -4 + Math.cos(frame * 0.035) * 3;
-
-  // Deck Fan-Out Spring (Cards spread from compact stack into 3-card spread)
-  const fanSpring = spring({
+  // Entrance spring
+  const enterSpring = spring({
     frame,
     fps,
-    config: { mass: 0.8, damping: 15, stiffness: 110 },
+    config: { mass: 0.8, damping: 14, stiffness: 120 },
   });
+  const enterScale = interpolate(enterSpring, [0, 1], [0.75, 1.0]);
+  const enterOpacity = interpolate(enterSpring, [0, 1], [0, 1]);
 
-  // Fiber-Optic Conduit Draw Progress
-  const conduitSpring = spring({
+  // Fanning spring
+  const fanSpring = spring({
     frame: Math.max(0, frame - 18),
     fps,
-    config: { mass: 0.6, damping: 14, stiffness: 130 },
+    config: { mass: 0.9, damping: 13, stiffness: 90 },
   });
-  const conduitOpacity = interpolate(conduitSpring, [0, 1], [0, 1]);
 
-  // Front 3D "AGENT CATALOG" Pill Badge Pop
+  // Front pill badge entrance
   const pillSpring = spring({
-    frame: Math.max(0, frame - 28),
+    frame: Math.max(0, frame - 32),
     fps,
-    config: { mass: 0.6, damping: 12, stiffness: 150 },
+    config: { mass: 0.5, damping: 11, stiffness: 160 },
   });
-  const pillScale = interpolate(pillSpring, [0, 1], [0.4, 1.0]);
+  const pillScale = interpolate(pillSpring, [0, 1], [0.6, 1.0]);
   const pillOpacity = interpolate(pillSpring, [0, 1], [0, 1]);
 
-  // Traveling laser light pulses along conduits
-  const pulseOffset = (frame * 7) % 220;
-
-  const cards = [
-    {
-      name: 'SAP',
-      logo: 'assets/logos/sap_official.svg',
-      width: 170,
-      targetX: -300,
-      targetRotZ: -4,
-      zElev: 20,
-      glowColor: 'rgba(0, 143, 211, 0.3)',
-    },
-    {
-      name: 'salesforce',
-      logo: 'assets/logos/salesforce_official.svg',
-      width: 180,
-      targetX: 0,
-      targetRotZ: 0,
-      zElev: 60,
-      glowColor: 'rgba(0, 161, 224, 0.4)',
-    },
-    {
-      name: 'servicenow',
-      logo: 'assets/logos/servicenow_official.svg',
-      width: 200,
-      targetX: 300,
-      targetRotZ: 4,
-      zElev: 20,
-      glowColor: 'rgba(129, 181, 161, 0.3)',
-    },
-  ];
+  // Laser beam progress connecting cards
+  const beamProgress = spring({
+    frame: Math.max(0, frame - 40),
+    fps,
+    config: { mass: 0.7, damping: 14, stiffness: 100 },
+  });
 
   return (
     <div
@@ -80,7 +94,7 @@ export const StackedDeckCatalog: React.FC = () => {
         position: 'relative',
       }}
     >
-      {/* 3D Physical Stage */}
+      {/* 3D Stage Container */}
       <div
         style={{
           display: 'flex',
@@ -88,105 +102,72 @@ export const StackedDeckCatalog: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           transformStyle: 'preserve-3d',
-          transform: `translateY(${hoverY}px) rotateX(${hoverRotX}deg) rotateY(${hoverRotY}deg)`,
+          transform: `scale(${enterScale}) rotateX(14deg)`,
+          opacity: enterOpacity,
           position: 'relative',
         }}
       >
-        {/* Glowing 3D Arched Fiber-Optic Conduits */}
+        {/* Glowing Arched Fiber-Optic Conduits behind cards */}
         <svg
           style={{
             position: 'absolute',
-            top: -110,
-            width: 960,
-            height: 240,
-            opacity: conduitOpacity,
+            width: 700,
+            height: 200,
+            top: -50,
             pointerEvents: 'none',
-            transform: 'translateZ(10px)',
             overflow: 'visible',
           }}
-          viewBox="0 0 960 240"
+          viewBox="0 0 700 200"
         >
-          <defs>
-            <linearGradient id="fiberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#4daeeb" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-              <stop offset="100%" stopColor="#4daeeb" stopOpacity="0.8" />
-            </linearGradient>
-            <filter id="glowFanning" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="6" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Conduit 1: SAP to Salesforce */}
           <path
-            d="M 230,220 C 230,30 480,30 480,220"
+            d="M 120,100 Q 350,10 580,100"
             fill="none"
             stroke="rgba(77, 174, 235, 0.3)"
-            strokeWidth="8"
-          />
-          <path
-            d="M 230,220 C 230,30 480,30 480,220"
-            fill="none"
-            stroke="url(#fiberGrad)"
             strokeWidth="4"
-            filter="url(#glowFanning)"
-            strokeDasharray="40 180"
-            strokeDashoffset={-pulseOffset}
-          />
-
-          {/* Conduit 2: Salesforce to ServiceNow */}
-          <path
-            d="M 480,220 C 480,30 730,30 730,220"
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.25)"
-            strokeWidth="8"
           />
           <path
-            d="M 480,220 C 480,30 730,30 730,220"
+            d="M 120,100 Q 350,10 580,100"
             fill="none"
-            stroke="#FFFFFF"
+            stroke="#4daeeb"
             strokeWidth="4"
-            filter="url(#glowFanning)"
-            strokeDasharray="40 180"
-            strokeDashoffset={-pulseOffset + 90}
+            strokeDasharray="460"
+            strokeDashoffset={interpolate(beamProgress, [0, 1], [460, 0])}
+            style={{
+              filter: 'drop-shadow(0 0 12px #4daeeb)',
+            }}
           />
         </svg>
 
-        {/* Fanning 3D Glass Cards */}
+        {/* Fanning Card Stack */}
         <div
           style={{
             position: 'relative',
-            width: 280,
-            height: 420,
+            width: 320,
+            height: 440,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             transformStyle: 'preserve-3d',
           }}
         >
-          {cards.map((c, i) => {
-            const currentX = interpolate(fanSpring, [0, 1], [0, c.targetX]);
-            const currentRotZ = interpolate(fanSpring, [0, 1], [0, c.targetRotZ]);
-            const scale = interpolate(fanSpring, [0, 1], [0.9, 1.0]);
+          {CARDS.map((c, index) => {
+            const currentX = interpolate(fanSpring, [0, 1], [0, c.finalX]);
+            const currentRotZ = interpolate(fanSpring, [0, 1], [0, c.finalRotZ]);
+            const scale = index === 1 ? 1.05 : 0.95;
 
             return (
               <div
-                key={i}
+                key={c.id}
                 style={{
                   position: 'absolute',
-                  width: 280,
-                  height: 420,
+                  width: 250,
+                  height: 380,
+                  borderRadius: 24,
                   background: 'linear-gradient(155deg, #182333 0%, #0c121b 100%)',
-                  borderRadius: 28,
-                  border: '1px solid rgba(255, 255, 255, 0.16)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: 24,
                   transformStyle: 'preserve-3d',
                   transform: `translateX(${currentX}px) translateZ(${c.zElev}px) rotateZ(${currentRotZ}deg) scale(${scale})`,
                   boxShadow: `
@@ -235,10 +216,10 @@ export const StackedDeckCatalog: React.FC = () => {
           })}
         </div>
 
-        {/* Front 3D Tactile Glass Pill Badge */}
+        {/* Front 3D Tactile Glass Pill Badge with 90px clean breathing space */}
         <div
           style={{
-            marginTop: 40,
+            marginTop: 90,
             transformStyle: 'preserve-3d',
             transform: `translateZ(85px) scale(${pillScale})`,
             opacity: pillOpacity,
@@ -250,18 +231,20 @@ export const StackedDeckCatalog: React.FC = () => {
             borderRadius: 60,
             fontFamily: '"Inter", sans-serif',
             letterSpacing: '0.04em',
-            border: '1px solid rgba(255, 255, 255, 0.4)',
+            border: '2px solid rgba(255, 255, 255, 0.8)',
             boxShadow: `
-              0 25px 60px rgba(0, 0, 0, 0.95),
-              0 12px 35px rgba(77, 174, 235, 0.6),
-              inset 0 3px 3px rgba(255, 255, 255, 0.8),
-              inset 0 -6px 14px rgba(0, 0, 0, 0.35)
+              0 30px 60px rgba(0, 0, 0, 0.95),
+              0 15px 35px rgba(77, 174, 235, 0.7),
+              inset 0 3px 3px rgba(255, 255, 255, 0.9)
             `,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
             position: 'relative',
             overflow: 'hidden',
           }}
         >
-          {/* Top Glass Sheen Overlay */}
+          {/* Top Glass Rim */}
           <div
             style={{
               position: 'absolute',
@@ -269,9 +252,8 @@ export const StackedDeckCatalog: React.FC = () => {
               left: 0,
               right: 0,
               height: '45%',
-              background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%)',
+              background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%)',
               borderRadius: '60px 60px 0 0',
-              pointerEvents: 'none',
             }}
           />
           AGENT CATALOG
