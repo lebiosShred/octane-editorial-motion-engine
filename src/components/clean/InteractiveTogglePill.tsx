@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
+import { useCurrentFrame, spring, useVideoConfig, interpolate, Img, staticFile } from 'remotion';
 
 export const InteractiveTogglePill: React.FC = () => {
   const frame = useCurrentFrame();
@@ -80,19 +80,14 @@ export const InteractiveTogglePill: React.FC = () => {
           zIndex: 2,
         }}
       >
-        <div
+        <Img
+          src={staticFile('assets/logos/sap_official.svg')}
           style={{
-            backgroundColor: '#0070F2',
-            color: '#FFFFFF',
-            fontWeight: 900,
-            fontSize: 42,
-            padding: '12px 24px',
-            borderRadius: 8,
-            fontFamily: '"Inter", sans-serif',
+            width: 150,
+            height: 'auto',
+            objectFit: 'contain',
           }}
-        >
-          SAP
-        </div>
+        />
       </div>
 
       {/* Right Card: ServiceNow */}
@@ -112,17 +107,14 @@ export const InteractiveTogglePill: React.FC = () => {
           zIndex: 2,
         }}
       >
-        <div
+        <Img
+          src={staticFile('assets/logos/servicenow_official.svg')}
           style={{
-            color: '#FFFFFF',
-            fontWeight: 800,
-            fontSize: 26,
-            fontFamily: '"Inter", sans-serif',
-            letterSpacing: '-0.02em',
+            width: 180,
+            height: 'auto',
+            objectFit: 'contain',
           }}
-        >
-          servicenow.
-        </div>
+        />
       </div>
 
       {/* Center 1-Click Approval Toggle Button */}

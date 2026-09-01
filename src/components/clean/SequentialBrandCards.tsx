@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
+import { useCurrentFrame, spring, useVideoConfig, interpolate, Img, staticFile } from 'remotion';
 
 export const SequentialBrandCards: React.FC = () => {
   const frame = useCurrentFrame();
@@ -40,9 +40,9 @@ export const SequentialBrandCards: React.FC = () => {
   const pillOpacity = interpolate(pillSpring, [0, 1], [0, 1]);
 
   const cards = [
-    { name: 'SAP', color: '#0070F2', spring: card1Spring },
-    { name: 'salesforce', color: '#00A1E0', spring: card2Spring },
-    { name: 'servicenow', color: '#81B5A1', spring: card3Spring },
+    { name: 'SAP', logo: 'assets/logos/sap_official.svg', width: 170, spring: card1Spring },
+    { name: 'salesforce', logo: 'assets/logos/salesforce_official.svg', width: 190, spring: card2Spring },
+    { name: 'servicenow', logo: 'assets/logos/servicenow_official.svg', width: 210, spring: card3Spring },
   ];
 
   return (
@@ -85,7 +85,7 @@ export const SequentialBrandCards: React.FC = () => {
         />
       </svg>
 
-      {/* 3 Side-by-Side Brand Cards */}
+      {/* 3 Side-by-Side Brand Cards with Official Vector Logos */}
       <div
         style={{
           display: 'flex',
@@ -116,50 +116,14 @@ export const SequentialBrandCards: React.FC = () => {
                 boxShadow: '0 16px 50px rgba(0, 0, 0, 0.8)',
               }}
             >
-              {c.name === 'SAP' && (
-                <div
-                  style={{
-                    backgroundColor: '#0070F2',
-                    color: '#FFFFFF',
-                    fontWeight: 900,
-                    fontSize: 52,
-                    padding: '16px 32px',
-                    borderRadius: 8,
-                    fontFamily: '"Inter", sans-serif',
-                  }}
-                >
-                  SAP
-                </div>
-              )}
-              {c.name === 'salesforce' && (
-                <div
-                  style={{
-                    backgroundColor: '#00A1E0',
-                    color: '#FFFFFF',
-                    fontWeight: 800,
-                    fontSize: 30,
-                    padding: '24px 32px',
-                    borderRadius: '50px',
-                    fontFamily: '"Inter", sans-serif',
-                    textAlign: 'center',
-                  }}
-                >
-                  salesforce
-                </div>
-              )}
-              {c.name === 'servicenow' && (
-                <div
-                  style={{
-                    color: '#FFFFFF',
-                    fontWeight: 800,
-                    fontSize: 32,
-                    fontFamily: '"Inter", sans-serif',
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  servicenow.
-                </div>
-              )}
+              <Img
+                src={staticFile(c.logo)}
+                style={{
+                  width: c.width,
+                  height: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
             </div>
           );
         })}
