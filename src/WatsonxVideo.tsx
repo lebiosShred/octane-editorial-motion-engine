@@ -1,6 +1,8 @@
 import React from 'react';
 import { Audio, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ThreeCanvas } from '@remotion/three';
+import { loadFont as loadJetBrainsMono } from '@remotion/google-fonts/JetBrainsMono';
+import { loadFont as loadInter } from '@remotion/google-fonts/Inter';
 import { IndustrialTheme } from './types/theme';
 import { BeatDirectorEngine } from './engine/BeatDirectorEngine';
 import { CameraDirector3D } from './components/webgl/CameraDirector3D';
@@ -13,6 +15,10 @@ import { SubtitleKaraoke } from './components/forge/SubtitleKaraoke';
 import { AudioFoleyLayer } from './components/audio/AudioFoleyLayer';
 
 import voiceoverData from '../public/voiceover.json';
+
+// Preload high-density typography
+loadJetBrainsMono();
+loadInter();
 
 export const WatsonxVideo: React.FC = () => {
   const frame = useCurrentFrame();

@@ -2,12 +2,13 @@ import React from 'react';
 import { useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
 import { RoundedBox } from '@react-three/drei';
 import { CanvasText } from './CanvasText';
+import { useTerminalEditorTexture } from '../ui/TerminalEditorTexture';
+import * as THREE from 'three';
 
 export const Act1_Bottleneck3D: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Beat triggers
   const isBroken = frame >= 768;
   const breakSpring = spring({
     frame: Math.max(0, frame - 768),
@@ -27,6 +28,9 @@ export const Act1_Bottleneck3D: React.FC = () => {
   });
 
   const daysElevation = interpolate(numberSpring, [0, 1], [-4, 0]);
+
+  // Terminal Editor Texture
+  const terminalTexture = useTerminalEditorTexture(isBroken);
 
   // Fragment physics
   const frag1Y = interpolate(breakSpring, [0, 1], [0, -3.5]);
@@ -58,7 +62,6 @@ export const Act1_Bottleneck3D: React.FC = () => {
           );
         })}
 
-        {/* Floating Server 3D Label */}
         <CanvasText
           position={[0, 1.9, 0]}
           text={isBroken ? 'CRITICAL SCHEMA BREAK' : 'ERP_CORE_SERVER [RACK_01]'}
@@ -92,73 +95,56 @@ export const Act1_Bottleneck3D: React.FC = () => {
         </mesh>
       </group>
 
-      {/* 3D Fracturing Code Slab Mesh (Center-Left) */}
+      {/* 3D Authentic VS Code Editor Glass Slab (Center-Left) */}
       <group position={[-0.2, 0, 0.5]}>
-        {/* Top Stable Half of Slab */}
-        <RoundedBox args={[2.4, 1.2, 0.12]} radius={0.04} smoothness={4} position={[0, 0.65, 0]}>
-          <meshStandardMaterial color="#090A0C" metalness={0.9} roughness={0.15} />
-        </RoundedBox>
-
-        <CanvasText
-          position={[0, 0.65, 0.08]}
-          text="const sapAuth = initSap();"
-          subtext="const syncCrm = connect();"
-          color="#E2E8F0"
-          subColor="#4daeeb"
-          fontSize={24}
-          subFontSize={24}
-          width={460}
-          height={140}
-          align="left"
-          scale={1.0}
-        />
-
-        {/* Bottom Fracturing Fragments */}
-        <group position={[0, -0.65, 0]}>
-          {/* Fragment 1 (Left Split) */}
-          <group position={[-0.6, frag1Y, 0]} rotation={[0, 0, frag1RotZ]}>
-            <RoundedBox args={[1.15, 1.1, 0.12]} radius={0.03} smoothness={4}>
+        {!isBroken ? (
+          <mesh position={[0, 0, 0]}>
+            <planeGeometry args={[3.2, 1.7]} />
+            {terminalTexture && (
               <meshStandardMaterial
-                color={isBroken ? '#3F080C' : '#090A0C'}
-                emissive={isBroken ? '#F43F5E' : '#000000'}
-                emissiveIntensity={isBroken ? 1.2 : 0}
-                metalness={0.8}
-                roughness={0.2}
+                map={terminalTexture}
+                transparent
+                metalness={0.2}
+                roughness={0.1}
+                side={THREE.DoubleSide}
               />
-            </RoundedBox>
-            <CanvasText
-              position={[0, 0, 0.08]}
-              text={isBroken ? 'ERR: 500' : 'sapAuth.map()'}
-              color={isBroken ? '#FCA5A5' : '#94A3B8'}
-              fontSize={24}
-              width={220}
-              height={80}
-              scale={0.9}
-            />
+            )}
+          </mesh>
+        ) : (
+          <group position={[0, 0, 0]}>
+            {/* Top Half of Editor */}
+            <mesh position={[0, 0.42, 0]}>
+              <planeGeometry args={[3.2, 0.85]} />
+              {terminalTexture && (
+                <meshStandardMaterial map={terminalTexture} transparent side={THREE.DoubleSide} />
+              )}
+            </mesh>
+            {/* Left Shattered Fragment */}
+            <group position={[-0.8, -0.42 + frag1Y, 0]} rotation={[0, 0, frag1RotZ]}>
+              <RoundedBox args={[1.5, 0.85, 0.08]} radius={0.03} smoothness={4}>
+                <meshStandardMaterial
+                  color="#3F080C"
+                  emissive="#F43F5E"
+                  emissiveIntensity={1.2}
+                  metalness={0.8}
+                  roughness={0.2}
+                />
+              </RoundedBox>
+            </group>
+            {/* Right Shattered Fragment */}
+            <group position={[0.8, -0.42 + frag2Y, 0]} rotation={[0, 0, frag2RotZ]}>
+              <RoundedBox args={[1.5, 0.85, 0.08]} radius={0.03} smoothness={4}>
+                <meshStandardMaterial
+                  color="#3F080C"
+                  emissive="#F43F5E"
+                  emissiveIntensity={1.2}
+                  metalness={0.8}
+                  roughness={0.2}
+                />
+              </RoundedBox>
+            </group>
           </group>
-
-          {/* Fragment 2 (Right Split) */}
-          <group position={[0.6, frag2Y, 0]} rotation={[0, 0, frag2RotZ]}>
-            <RoundedBox args={[1.15, 1.1, 0.12]} radius={0.03} smoothness={4}>
-              <meshStandardMaterial
-                color={isBroken ? '#3F080C' : '#090A0C'}
-                emissive={isBroken ? '#F43F5E' : '#000000'}
-                emissiveIntensity={isBroken ? 1.2 : 0}
-                metalness={0.8}
-                roughness={0.2}
-              />
-            </RoundedBox>
-            <CanvasText
-              position={[0, 0, 0.08]}
-              text={isBroken ? 'MUTATION' : 'push(field_id)'}
-              color={isBroken ? '#FCA5A5' : '#94A3B8'}
-              fontSize={24}
-              width={220}
-              height={80}
-              scale={0.9}
-            />
-          </group>
-        </group>
+        )}
       </group>
 
       {/* 3D Massive Unboxed 180 DAYS Monument (Right) */}

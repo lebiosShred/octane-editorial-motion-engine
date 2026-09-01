@@ -2,12 +2,15 @@ import React from 'react';
 import { useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
 import { RoundedBox } from '@react-three/drei';
 import { CanvasText } from './CanvasText';
+import { useSapFioriTableTexture } from '../ui/SapFioriTableTexture';
+import { useServiceNowIncidentTexture } from '../ui/ServiceNowIncidentTexture';
+import { InteractiveCursor3D } from './InteractiveCursor3D';
+import * as THREE from 'three';
 
 export const Act3_Governance3D: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Beats 10-14 (f1860 - f2718)
   const isApproved = frame >= 2610;
   const switchSpring = spring({
     frame: Math.max(0, frame - 2610),
@@ -22,31 +25,26 @@ export const Act3_Governance3D: React.FC = () => {
 
   const switchKnobX = interpolate(switchSpring, [0, 1], [-0.35, 0.35]);
 
+  // Authentic UI Textures
+  const sapTableTexture = useSapFioriTableTexture();
+  const servicenowTexture = useServiceNowIncidentTexture(isApproved);
+
   return (
     <group position={[0, 0, 0]}>
       {/* 3D Multi-Agent Pipeline Stage (Center-Left) */}
       <group position={[-0.8, 0, 0]}>
-        {/* Step 1: SAP Delay Node */}
+        {/* Step 1: Authentic SAP Fiori PO Table */}
         <group position={[-1.8, 0.8, 0]}>
-          <RoundedBox args={[1.6, 0.8, 0.2]} radius={0.06} smoothness={4}>
-            <meshStandardMaterial color="#0B0F19" metalness={0.8} roughness={0.2} />
-          </RoundedBox>
-          <CanvasText
-            position={[0, 0, 0.12]}
-            text="SAP S/4HANA"
-            subtext="[ STEP 1: DELAY DETECTED ]"
-            color="#FFFFFF"
-            subColor="#F59E0B"
-            fontSize={24}
-            subFontSize={16}
-            width={320}
-            height={100}
-            scale={0.85}
-          />
+          <mesh position={[0, 0, 0]}>
+            <planeGeometry args={[2.4, 1.4]} />
+            {sapTableTexture && (
+              <meshStandardMaterial map={sapTableTexture} transparent side={THREE.DoubleSide} />
+            )}
+          </mesh>
         </group>
 
         {/* Laser Conduit 1 */}
-        <mesh position={[-0.9, 0.4, 0]} rotation={[0, 0, -Math.PI / 4]}>
+        <mesh position={[-0.6, 0.4, 0]} rotation={[0, 0, -Math.PI / 4]}>
           <cylinderGeometry args={[0.02, 0.02, 1.2, 8]} />
           <meshStandardMaterial color="#4daeeb" emissive="#4daeeb" emissiveIntensity={1.8} />
         </mesh>
@@ -86,23 +84,14 @@ export const Act3_Governance3D: React.FC = () => {
           />
         </mesh>
 
-        {/* Step 3: ServiceNow Destination Node */}
-        <group position={[1.8, -0.8, 0]}>
-          <RoundedBox args={[1.6, 0.8, 0.2]} radius={0.06} smoothness={4}>
-            <meshStandardMaterial color="#0B0F19" metalness={0.8} roughness={0.2} />
-          </RoundedBox>
-          <CanvasText
-            position={[0, 0, 0.12]}
-            text="ServiceNow P1"
-            subtext={isApproved ? '[ STEP 3: ✓ COMMITTED ]' : '[ STEP 3: AWAITING GATE ]'}
-            color="#FFFFFF"
-            subColor={isApproved ? '#10B981' : '#F43F5E'}
-            fontSize={24}
-            subFontSize={16}
-            width={320}
-            height={100}
-            scale={0.85}
-          />
+        {/* Step 3: Authentic ServiceNow Incident Ticket */}
+        <group position={[1.8, -0.7, 0]}>
+          <mesh position={[0, 0, 0]}>
+            <planeGeometry args={[2.4, 1.4]} />
+            {servicenowTexture && (
+              <meshStandardMaterial map={servicenowTexture} transparent side={THREE.DoubleSide} />
+            )}
+          </mesh>
         </group>
 
         {/* Dynamic Laser Packet Sphere */}
@@ -117,8 +106,8 @@ export const Act3_Governance3D: React.FC = () => {
       </group>
 
       {/* 3D Tactile Physical Governance Switch (Right) */}
-      <group position={[2.4, 0.2, 0]}>
-        <RoundedBox args={[1.6, 0.8, 0.3]} radius={0.08} smoothness={4}>
+      <group position={[2.6, 0.8, 0]}>
+        <RoundedBox args={[1.5, 0.7, 0.25]} radius={0.08} smoothness={4}>
           <meshStandardMaterial
             color="#0B0F19"
             emissive={isApproved ? '#10B981' : '#F43F5E'}
@@ -129,8 +118,8 @@ export const Act3_Governance3D: React.FC = () => {
         </RoundedBox>
 
         {/* Sliding Switch Knob */}
-        <group position={[switchKnobX, 0, 0.18]}>
-          <RoundedBox args={[0.55, 0.55, 0.2]} radius={0.06} smoothness={4}>
+        <group position={[switchKnobX, 0, 0.16]}>
+          <RoundedBox args={[0.5, 0.5, 0.18]} radius={0.06} smoothness={4}>
             <meshStandardMaterial
               color={isApproved ? '#10B981' : '#F43F5E'}
               emissive={isApproved ? '#10B981' : '#F43F5E'}
@@ -140,7 +129,7 @@ export const Act3_Governance3D: React.FC = () => {
             />
           </RoundedBox>
           <CanvasText
-            position={[0, 0, 0.12]}
+            position={[0, 0, 0.11]}
             text={isApproved ? '✓' : '✕'}
             color="#090A0C"
             fontSize={36}
@@ -151,18 +140,21 @@ export const Act3_Governance3D: React.FC = () => {
         </group>
 
         <CanvasText
-          position={[0, -0.7, 0]}
+          position={[0, -0.6, 0]}
           text={isApproved ? 'AUTHORIZED (1-CLICK)' : 'GUARDRAIL: LOCKED'}
           subtext="Zero unverified changes without manager sign-off."
           color={isApproved ? '#10B981' : '#F43F5E'}
           subColor="#94A3B8"
-          fontSize={22}
-          subFontSize={14}
-          width={440}
-          height={90}
-          scale={0.9}
+          fontSize={20}
+          subFontSize={13}
+          width={400}
+          height={80}
+          scale={0.85}
         />
       </group>
+
+      {/* 3D Interactive Mouse Cursor */}
+      <InteractiveCursor3D />
     </group>
   );
 };

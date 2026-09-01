@@ -1,140 +1,93 @@
 import React from 'react';
 import { useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
-import { RoundedBox } from '@react-three/drei';
+import { Cylinder, RoundedBox } from '@react-three/drei';
 import { CanvasText } from './CanvasText';
 
 export const Act2_Catalog3D: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const getPillarSpring = (triggerFrame: number) => {
-    return spring({
-      frame: Math.max(0, frame - triggerFrame),
-      fps,
-      config: { mass: 0.5, damping: 12, stiffness: 120 },
-    });
-  };
+  const pedestalSpring = spring({
+    frame: Math.max(0, frame - 930),
+    fps,
+    config: { mass: 0.8, damping: 14, stiffness: 100 },
+  });
 
-  const sapSpring = getPillarSpring(1458);
-  const salesforceSpring = getPillarSpring(1490);
-  const servicenowSpring = getPillarSpring(1525);
-  const workdaySpring = getPillarSpring(1560);
+  const socketsSpring = spring({
+    frame: Math.max(0, frame - 1458),
+    fps,
+    config: { mass: 0.6, damping: 12, stiffness: 120 },
+  });
 
-  const pillars = [
-    { name: 'SAP S/4HANA', color: '#0070F2', angle: 30, sp: sapSpring },
-    { name: 'SALESFORCE', color: '#00A1E0', angle: 120, sp: salesforceSpring },
-    { name: 'SERVICENOW', color: '#81B5A1', angle: 210, sp: servicenowSpring },
-    { name: 'WORKDAY', color: '#E28225', angle: 300, sp: workdaySpring },
+  const pedestalY = interpolate(pedestalSpring, [0, 1], [-4, -0.6]);
+  const socketsElevation = interpolate(socketsSpring, [0, 1], [-3, 0]);
+
+  const brands = [
+    { name: 'SAP S/4HANA', sub: 'MCP: SSE // 14ms', pos: [-2.6, socketsElevation + 0.4, 0.4] as [number, number, number], color: '#0070F2' },
+    { name: 'SALESFORCE CRM', sub: 'MCP: REST // 18ms', pos: [-0.9, socketsElevation + 0.8, -0.8] as [number, number, number], color: '#00A1E0' },
+    { name: 'SERVICENOW', sub: 'MCP: JSON-RPC // 12ms', pos: [0.9, socketsElevation + 0.8, -0.8] as [number, number, number], color: '#81B5A1' },
+    { name: 'WORKDAY HCM', sub: 'MCP: SSE // 16ms', pos: [2.6, socketsElevation + 0.4, 0.4] as [number, number, number], color: '#E28225' },
   ];
-
-  const coreRotation = frame * 0.015;
 
   return (
     <group position={[0, 0, 0]}>
-      {/* 3D Pedestal Platform (Center-Left) */}
-      <group position={[-1.2, -0.2, 0]}>
-        {/* Base Cylinder Platform */}
-        <mesh position={[0, -0.2, 0]}>
-          <cylinderGeometry args={[2.2, 2.4, 0.4, 32]} />
-          <meshStandardMaterial color="#0B0F19" metalness={0.8} roughness={0.2} />
+      {/* Central 3D Monolithic Pedestal */}
+      <group position={[0, pedestalY, 0]}>
+        <Cylinder args={[2.0, 2.2, 1.2, 32]}>
+          <meshStandardMaterial color="#0B0F19" metalness={0.9} roughness={0.15} />
+        </Cylinder>
+
+        {/* Watsonx Core Glowing Orb */}
+        <mesh position={[0, 1.2, 0]}>
+          <octahedronGeometry args={[0.5, 2]} />
+          <meshStandardMaterial
+            color="#4daeeb"
+            emissive="#4daeeb"
+            emissiveIntensity={2.5}
+            wireframe
+          />
         </mesh>
 
-        {/* Orbit Ring */}
-        <mesh position={[0, 0.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[1.8, 0.02, 16, 64]} />
-          <meshStandardMaterial color="#4daeeb" emissive="#4daeeb" emissiveIntensity={1.8} />
-        </mesh>
+        <CanvasText
+          position={[0, 0, 2.1]}
+          text="IBM watsonx Orchestrate"
+          subtext="[ CENTRAL GOVERNED AGENT REGISTRY: 150+ CONNECTORS ]"
+          color="#FFFFFF"
+          subColor="#4daeeb"
+          fontSize={24}
+          subFontSize={12}
+          width={480}
+          height={100}
+          scale={0.9}
+        />
+      </group>
 
-        {/* Central watsonx Core Hub */}
-        <group position={[0, 0.6, 0]} rotation={[0, coreRotation, 0]}>
-          <RoundedBox args={[0.9, 0.9, 0.9]} radius={0.1} smoothness={4}>
+      {/* 4 Rising Brand Platform Sockets with Authentic MCP Telemetry */}
+      {brands.map((b, i) => (
+        <group key={i} position={b.pos}>
+          <RoundedBox args={[1.5, 0.7, 0.2]} radius={0.06} smoothness={4}>
             <meshStandardMaterial
-              color="#FFFFFF"
-              emissive="#4daeeb"
-              emissiveIntensity={0.6}
-              metalness={0.2}
-              roughness={0.1}
+              color="#0B0F19"
+              emissive={b.color}
+              emissiveIntensity={0.5}
+              metalness={0.8}
+              roughness={0.2}
             />
           </RoundedBox>
-
           <CanvasText
-            position={[0, 0, 0.48]}
-            text="IBM"
-            subtext="ORCHESTRATE"
-            color="#090A0C"
-            subColor="#0062FF"
-            fontSize={36}
-            subFontSize={20}
-            width={240}
-            height={100}
+            position={[0, 0, 0.12]}
+            text={b.name}
+            subtext={b.sub}
+            color="#FFFFFF"
+            subColor={b.color}
+            fontSize={18}
+            subFontSize={11}
+            width={260}
+            height={80}
             scale={0.8}
           />
         </group>
-
-        {/* 4 Rising Brand Platform Sockets */}
-        {pillars.map((p, idx) => {
-          const rad = (p.angle * Math.PI) / 180;
-          const radius = 1.8;
-          const x = Math.cos(rad) * radius;
-          const z = Math.sin(rad) * radius;
-          const y = interpolate(p.sp, [0, 1], [-1.2, 0.5]);
-          const opacity = interpolate(p.sp, [0, 0.2, 1], [0, 1, 1]);
-
-          return (
-            <group key={idx} position={[x, y, z]}>
-              {/* Laser Beam connecting Socket to Core */}
-              <mesh position={[-x * 0.5, 0.1 - y * 0.5, -z * 0.5]} rotation={[0, -p.angle * (Math.PI / 180) + Math.PI / 2, 0]}>
-                <cylinderGeometry args={[0.015, 0.015, radius, 8]} />
-                <meshStandardMaterial
-                  color="#4daeeb"
-                  emissive="#4daeeb"
-                  emissiveIntensity={2.0 * opacity}
-                  transparent
-                  opacity={opacity}
-                />
-              </mesh>
-
-              {/* Physical Floating Socket Disc */}
-              <RoundedBox args={[0.9, 0.22, 0.9]} radius={0.06} smoothness={4}>
-                <meshStandardMaterial
-                  color="#0F172A"
-                  emissive={p.color}
-                  emissiveIntensity={0.6}
-                  metalness={0.8}
-                  roughness={0.2}
-                />
-              </RoundedBox>
-
-              <CanvasText
-                position={[0, 0.14, 0]}
-                rotation={[-Math.PI / 2, 0, 0]}
-                text={p.name}
-                color="#FFFFFF"
-                fontSize={24}
-                width={200}
-                height={60}
-                scale={0.8}
-              />
-            </group>
-          );
-        })}
-      </group>
-
-      {/* 3D Massive Unboxed 150+ AGENTS Monument (Right) */}
-      <group position={[2.2, 0.2, 0]}>
-        <CanvasText
-          position={[0, 0.2, 0]}
-          text="150+ AGENTS"
-          subtext="[ GOVERNED ENTERPRISE CATALOG ]"
-          color="#FFFFFF"
-          subColor="#4daeeb"
-          fontSize={54}
-          subFontSize={18}
-          width={540}
-          height={160}
-          scale={1.1}
-        />
-      </group>
+      ))}
     </group>
   );
 };
