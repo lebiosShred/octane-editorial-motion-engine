@@ -3,7 +3,7 @@ import * as THREE from 'three';
 
 export const useTerminalEditorTexture = (isBroken: boolean) => {
   return useMemo(() => {
-    const width = 1024;
+    const width = 820;
     const height = 540;
     const canvas = document.createElement('canvas');
     canvas.width = width;
@@ -11,99 +11,105 @@ export const useTerminalEditorTexture = (isBroken: boolean) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return null;
 
-    // Background
+    // Window Background with subtle border
     ctx.fillStyle = '#0D1117';
+    ctx.strokeStyle = '#30363D';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
     ctx.roundRect ? ctx.roundRect(0, 0, width, height, 16) : ctx.fillRect(0, 0, width, height);
     ctx.fill();
+    ctx.stroke();
 
     // Window Header Bar
     ctx.fillStyle = '#161B22';
     ctx.beginPath();
-    ctx.roundRect ? ctx.roundRect(0, 0, width, 48, [16, 16, 0, 0]) : ctx.fillRect(0, 0, width, 48);
+    ctx.roundRect ? ctx.roundRect(0, 0, width, 52, [16, 16, 0, 0]) : ctx.fillRect(0, 0, width, 52);
     ctx.fill();
 
     // macOS Window Controls
     const dots = [
-      { color: '#FF5F56', x: 28 },
-      { color: '#FFBD2E', x: 50 },
-      { color: '#27C93F', x: 72 },
+      { color: '#FF5F56', x: 30 },
+      { color: '#FFBD2E', x: 54 },
+      { color: '#27C93F', x: 78 },
     ];
     dots.forEach((dot) => {
       ctx.fillStyle = dot.color;
       ctx.beginPath();
-      ctx.arc(dot.x, 24, 7, 0, Math.PI * 2);
+      ctx.arc(dot.x, 26, 7, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    // File Tab
+    // Active File Tab
     ctx.fillStyle = '#0D1117';
-    ctx.roundRect ? ctx.roundRect(110, 8, 260, 40, [8, 8, 0, 0]) : ctx.fillRect(110, 8, 260, 40);
+    ctx.beginPath();
+    ctx.roundRect ? ctx.roundRect(115, 10, 310, 42, [8, 8, 0, 0]) : ctx.fillRect(115, 10, 310, 42);
     ctx.fill();
 
     ctx.fillStyle = '#4daeeb';
-    ctx.font = '900 13px "JetBrains Mono", monospace';
-    ctx.fillText('TS', 126, 32);
+    ctx.font = '900 15px "JetBrains Mono", monospace';
+    ctx.fillText('TS', 135, 36);
 
     ctx.fillStyle = '#E6EDF3';
-    ctx.font = '700 13px "JetBrains Mono", monospace';
-    ctx.fillText('adapters/legacy_sap_sync.ts', 152, 32);
+    ctx.font = '700 15px "JetBrains Mono", monospace';
+    ctx.fillText('adapters/legacy_sap_sync.ts', 165, 36);
 
     // Code lines
     const lines = [
-      { num: '1', tokens: [{ text: 'import', color: '#FF7B72' }, { text: ' { SapClient } ', color: '#E6EDF3' }, { text: 'from', color: '#FF7B72' }, { text: " '@legacy/sap-erp';", color: '#A5D6FF' }] },
-      { num: '2', tokens: [{ text: 'import', color: '#FF7B72' }, { text: ' { mapPayload } ', color: '#E6EDF3' }, { text: 'from', color: '#FF7B72' }, { text: " './custom_mapper';", color: '#A5D6FF' }] },
+      { num: '1', tokens: [{ text: 'import', color: '#FF7B72' }, { text: ' { SapClient } ', color: '#E6EDF3' }, { text: 'from', color: '#FF7B72' }, { text: " '@sap/erp';", color: '#A5D6FF' }] },
+      { num: '2', tokens: [{ text: 'import', color: '#FF7B72' }, { text: ' { mapPayload } ', color: '#E6EDF3' }, { text: 'from', color: '#FF7B72' }, { text: " './mapper';", color: '#A5D6FF' }] },
       { num: '3', tokens: [{ text: '', color: '#E6EDF3' }] },
-      { num: '4', tokens: [{ text: 'export async function', color: '#FF7B72' }, { text: ' syncPurchaseOrder', color: '#D2A8FF' }, { text: '(poId: string) {', color: '#E6EDF3' }] },
-      { num: '5', tokens: [{ text: '  const', color: '#FF7B72' }, { text: ' raw = await SapClient.', color: '#E6EDF3' }, { text: 'getRawOrder', color: '#79C0FF' }, { text: '(poId);', color: '#E6EDF3' }] },
+      { num: '4', tokens: [{ text: 'export async function', color: '#FF7B72' }, { text: ' syncOrder', color: '#D2A8FF' }, { text: '(id: string) {', color: '#E6EDF3' }] },
+      { num: '5', tokens: [{ text: '  const', color: '#FF7B72' }, { text: ' raw = await SapClient.', color: '#E6EDF3' }, { text: 'getOrder', color: '#79C0FF' }, { text: '(id);', color: '#E6EDF3' }] },
       {
         num: '6',
         tokens: isBroken
           ? [{ text: '  const', color: '#FF7B72' }, { text: ' data = ', color: '#E6EDF3' }, { text: 'raw.schema_v1.items;', color: '#FF7B72' }, { text: ' // ⚠ BREAK', color: '#F43F5E' }]
           : [{ text: '  const', color: '#FF7B72' }, { text: ' data = ', color: '#E6EDF3' }, { text: 'mapPayload', color: '#D2A8FF' }, { text: '(raw);', color: '#E6EDF3' }],
       },
-      { num: '7', tokens: [{ text: '  return', color: '#FF7B72' }, { text: ' await crmService.', color: '#E6EDF3' }, { text: 'pushRecord', color: '#79C0FF' }, { text: '(data);', color: '#E6EDF3' }] },
+      { num: '7', tokens: [{ text: '  return', color: '#FF7B72' }, { text: ' await crm.', color: '#E6EDF3' }, { text: 'pushRecord', color: '#79C0FF' }, { text: '(data);', color: '#E6EDF3' }] },
       { num: '8', tokens: [{ text: '}', color: '#E6EDF3' }] },
     ];
 
-    let startY = 86;
+    let startY = 100;
     lines.forEach((line) => {
       // Line number gutter
-      ctx.fillStyle = '#484F58';
-      ctx.font = '600 15px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#6E7681';
+      ctx.font = '600 19px "JetBrains Mono", monospace';
       ctx.textAlign = 'right';
-      ctx.fillText(line.num, 44, startY);
+      ctx.fillText(line.num, 48, startY);
 
       // Code tokens
       ctx.textAlign = 'left';
-      let startX = 68;
+      let startX = 75;
       line.tokens.forEach((tok) => {
         ctx.fillStyle = tok.color;
-        ctx.font = '600 15px "JetBrains Mono", monospace';
+        ctx.font = '600 19px "JetBrains Mono", monospace';
         ctx.fillText(tok.text, startX, startY);
         startX += ctx.measureText(tok.text).width;
       });
 
-      startY += 34;
+      startY += 40;
     });
 
     // Error Tooltip if Broken
     if (isBroken) {
-      const errBoxY = 360;
-      ctx.fillStyle = 'rgba(63, 8, 12, 0.95)';
+      const errBoxY = 410;
+      ctx.fillStyle = 'rgba(63, 8, 12, 0.96)';
       ctx.strokeStyle = '#F43F5E';
       ctx.lineWidth = 2;
-      ctx.roundRect ? ctx.roundRect(68, errBoxY, 520, 90, 8) : ctx.fillRect(68, errBoxY, 520, 90);
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(48, errBoxY, width - 96, 96, 10) : ctx.fillRect(48, errBoxY, width - 96, 96);
       ctx.fill();
       ctx.stroke();
 
       ctx.fillStyle = '#F43F5E';
-      ctx.font = '900 13px "JetBrains Mono", monospace';
-      ctx.fillText('⚠ RUNTIME ERROR (ENDPOINT SCHEMA BREAK)', 86, errBoxY + 30);
+      ctx.font = '900 15px "JetBrains Mono", monospace';
+      ctx.fillText('⚠ CRITICAL RUNTIME ERROR: ENDPOINT SCHEMA BREAK', 68, errBoxY + 32);
 
       ctx.fillStyle = '#FCA5A5';
-      ctx.font = '600 12px "JetBrains Mono", monospace';
-      ctx.fillText('TypeError: Cannot read properties of undefined (reading schema_v1)', 86, errBoxY + 56);
-      ctx.fillText('at adapters/legacy_sap_sync.ts:6:22', 86, errBoxY + 74);
+      ctx.font = '600 14px "JetBrains Mono", monospace';
+      ctx.fillText('TypeError: Cannot read properties of undefined (reading schema_v1)', 68, errBoxY + 60);
+      ctx.fillText('at adapters/legacy_sap_sync.ts:6:22', 68, errBoxY + 82);
     }
 
     const texture = new THREE.CanvasTexture(canvas);
