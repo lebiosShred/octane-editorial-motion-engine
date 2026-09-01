@@ -5,6 +5,13 @@ export type LayoutArchetype =
   | 'split_asymmetric'
   | 'cinema_clean';
 
+export interface CameraSpec {
+  position: [number, number, number];
+  lookAt: [number, number, number];
+  fov: number;
+  roll?: number; // Dutch angle roll in radians
+}
+
 export interface BeatSpec {
   id: string;
   beatIndex: number;
@@ -18,11 +25,7 @@ export interface BeatSpec {
     highlight: string;
     sublabel?: string;
   };
-  camera: {
-    position: [number, number, number];
-    lookAt: [number, number, number];
-    fov: number;
-  };
+  camera: CameraSpec;
 }
 
 export class BeatDirectorEngine {
@@ -37,7 +40,7 @@ export class BeatDirectorEngine {
       narrationText: 'Most Enterprise AI projects stall for one boring reason,',
       layoutArchetype: 'split_asymmetric',
       headline: { main: 'Enterprise AI projects stall for', highlight: 'one boring reason...' },
-      camera: { position: [0, 1.5, 9], lookAt: [0, 0, 0], fov: 40 },
+      camera: { position: [0, 1.4, 8.5], lookAt: [0, 0, 0], fov: 38, roll: 0 },
     },
     {
       id: 'beat_02_six_months',
@@ -48,7 +51,7 @@ export class BeatDirectorEngine {
       narrationText: 'connecting a language model to legacy software takes six months of custom engineering.',
       layoutArchetype: 'kinetic_hero',
       headline: { main: 'CONNECTING LLMs TO LEGACY SOFTWARE TAKES', highlight: '6 MONTHS OF CUSTOM CODE', sublabel: 'Zero standard adapters. 100% custom maintenance.' },
-      camera: { position: [1.8, 1.2, 7], lookAt: [0.5, 0, 0], fov: 38 },
+      camera: { position: [1.6, 1.0, 6.4], lookAt: [0.4, 0, 0], fov: 36, roll: 0 },
     },
     {
       id: 'beat_03_glue_code',
@@ -59,7 +62,7 @@ export class BeatDirectorEngine {
       narrationText: 'Every integration requires custom API glue code,',
       layoutArchetype: 'spatial_anchor',
       headline: { main: 'Every connection requires', highlight: 'custom API glue code.' },
-      camera: { position: [-1.5, 0.8, 5.5], lookAt: [-0.8, 0, 0], fov: 34 },
+      camera: { position: [-1.4, 0.7, 5.0], lookAt: [-0.6, 0, 0], fov: 32, roll: 0 },
     },
     {
       id: 'beat_04_brittle_auth',
@@ -70,7 +73,7 @@ export class BeatDirectorEngine {
       narrationText: 'brittle authentication handoffs, and manual error routines.',
       layoutArchetype: 'spatial_anchor',
       headline: { main: 'Brittle auth handoffs and', highlight: 'manual error routines.' },
-      camera: { position: [-1.2, 0.4, 4.2], lookAt: [-0.5, 0.1, 0], fov: 32 },
+      camera: { position: [-1.1, 0.4, 4.0], lookAt: [-0.4, 0.1, 0], fov: 30, roll: 0.015 },
     },
     {
       id: 'beat_05_schema_break',
@@ -81,7 +84,8 @@ export class BeatDirectorEngine {
       narrationText: 'When an endpoint changes, the entire pipeline breaks.',
       layoutArchetype: 'cinema_clean',
       headline: { main: 'When an endpoint changes, the', highlight: 'entire pipeline breaks.' },
-      camera: { position: [0, 1.8, 8], lookAt: [0, -0.4, 0], fov: 42 },
+      // Sudden Dutch tilt (-2.6°) and forward punch
+      camera: { position: [0.2, 1.2, 5.8], lookAt: [0, -0.2, 0], fov: 38, roll: -0.045 },
     },
 
     // Act II: The Governed Agent Catalog (Beats 6-9 | f930 - f1860)
@@ -94,7 +98,7 @@ export class BeatDirectorEngine {
       narrationText: 'IBM solved this with the new watsonx Orchestrate agent catalog.',
       layoutArchetype: 'split_asymmetric',
       headline: { main: 'IBM watsonx Orchestrate introduces the', highlight: 'Governed Agent Catalog.' },
-      camera: { position: [0, 3.5, 8.5], lookAt: [0, 0.5, 0], fov: 38 },
+      camera: { position: [0, 3.2, 8.0], lookAt: [0, 0.4, 0], fov: 38, roll: 0 },
     },
     {
       id: 'beat_07_150_agents',
@@ -105,7 +109,7 @@ export class BeatDirectorEngine {
       narrationText: 'It provides a central governed marketplace with over 150 pre-built Enterprise agents and connectors',
       layoutArchetype: 'spatial_anchor',
       headline: { main: 'Central governed marketplace with', highlight: '150+ pre-built agents.' },
-      camera: { position: [2.5, 2.8, 7.5], lookAt: [0, 0.2, 0], fov: 40 },
+      camera: { position: [2.4, 2.6, 7.2], lookAt: [0, 0.2, 0], fov: 38, roll: 0 },
     },
     {
       id: 'beat_08_brand_sockets',
@@ -116,7 +120,7 @@ export class BeatDirectorEngine {
       narrationText: 'for SAP, Salesforce, ServiceNow, and Workday.',
       layoutArchetype: 'spatial_anchor',
       headline: { main: 'Out-of-the-box native connectors for', highlight: 'SAP, Salesforce & Workday.' },
-      camera: { position: [-2.2, 2.2, 6.5], lookAt: [-0.5, 0, 0], fov: 36 },
+      camera: { position: [-2.0, 2.0, 6.2], lookAt: [-0.4, 0, 0], fov: 35, roll: 0 },
     },
     {
       id: 'beat_09_mcp_template',
@@ -127,7 +131,7 @@ export class BeatDirectorEngine {
       narrationText: 'Instead of writing API wrappers from scratch, you select a pre-verified agent template.',
       layoutArchetype: 'technical_hud',
       headline: { main: 'SELECT VERIFIED TEMPLATES', highlight: 'ZERO CUSTOM CODE', sublabel: 'Model Context Protocol (MCP) Verified Standards' },
-      camera: { position: [0, 1.8, 6.2], lookAt: [0, 0, 0], fov: 35 },
+      camera: { position: [0, 1.6, 5.8], lookAt: [0, 0, 0], fov: 34, roll: 0 },
     },
 
     // Act III: Autonomous Execution & Human Guardrails (Beats 10-14 | f1860 - f2718)
@@ -140,7 +144,7 @@ export class BeatDirectorEngine {
       narrationText: 'It connects securely using model context protocol and executes cross-system handoffs',
       layoutArchetype: 'technical_hud',
       headline: { main: 'MCP CROSS-SYSTEM HANDOFFS', highlight: 'DETERMINISTIC EXECUTION', sublabel: 'End-to-End Encrypted Payload Delivery' },
-      camera: { position: [-1.8, 2.0, 7.5], lookAt: [0, 0, 0], fov: 38 },
+      camera: { position: [-1.6, 1.8, 6.8], lookAt: [0, 0, 0], fov: 36, roll: 0 },
     },
     {
       id: 'beat_11_guardrails',
@@ -151,7 +155,7 @@ export class BeatDirectorEngine {
       narrationText: 'with deterministic business rules and human approval checkpoints.',
       layoutArchetype: 'split_asymmetric',
       headline: { main: 'Deterministic business rules &', highlight: 'human approval checkpoints.' },
-      camera: { position: [1.6, 1.5, 6.0], lookAt: [0.8, 0, 0], fov: 34 },
+      camera: { position: [1.4, 1.4, 5.6], lookAt: [0.6, 0, 0], fov: 33, roll: 0 },
     },
     {
       id: 'beat_12_sap_delay',
@@ -162,7 +166,7 @@ export class BeatDirectorEngine {
       narrationText: 'If an order delays in SAP,',
       layoutArchetype: 'spatial_anchor',
       headline: { main: 'SAP order delay detected &', highlight: 'evaluated in real-time.' },
-      camera: { position: [-2.0, 1.2, 5.0], lookAt: [-1.4, 0, 0], fov: 32 },
+      camera: { position: [-2.0, 1.0, 4.2], lookAt: [-1.6, 0.4, 0], fov: 28, roll: 0 },
     },
     {
       id: 'beat_13_servicenow_draft',
@@ -173,7 +177,7 @@ export class BeatDirectorEngine {
       narrationText: 'the agent flags the issue and drafts a ticket in ServiceNow',
       layoutArchetype: 'spatial_anchor',
       headline: { main: 'watsonx agent autonomously drafts', highlight: 'ServiceNow ticket.' },
-      camera: { position: [0, 1.4, 5.5], lookAt: [0, 0, 0], fov: 34 },
+      camera: { position: [0.8, -0.2, 4.4], lookAt: [1.4, -0.6, 0], fov: 29, roll: 0 },
     },
     {
       id: 'beat_14_manager_signoff',
@@ -184,7 +188,7 @@ export class BeatDirectorEngine {
       narrationText: 'for one-click manager sign-off.',
       layoutArchetype: 'cinema_clean',
       headline: { main: 'Protected by strict', highlight: '1-click manager authorization.' },
-      camera: { position: [1.8, 0.8, 4.5], lookAt: [1.2, 0, 0], fov: 30 },
+      camera: { position: [2.0, 0.4, 3.6], lookAt: [2.2, 0.2, 0], fov: 26, roll: 0.02 },
     },
 
     // Act IV: Distributed Observability & Velocity Payoff (Beats 15-16 | f2718 - f3407)
@@ -197,7 +201,7 @@ export class BeatDirectorEngine {
       narrationText: 'Every step is logged on OpenTelemetry dashboards, giving IT complete visibility.',
       layoutArchetype: 'technical_hud',
       headline: { main: 'OPENTELEMETRY TRACE AUDIT', highlight: '100% VISIBILITY', sublabel: 'Zero Dark Execution. Full Span Telemetry.' },
-      camera: { position: [-1.2, 1.8, 6.8], lookAt: [0, 0.2, 0], fov: 36 },
+      camera: { position: [-1.0, 1.4, 5.8], lookAt: [-0.4, 0.2, 0], fov: 34, roll: 0 },
     },
     {
       id: 'beat_16_hero_velocity',
@@ -208,7 +212,7 @@ export class BeatDirectorEngine {
       narrationText: 'Stop building custom connectors from scratch, deploy production agents in days, not months.',
       layoutArchetype: 'kinetic_hero',
       headline: { main: 'DEPLOY PRODUCTION ENTERPRISE AGENTS IN', highlight: 'DAYS, NOT MONTHS', sublabel: 'IBM watsonx Orchestrate — Governed Agent Ecosystem' },
-      camera: { position: [0, 2.2, 8.8], lookAt: [0, 0, 0], fov: 42 },
+      camera: { position: [0, 2.0, 8.2], lookAt: [0, 0, 0], fov: 40, roll: 0 },
     },
   ];
 
