@@ -12,35 +12,31 @@ export const ContinuousWorldStage: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Master Global Virtual Camera Tracking
-  // Camera seamlessly pans and zooms to keep active storytelling anchors framed perfectly
+  // Master Global Virtual Camera Tracking:
+  // Smooth, non-oscillating cinematic forward push keeping storytelling anchors framed with stability
   const camZoom = interpolate(
     frame,
-    [0, 80, 600, 1050, 1650, 2250, 2800, 3407],
-    [1.0, 1.05, 1.0, 1.04, 1.0, 1.06, 1.02, 1.0],
+    [0, 600, 1080, 1680, 2280, 2840, 3407],
+    [1.0, 1.03, 1.02, 1.04, 1.02, 1.03, 1.0],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
   const camY = interpolate(
     frame,
-    [0, 160, 420, 600, 1050, 1650, 2250, 2800, 3407],
-    [0, -20, 20, 0, 0, 0, 0, 0, 0],
+    [0, 160, 420, 600, 1080, 1680, 2280, 2840, 3407],
+    [0, -15, 15, 0, 0, 0, 0, 0, 0],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
-  // Subtle continuous 3D pitch and yaw
-  const camTiltX = Math.sin(frame * 0.02) * 1.5;
-  const camTiltY = Math.cos(frame * 0.025) * 1.5;
-
   return (
     <BlueprintGridStage hudTag="WATSONX // ENTERPRISE_ORCHESTRATION_ENGINE">
-      {/* Continuous 3D World Stage */}
+      {/* Continuous 3D World Stage (Rock-Solid Hold with Zero Looping Wobbles) */}
       <div
         style={{
           width: '100%',
           height: '100%',
           transformStyle: 'preserve-3d',
-          transform: `scale(${camZoom}) translateY(${camY}px) rotateX(${camTiltX}deg) rotateY(${camTiltY}deg)`,
+          transform: `scale(${camZoom}) translateY(${camY}px)`,
           position: 'relative',
         }}
       >
