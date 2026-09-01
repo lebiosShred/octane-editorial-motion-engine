@@ -1,6 +1,15 @@
-# Octane Editorial Motion Graphics & Commercial Engine
+# Octane Editorial Motion Graphics & WebGL 3D Engine
 
-Production-grade Remotion motion graphics suite engineered for high-retention B2B SaaS product commercials, technical architectural explainers, and high-impact event teasers.
+Production-grade Remotion 60 FPS motion graphics suite engineered for high-retention enterprise technical explainers, pure WebGL 3D architectural dioramas, and sentence-synchronized kinetic commercials.
+
+---
+
+## 🚀 Engine Innovations
+
+1. **Pure WebGL 3D Architecture**: Powered by `@remotion/three`, `three`, `@react-three/fiber` (v9+), and `@react-three/drei`. Replaces flat 2.5D CSS DOM hacks with true 3D volumetric meshes, physical PBR shaders, dynamic directional lights, and reflective ground perspective grids.
+2. **16-Beat Temporal Storyboard Engine**: Dissects narration into high-density 2.0s – 3.5s micro-beats mapped to exact Whisper voiceover timestamps in [`BeatDirectorEngine.ts`](./src/engine/BeatDirectorEngine.ts). Eliminates static scene holds.
+3. **Continuous 3D Camera Choreography**: [`CameraDirector3D.tsx`](./src/components/webgl/CameraDirector3D.tsx) drives smooth cubic-bezier camera transitions across 3D coordinate space with subtle organic micro-drift.
+4. **Offline-Safe Canvas Texture Rendering**: [`CanvasText.tsx`](./src/components/webgl/CanvasText.tsx) renders crisp, vector monospace code syntax and telemetry labels synchronously into WebGL textures without external font CDN dependencies.
 
 ---
 
@@ -8,65 +17,57 @@ Production-grade Remotion motion graphics suite engineered for high-retention B2
 
 | Composition | Duration | Resolution | Description |
 | :--- | :--- | :--- | :--- |
-| **`TM1FeederCommercial`** | 35.8s (1074 f) | 1920x1080 @ 30fps | Mathematical B2B product commercial for the **TM1 Feeder Diagnostic Playbook**. Features Kokoro voiceover, 3D dolly zoom, kinetic topology, and high-contrast leaf/target cell telemetry. |
-| **`ForefrontSummitTeaser`** | 31.0s (930 f) | 1920x1080 @ 30fps | High-energy event teaser for the **Finance Transformation Summit NSW 2026**. Features real live-action B-roll, All-Intra 30fps keyframes, Inter 900 kinetic typography, and Booth 19 sponsor callout. |
+| **`WatsonxVideo`** | 56.8s (3,407 f) | 1920x1080 @ 60fps | 16-Beat WebGL 3D commercial for **IBM watsonx Orchestrate**. Features 3D server rack, fracturing code mesh, ascending 150+ agent catalog pedestal, tactile 1-click governance toggle, and OpenTelemetry waterfall. |
+| **`WatsonxVideoVertical`** | 56.8s (3,407 f) | 1080x1920 @ 60fps | 9:16 Vertical format for mobile distribution and social video feeds. |
+| **`WebGLSmokeTest`** | 2.0s (120 f) | 1920x1080 @ 60fps | Minimal WebGL 3D shader and lighting verification composition. |
 
 ---
 
-## 🚀 Quickstart
+## 🛠️ Quickstart
 
 ### Prerequisites
 - Node.js 18+
 - Python 3.10+
-- FFmpeg & FFprobe (installed and accessible in system PATH)
+- FFmpeg installed in system PATH
 
 ### Installation
 ```bash
 npm install
 ```
 
-### Preview Compositions in Remotion Studio
+### Preview in Remotion Studio
 ```bash
-npm start
+npm run dev
 ```
 
-### Render Master MP4s
+### Render 60 FPS Master MP4
 ```bash
-# Render B2B TM1 Feeder Commercial
-npm run render:feeder
-
-# Render Forefront Summit Teaser
-npm run render:forefront
-
-# Batch Render All Compositions
-npm run render:all
+# Render Master 16-Beat 3D Video
+npm run render
 ```
 
 ---
 
-## 🛠️ Video Asset Optimization Tooling
+## 📐 WebGL 3D Architecture Structure
 
-To ensure zero dropped frames and fluid playback inside Remotion, all video clips must be converted to **Constant 30 FPS All-Intra (I-frame only)**:
-
-```bash
-npm run optimize:videos
 ```
-
-This CLI script scans `public/vid_*.mp4`, probes stream metadata, and re-encodes any non-compliant video to:
-- Codec: H.264 Baseline Profile (Level 3.0)
-- Pixel Format: `yuv420p`
-- Framerate: Constant 30.000 FPS
-- Keyframe Interval: `-g 1` (All-Intra)
-- Container: MP4 FastStart (`+faststart`)
-
----
-
-## 📐 Design System & Standards
-
-- **Brand Palette**: Octane Sky Blue (`#4daeeb`), Obsidian (`#000000` / `#090A0C`), White (`#FFFFFF`).
-- **Typography**: Inter (Kinetic Headers) + JetBrains Mono (Telemetry & Badges).
-- **Physics**: Configured spring dynamics (`mass: 0.5, damping: 12, stiffness: 140`).
-- For complete motion guidelines, see [`PLAYBOOK.md`](./PLAYBOOK.md).
+src/
+├── WatsonxVideo.tsx              # Master composition with ThreeCanvas & Lighting Rig
+├── Root.tsx                      # Remotion composition registry
+├── index.ts                      # Remotion entry point
+├── engine/
+│   └── BeatDirectorEngine.ts     # 16-Beat temporal timeline & camera coordinate director
+└── components/
+    ├── webgl/
+    │   ├── CameraDirector3D.tsx  # Dynamic 3D camera interpolator
+    │   ├── CanvasText.tsx        # Offline-safe WebGL canvas texture typography
+    │   ├── Act1_Bottleneck3D.tsx # 3D server rack + fracturing code slab
+    │   ├── Act2_Catalog3D.tsx    # 3D core hub + 4 rising brand platform sockets
+    │   ├── Act3_Governance3D.tsx # 3D laser conduits + tactile physical approval switch
+    │   └── Act4_Observability3D.tsx # 3D OpenTelemetry waterfall + 10.1x velocity slam
+    └── forge/
+        └── SubtitleKaraoke.tsx   # Word-synchronized karaoke subtitle bar
+```
 
 ---
 

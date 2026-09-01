@@ -16,7 +16,7 @@ export const SpatialBoard: React.FC<SpatialBoardProps> = ({
   cameraPanX,
   cameraPanY,
   shakeFrames,
-  children
+  children,
 }) => {
   return (
     <div
@@ -24,7 +24,7 @@ export const SpatialBoard: React.FC<SpatialBoardProps> = ({
         position: 'absolute',
         inset: 0,
         overflow: 'hidden',
-        backgroundColor: IndustrialTheme.surface.base
+        backgroundColor: IndustrialTheme.surface.base,
       }}
     >
       {/* Expansive Ambient Blackboard Floor */}
@@ -33,29 +33,34 @@ export const SpatialBoard: React.FC<SpatialBoardProps> = ({
           position: 'absolute',
           inset: 0,
           background: IndustrialTheme.surface.baseGradient,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
         }}
       />
 
       {/* Ambient Parallax Particle Dust Field */}
-      <AmbientParticleField count={20} cameraPanX={cameraPanX} cameraPanY={cameraPanY} />
+      <AmbientParticleField count={24} cameraPanX={cameraPanX} cameraPanY={cameraPanY} />
 
-      {/* Infinite Drafting Grid */}
+      {/* Infinite Drafting Grid with Parallax */}
       <div
         style={{
           position: 'absolute',
           inset: -2000,
           backgroundImage: `linear-gradient(${IndustrialTheme.surface.gridLine} 1px, transparent 1px), linear-gradient(90deg, ${IndustrialTheme.surface.gridLine} 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
+          backgroundSize: '48px 48px',
           backgroundPosition: 'center center',
           pointerEvents: 'none',
           transform: `scale(${cameraScale}) translate3d(${cameraPanX * 0.3}px, ${cameraPanY * 0.3}px, 0)`,
-          transformOrigin: '50% 50%'
+          transformOrigin: '50% 50%',
         }}
       />
 
       {/* Cinematic Gliding Spatial Stage with Impact Camera Shake */}
-      <CinematicCamera cameraScale={cameraScale} cameraPanX={cameraPanX} cameraPanY={cameraPanY} shakeFrames={shakeFrames}>
+      <CinematicCamera
+        cameraScale={cameraScale}
+        cameraPanX={cameraPanX}
+        cameraPanY={cameraPanY}
+        shakeFrames={shakeFrames}
+      >
         {children}
       </CinematicCamera>
     </div>

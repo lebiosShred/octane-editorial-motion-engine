@@ -1,26 +1,31 @@
 {
-  "name": "octane-editorial-motion-engine",
-  "version": "1.1.0",
-  "description": "Production-grade Remotion motion graphics & guided micro-target storytelling engine for high-retention B2B video commercials and event teasers.",
-  "scripts": {
-    "start": "remotion studio src/Root.tsx",
-    "build": "tsc --noEmit",
-    "render:feeder": "remotion render src/Root.tsx TM1FeederCommercial out/linkedin_tm1_feeder_commercial.mp4 --crf=14 --pixel-format=yuv420p",
-    "render:forefront": "remotion render src/Root.tsx ForefrontSummitTeaser out/forefront_finance_summit_teaser.mp4 --crf=14 --pixel-format=yuv420p",
-    "render:all": "npm run render:feeder && npm run render:forefront",
-    "optimize:videos": "python scripts/optimize_video_assets.py",
-    "audio": "python scripts/generate_audio_pipeline.py"
-  },
+  "name": "watsonx-motion-graphics",
+  "version": "1.0.0",
+  "description": "Remotion 60 FPS 1:1 Word-and-Visual Motion Graphics Engine for IBM watsonx Orchestrate",
+  "private": true,
   "dependencies": {
-    "@remotion/google-fonts": "^4.0.518",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remotion": "4.0.504"
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
+    "@remotion/cli": "4.0.489",
+    "@remotion/google-fonts": "4.0.489",
+    "@remotion/three": "^4.0.489",
+    "@remotion/transitions": "4.0.489",
+    "@remotion/zod-types": "4.0.489",
+    "lucide-react": "^1.24.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.489",
+    "three": "^0.185.1",
+    "zod": "4.3.6"
   },
   "devDependencies": {
-    "@remotion/cli": "^4.0.504",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "typescript": "^5.4.5"
+    "@types/react": "19.2.7",
+    "@types/three": "^0.185.4",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render WatsonxVideo out/watsonx_orchestrate.mp4",
+    "build": "remotion bundle"
   }
 }

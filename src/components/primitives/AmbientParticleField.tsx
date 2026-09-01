@@ -1,39 +1,42 @@
 import React from 'react';
-import { useCurrentFrame } from 'remotion';
 
 interface AmbientParticleFieldProps {
   count?: number;
-  cameraPanX?: number;
-  cameraPanY?: number;
+  cameraPanX: number;
+  cameraPanY: number;
 }
 
 export const AmbientParticleField: React.FC<AmbientParticleFieldProps> = ({
   count = 24,
-  cameraPanX = 0,
-  cameraPanY = 0
+  cameraPanX,
+  cameraPanY,
 }) => {
-  const frame = useCurrentFrame();
-
-  const particles = React.useMemo(() => {
-    return Array.from({ length: count }).map((_, i) => ({
-      x: ((i * 137.5) % 1920) - 960,
-      y: ((i * 243.7) % 1080) - 540,
-      size: 2 + (i % 3),
-      depth: 0.2 + ((i % 5) * 0.15),
-      speed: 0.02 + ((i % 4) * 0.01)
-    }));
-  }, [count]);
+  // Deterministic particle coordinates
+  const particles = Array.from({ length: count }, (_, i) => {
+    const seed = i * 137.5;
+    const x = ((seed * 19) % 3840) - 1920;
+    const y = ((seed * 31) % 2160) - 1080;
+    const size = (i % 3) + 1.5;
+    const opacity = (i % 5) * 0.08 + 0.1;
+    const depth = (i % 4) * 0.15 + 0.2;
+    return { id: i, x, y, size, opacity, depth };
+  });
 
   return (
-    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden', zIndex: 2 }}>
-      {particles.map((p, idx) => {
-        const floatY = Math.sin((frame * p.speed) + idx) * 15;
-        const posX = p.x + (cameraPanX * p.depth);
-        const posY = p.y + floatY + (cameraPanY * p.depth);
-
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        overflow: 'hidden',
+      }}
+    >
+      {particles.map((p) => {
+        const panOffsetX = cameraPanX * p.depth;
+        const panOffsetY = cameraPanY * p.depth;
         return (
           <div
-            key={idx}
+            key={p.id}
             style={{
               position: 'absolute',
               left: '50%',
@@ -41,9 +44,10 @@ export const AmbientParticleField: React.FC<AmbientParticleFieldProps> = ({
               width: p.size,
               height: p.size,
               borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              boxShadow: '0 0 6px rgba(255, 255, 255, 0.2)',
-              transform: `translate3d(calc(-50% + ${posX}px), calc(-50% + ${posY}px), 0)`
+              backgroundColor: '#4daeeb',
+              opacity: p.opacity,
+              transform: `translate3d(${p.x + panOffsetX}px, ${p.y + panOffsetY}px, 0)`,
+              boxShadow: '0 0 8px rgba(77, 174, 235, 0.4)',
             }}
           />
         );

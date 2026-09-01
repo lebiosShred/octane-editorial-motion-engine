@@ -1,22 +1,11 @@
-# Node Dependencies
 node_modules/
-package-lock.json
-
-# Remotion Render Outputs
-out/*.mp4
-out/*.webm
-test-video/
-
-# Python Cache & Virtual Environments
+.deliberate/
+out/
+bin/
+*.mp4
+*.gif
+*.pyc
 __pycache__/
-*.py[cod]
-.venv/
-venv/
-
-# Environment Variables
-.env
-.env.local
-
-# OS Files
 .DS_Store
-Thumbs.db
+.tempmediaStorage/
+.system_generated/

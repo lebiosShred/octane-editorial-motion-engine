@@ -1,32 +1,64 @@
 import React from 'react';
-import { Composition, registerRoot } from 'remotion';
-import { TM1FeederCommercial } from './compositions/TM1FeederCommercial';
-import { ForefrontSummitTeaser } from './compositions/ForefrontSummitTeaser';
-import timingData from '../public/voiceover.json';
+import { Composition } from 'remotion';
+import { WatsonxVideo } from './WatsonxVideo';
+import { WebGLSmokeTest } from './components/scene3d/WebGLSmokeTest';
+import voiceData from '../public/voiceover.json';
 
-export const Root: React.FC = () => {
-  const feederDurationFrames = Math.ceil((timingData.duration_seconds + 1.2) * 30);
+const FPS = 60;
 
+export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="TM1FeederCommercial"
-        component={TM1FeederCommercial}
-        durationInFrames={feederDurationFrames}
-        fps={30}
+        id="WebGLSmokeTest"
+        component={WebGLSmokeTest}
+        fps={FPS}
+        durationInFrames={120}
         width={1920}
         height={1080}
       />
       <Composition
-        id="ForefrontSummitTeaser"
-        component={ForefrontSummitTeaser}
-        durationInFrames={780}
-        fps={30}
+        id="WatsonxVideo"
+        component={WatsonxVideo}
+        fps={FPS}
         width={1920}
         height={1080}
+        calculateMetadata={() => {
+          const segments = voiceData?.word_segments || [];
+          const lastWord = segments[segments.length - 1];
+          const durationInSeconds = lastWord ? lastWord.end : 45.0;
+          return {
+            durationInFrames: Math.ceil((durationInSeconds + 2.0) * FPS),
+          };
+        }}
+        defaultProps={{
+          primaryColor: '#0f62fe',
+          accentColor: '#4daeeb',
+          textColor: '#0a0a0a',
+          backgroundColor: '#ffffff',
+        }}
+      />
+      <Composition
+        id="WatsonxVideoVertical"
+        component={WatsonxVideo}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        calculateMetadata={() => {
+          const segments = voiceData?.word_segments || [];
+          const lastWord = segments[segments.length - 1];
+          const durationInSeconds = lastWord ? lastWord.end : 45.0;
+          return {
+            durationInFrames: Math.ceil((durationInSeconds + 2.0) * FPS),
+          };
+        }}
+        defaultProps={{
+          primaryColor: '#0f62fe',
+          accentColor: '#4daeeb',
+          textColor: '#0a0a0a',
+          backgroundColor: '#ffffff',
+        }}
       />
     </>
   );
 };
-
-registerRoot(Root);
