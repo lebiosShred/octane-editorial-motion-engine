@@ -1,12 +1,12 @@
 import React from 'react';
-import { useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
+import { useCurrentFrame, interpolate, useVideoConfig } from 'remotion';
 import { StoryOpeningSequence } from '../clean/StoryOpeningSequence';
-import { SnappingConduitSocket } from '../metaphors/SnappingConduitSocket';
+import { DarkTerminalCodeInspector } from '../clean/DarkTerminalCodeInspector';
 import { StackedDeckCatalog } from '../metaphors/StackedDeckCatalog';
 import { InteractiveTogglePill } from '../clean/InteractiveTogglePill';
 import { KineticOdometer } from '../metaphors/KineticOdometer';
 import { WatsonxOrbitalEmblem } from '../clean/WatsonxOrbitalEmblem';
-import { MILESTONES } from '../../utils/TranscriptController';
+import { BlueprintGridStage } from '../clean/BlueprintGridStage';
 
 export const ContinuousWorldStage: React.FC = () => {
   const frame = useCurrentFrame();
@@ -33,16 +33,7 @@ export const ContinuousWorldStage: React.FC = () => {
   const camTiltY = Math.cos(frame * 0.025) * 1.5;
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#000000',
-        perspective: 1400,
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <BlueprintGridStage hudTag="WATSONX // ENTERPRISE_ORCHESTRATION_ENGINE">
       {/* Continuous 3D World Stage */}
       <div
         style={{
@@ -78,8 +69,8 @@ export const ContinuousWorldStage: React.FC = () => {
         )}
 
         {/* ========================================================================= */}
-        {/* SCENE 2: Snapping Industrial Conduit (f600 - f1080 | 10.0s - 18.0s)        */}
-        {/* "Brittle authentication & custom API glue code -> Pipeline breaks"        */}
+        {/* SCENE 2: Dark-Mode Code Terminal Inspector (f600 - f1080 | 10.0s - 18.0s)  */}
+        {/* "Brittle authentication & custom API glue code -> 401 Disconnect"         */}
         {/* ========================================================================= */}
         {frame >= 580 && frame < 1120 && (
           <div
@@ -97,7 +88,7 @@ export const ContinuousWorldStage: React.FC = () => {
               pointerEvents: frame < 600 || frame >= 1080 ? 'none' : 'auto',
             }}
           >
-            <SnappingConduitSocket breakFrame={120} />
+            <DarkTerminalCodeInspector breakFrame={120} />
           </div>
         )}
 
@@ -196,6 +187,6 @@ export const ContinuousWorldStage: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+    </BlueprintGridStage>
   );
 };

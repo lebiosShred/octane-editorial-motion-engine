@@ -14,7 +14,7 @@ MILESTONE_FRAMES = [
   {"name": "m2_day1_top", "frame": 310, "desc": "Step 4: DAY 1 Pin Pop-in with 140px Header Clearance"},
   {"name": "m2_day_tracking", "frame": 370, "desc": "Step 5: Dynamic Camera Tracking & Screen 1 Culling"},
   {"name": "m2_day180_stalled", "frame": 450, "desc": "Step 5B: DAY 180 Pin with 150px Clean Card Docking"},
-  {"name": "m3_snapping_socket", "frame": 800, "desc": "Scene 2: Snapping Industrial Socket & Spark Disconnect"},
+  {"name": "m3_dark_terminal", "frame": 800, "desc": "Scene 2: Dark-Mode Code Terminal Inspector & HTTP 401 Disconnect"},
   {"name": "m4_fanning_deck", "frame": 1400, "desc": "Scene 3: Fanning 3D Glass Brand Deck (SAP, Salesforce, ServiceNow)"},
   {"name": "m5_toggle_pill", "frame": 2000, "desc": "Scene 4: 1-Click Governance Laser Toggle"},
   {"name": "m6_odometer", "frame": 2500, "desc": "Scene 5: Mechanical Chronograph Odometer (11.2x)"},
